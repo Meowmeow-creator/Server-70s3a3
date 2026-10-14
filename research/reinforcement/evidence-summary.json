@@ -1,0 +1,41 @@
+{
+  "status": "internal-research-only",
+  "updatedUtc": "2026-10-14T16:08:19.964828+00:00",
+  "serviceSha256": "9fc2df5acd901b38fe54a4eaef7ca33ca061ba8cc19b684003c3454ec4386386",
+  "currentPvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
+  "upgradeDocumentSha256": "7102e11ce78934ef246ec24d9ab6af731547a8d1a28113990fdbe62b56a04f71",
+  "tableAndTargetDocumentsCompared": true,
+  "targetDocuments": 1852,
+  "compileTransactionCases": 195,
+  "compileTransactionChecks": 2763,
+  "actualTcpCases": 13,
+  "legacyCouponPassed": true,
+  "wireFrames": 33,
+  "nativeReceiverCases": 27,
+  "stableSourceAndDataByteUnchanged": 153,
+  "releaseAllowed": false,
+  "deployed": false,
+  "gameControlled": false,
+  "actualPlayerStoreWrites": false,
+  "provenScope": [
+    "common/uncommon old grade0..7; registered other rarities old grade0..9",
+    "real gold/material debit; table-backed no-destroy downgrade; full bag; cached repeat; saved randomized outcome",
+    "existing fixed coupon remains reachable with unchanged gold and mechanism1"
+  ],
+  "blockers": [
+    "equipment destroy/disjoint returns and protection items not integrated",
+    "event/worn/continuous effect discounts or chance modifiers unvalidated",
+    "TW1031 inclusive random denominator reference; current server method not independently proved",
+    "whole-game UI/rendering and friend review pending"
+  ],
+  "reusedOriginalProofs": [
+    "reinforcement-coupons-FG141/table-native.json:255 rows with modeled endpoints",
+    "reinforcement-coupons-FG141/calculation-native.json:2055 cases; original protected/metadata endpoint limits retained"
+  ],
+  "failurePreparations": [
+    "PVF helper string instead of Path; root PVF path corrected to parent",
+    "initial material fixture slot65 was consumable instead of materials slot113",
+    "rarity4 has no registered original target, so no synthetic equipment was created",
+    "old v46 helper binary unavailable; verified current v48 selected instead"
+  ]
+}

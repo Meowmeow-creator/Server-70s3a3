@@ -11,6 +11,7 @@
 | 门票/疲劳/黑钻 | Tower-DailyTickets-*、Fatigue-*、Black* | 20级、每天本地06点共享票补至5等现有规则保留；时钟、满包、同日重复联检 |
 | 核心共享区 | Batch-Service-FG.cs、Economy-State/Protocol-FG.cs、Progression-FG.cs、Role-*、各 Cipher/Protocol | 提前声明，多人同改由一人集成；协议与经济/任务审查不能省略 |
 | 研究塔 | research/tower/src、research/tower/data | 独立分支与输出；同步稳定修复按小补丁双向合并，完整塔未验证不能晋升 |
+| 普通强化研究 | research/reinforcement/ | 独立复制稳定源到build目录；三个共享补丁须单独复核。未证明破坏返料、修正效果、完整回归和玩家效果前，不替换稳定Coupon/Economy/Batch文件 |
 | 构建/发布 | scripts/、.github/、baseline/ | 构建源清单、数据版本、哈希和检查同步修改；基线 manifest 只读保留，新增基线另建记录 |
 | 客户端 | 另行记录源码/补丁与本地资源依赖 | 当前仓库不含客户端二进制；不能顺带切 v51/52/53 原型，任何变更需单独证据和人验收 |
 
