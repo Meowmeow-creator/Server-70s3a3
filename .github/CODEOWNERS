@@ -1,0 +1,9 @@
+# Core shared interfaces require repository maintainer review.
+/src/Tools/VmTestKit/Batch-Service-FG.cs @zzdiandian
+/src/Tools/VmTestKit/Economy-* @zzdiandian
+/src/Tools/VmTestKit/Progression-* @zzdiandian
+/src/Tools/VmTestKit/*Cipher* @zzdiandian
+/src/Tools/VmTestKit/*Protocol* @zzdiandian
+/scripts/ @zzdiandian
+/.github/ @zzdiandian
+/baseline/ @zzdiandian

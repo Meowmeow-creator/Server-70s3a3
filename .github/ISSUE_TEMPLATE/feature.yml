@@ -1,0 +1,29 @@
+name: 新增功能
+description: 明确接入范围、版本依据与验收条件
+title: '[功能] '
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 玩家操作与预期结果
+      description: 写具体任务、副本或系统，包含等级、前置、难度和入口。
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: 修改范围与协调人
+      description: 说明src或research范围、共享文件和依赖；避免多人覆盖同一核心文件。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 原版本依据与验收计划
+      description: 原国服资料、跨版参考限制、奖励扣除、满包、重复、保存重登、AI和真人验收。
+    validations:
+      required: true
+  - type: textarea
+    id: limits
+    attributes:
+      label: 不确定点与未完成项

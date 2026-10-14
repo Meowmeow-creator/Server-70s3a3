@@ -1,0 +1,16 @@
+{
+  "baseline": "FG175",
+  "stableSourceCount": 145,
+  "towerResearchSourceCount": 152,
+  "stableServiceSha256": "69180c42b7d4ac257e8e8aa72dd2c6c5ae3fb1c471e250c442416be512209956",
+  "stableClientSha256": "c05860015f7cb468f3ddb6903d045c048f5b00d1cabed3e6dec4cf786a1bb487",
+  "originalPvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
+  "historicalDeliveryAuditPassed": true,
+  "historicalArchiveEntries": 411,
+  "historicalArchiveSha256": "c95d7510340503817d2618dd8e8723cfb81083a0da78a15fbf89c66c335cf933",
+  "freshChange": "Quest453 Path/Selection correction only; original 35% adventure+ drop retained",
+  "humanAcceptancePending": true,
+  "allSixTowersComplete": false,
+  "researchReleaseAllowed": false,
+  "evidenceScope": "Historical guarded service requests and native receiver models. This summary does not claim live tower AI or rendering acceptance."
+}

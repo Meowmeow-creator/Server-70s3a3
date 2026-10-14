@@ -1,0 +1,24 @@
+name: 缺陷反馈
+description: 记录可复现操作，避免提交真实存档或凭据
+title: '[缺陷] '
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 版本与提交
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤与实际表现
+      description: 写操作、任务或副本名、等级/难度；日志先去除身份和存档内容。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期表现与验证范围
+      description: 区分玩家实测、服务回放与模型结果。
+    validations:
+      required: true

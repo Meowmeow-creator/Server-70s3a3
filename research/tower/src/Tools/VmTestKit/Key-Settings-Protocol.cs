@@ -1,0 +1,24 @@
+using System;using System.IO;using System.Text;
+// Native70 GAME_OPTION (185) and save command213. Account1 uses the fixed
+// channel keys; cipher3 is the client's RC6 variant with byte round keys.
+class Offline70KeySettings {
+ internal const int Bytes=182;
+ static void Keys(byte[] keys){if(keys==null||keys.Length!=334)throw new InvalidDataException("Keyboard channel keys");for(int i=0;i<keys.Length;i++)if(keys[i]!=(byte)i)throw new InvalidDataException("Keyboard key profile");}
+ static uint Rol(uint x,int n){n&=31;return (x<<n)|(x>>((32-n)&31));}
+ static uint Ror(uint x,int n){return Rol(x,32-(n&31));}
+ internal static byte[] Schedule(byte[] keys){Keys(keys);byte[] s=new byte[44];uint[] l=new uint[8];for(int i=0;i<8;i++)l[i]=BitConverter.ToUInt32(keys,80+4*i);s[0]=0x63;for(int i=1;i<44;i++)s[i]=unchecked((byte)(s[i-1]-0x47));uint a=0,b=0;int si=0,li=0;unchecked{for(int i=0;i<132;i++){a=s[si]=(byte)Rol(s[si]+a+b,3);b=l[li]=Rol(l[li]+a+b,(int)(a+b));si=(si+1)%44;li=(li+1)%8;}}return s;}
+ internal static byte[] Crypt(byte[] input,byte[] keys,bool encrypt){
+  if(input==null||input.Length==0||input.Length>4096||input.Length%16!=0)throw new InvalidDataException("Keyboard cipher bounds");byte[] s=Schedule(keys),output=new byte[input.Length];
+  unchecked{for(int at=0;at<input.Length;at+=16){uint a=BitConverter.ToUInt32(input,at),b=BitConverter.ToUInt32(input,at+4),c=BitConverter.ToUInt32(input,at+8),d=BitConverter.ToUInt32(input,at+12);
+   if(encrypt){b+=s[0];d+=s[1];for(int i=1;i<=20;i++){uint t=Rol(b*(2*b+1),5),u=Rol(d*(2*d+1),5);a=Rol(a^t,(int)u)+s[2*i];c=Rol(c^u,(int)t)+s[2*i+1];uint prior=a;a=b;b=c;c=d;d=prior;}a+=s[42];c+=s[43];}
+   else{c-=s[43];a-=s[42];for(int i=20;i>=1;i--){uint prior=d;d=c;c=b;b=a;a=prior;uint u=Rol(d*(2*d+1),5),t=Rol(b*(2*b+1),5);c=Ror(c-s[2*i+1],(int)t)^u;a=Ror(a-s[2*i],(int)u)^t;}d-=s[1];b-=s[0];}
+   BitConverter.GetBytes(a).CopyTo(output,at);BitConverter.GetBytes(b).CopyTo(output,at+4);BitConverter.GetBytes(c).CopyTo(output,at+8);BitConverter.GetBytes(d).CopyTo(output,at+12);
+  }}return output;
+ }
+ internal static void Validate(byte[] settings){if(settings==null||settings.Length!=Bytes)throw new InvalidDataException("Keyboard mapping length");for(int i=0;i<91;i++){ushort key=BitConverter.ToUInt16(settings,2*i);if(key>134&&key!=65535)throw new InvalidDataException("Keyboard mapping value");}}
+ internal static byte[] Parse(byte[] encrypted,byte[] keys){if(encrypted==null||encrypted.Length!=192)throw new InvalidDataException("Keyboard request length");byte[] plain=Crypt(encrypted,keys,false);if(BitConverter.ToUInt32(plain,0)!=Bytes)throw new InvalidDataException("Keyboard declared length");for(int i=186;i<192;i++)if(plain[i]!=0)throw new InvalidDataException("Keyboard padding");byte[] settings=new byte[Bytes];Buffer.BlockCopy(plain,4,settings,0,Bytes);Validate(settings);return settings;}
+ internal static byte[] Body(byte[] settings){Validate(settings);byte[] body=new byte[270];/* Native 894D20 first reads 36 u16 system options. 0x7fff selects its local DNF.cfg fallback. */BitConverter.GetBytes((uint)72).CopyTo(body,0);for(int i=0;i<36;i++)BitConverter.GetBytes((ushort)0x7fff).CopyTo(body,4+2*i);BitConverter.GetBytes((uint)Bytes).CopyTo(body,76);settings.CopyTo(body,80);/* two zero-length chat strings follow */return body;}
+ internal static byte[] Reply(byte[] settings,byte[] keys){byte[] body=Body(settings),padded=new byte[272];body.CopyTo(padded,0);return Offline70RoleProtocol.Packet(0,185,Crypt(padded,keys,true));}
+ internal static byte[] Load(string path){if(!File.Exists(path))return null;byte[] data=File.ReadAllBytes(path);if(data.Length!=Bytes+12||Encoding.ASCII.GetString(data,0,8)!="S70KEYS1"||BitConverter.ToUInt32(data,8)!=Bytes)throw new InvalidDataException("Keyboard store format");byte[] settings=new byte[Bytes];Buffer.BlockCopy(data,12,settings,0,Bytes);Validate(settings);return settings;}
+ internal static void Save(string path,byte[] settings){Validate(settings);string temp=path+".pending-"+Guid.NewGuid().ToString("N"),backup=path+".backup-"+Guid.NewGuid().ToString("N");try{using(FileStream f=new FileStream(temp,FileMode.CreateNew,FileAccess.Write)){byte[] magic=Encoding.ASCII.GetBytes("S70KEYS1");f.Write(magic,0,8);byte[] length=BitConverter.GetBytes((uint)Bytes);f.Write(length,0,4);f.Write(settings,0,Bytes);f.Flush();}byte[] check=Load(temp);for(int i=0;i<Bytes;i++)if(check[i]!=settings[i])throw new InvalidDataException("Keyboard readback");if(File.Exists(path))File.Replace(temp,path,backup);else File.Move(temp,path);check=Load(path);for(int i=0;i<Bytes;i++)if(check[i]!=settings[i])throw new InvalidDataException("Keyboard committed readback");}finally{if(File.Exists(temp))File.Delete(temp);}}
+}

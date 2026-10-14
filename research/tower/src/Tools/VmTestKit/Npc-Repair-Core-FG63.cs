@@ -1,0 +1,8 @@
+﻿using System;using System.IO;using System.Collections.Generic;
+// First repair profile: unenhanced quest belt16400. Price inputs read from CN70
+// PVF: value160, grade1, durability20, normal upgrade0 repair rate1.
+// CN70 quote for10 missing durability is4: truncate, not DSX60 rounding.
+class Offline70NpcRepairCoreFG63 {
+ internal static uint Cost(Offline70EconomyEntry e){return Offline70CommerceFG71.RepairCost(e);}
+ internal static Offline70EconomyState Repair(string path,string receipt,byte list,ushort slot,out bool duplicate){bool all=list==0&&slot==UInt16.MaxValue;if(!all&&(list!=0||slot<9||slot>40)&&(list!=3||slot<10||slot>21))throw new InvalidDataException("Repair target bounds");return Offline70Economy.Apply(path,receipt,"npc-repair","ordinary-FG71:"+list+":"+slot,delegate(Offline70EconomyState s){List<Offline70EconomyEntry> targets=new List<Offline70EconomyEntry>();ulong total=0;foreach(Offline70EconomyEntry e in s.Inventory){bool candidate=all?e.List==3&&e.Slot>=10&&e.Slot<=21:e.List==list&&e.Slot==slot;if(!candidate)continue;Offline70EconomyItemDefinition d=Offline70Economy.Definition(e.ItemId);if(d.Kind!=4)continue;if(d.MaxDurability==0||e.Durability>=d.MaxDurability)continue;total+=Cost(e);if(total>Offline70Economy.WalletLimit)throw new InvalidDataException("Repair total overflow");targets.Add(e);}if(targets.Count==0)throw new InvalidDataException("No damaged equipment");if(s.Gold<total)throw new InvalidDataException("Insufficient repair gold");foreach(Offline70EconomyEntry e in targets)e.Durability=Offline70Economy.Definition(e.ItemId).MaxDurability;s.Gold-=(uint)total;},out duplicate);}
+}

@@ -1,0 +1,7 @@
+using System;using System.IO;
+// Original TW8201160..8201547 and current CN84/14. No title or non-sealing gear.
+class Offline70ItemResealFG102 {
+ internal static byte Attribute(Offline70EconomyEntry e){return (byte)(e.Upgrade|(e.ResealCount<<5));}
+ internal static uint Cost(uint item,byte count){uint[] costs;if(count>6||!Offline70ItemResealCatalogFG102.Costs.TryGetValue(item,out costs))throw new InvalidDataException("Wax84 original reseal type or seven-use limit");return costs[count];}
+ internal static Offline70EconomyState Reseal(string path,string receipt,Offline70ItemQualityFG101.Request r,out bool duplicate){if(r==null||r.Target<3||r.Target>=41||r.Source==r.Target||!(r.Source>=3&&r.Source<9||r.Source>=57&&r.Source<89))throw new InvalidDataException("Wax84 request position");return Offline70Economy.Apply(path,receipt,"item-reseal",r.Target+":"+r.Item+":"+r.Source,delegate(Offline70EconomyState s){Offline70EconomyEntry target=Offline70Economy.Find(s,0,r.Target),wax=Offline70Economy.Find(s,0,r.Source);if(target==null||target.ItemId!=r.Item||target.Quantity!=1||Offline70Economy.Definition(target.ItemId).Kind!=4||target.Sealed||wax==null||wax.ItemId!=14)throw new InvalidDataException("Wax84 owned unsealed equipment and wax required");uint cost=Cost(target.ItemId,target.ResealCount);if(cost==0||wax.Quantity<cost)throw new InvalidDataException("Wax84 insufficient original material cost");target.Sealed=true;target.ResealCount++;wax.Quantity-=cost;if(wax.Quantity==0)s.Inventory.Remove(wax);},out duplicate);}
+}

@@ -1,0 +1,9 @@
+* text=auto
+*.cs -text
+*.xml -text
+*.dat binary
+*.etc -text
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf

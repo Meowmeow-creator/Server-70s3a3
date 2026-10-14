@@ -1,0 +1,12 @@
+using System;using System.IO;using System.Reflection;
+// Reflection-only wire fixture. It does not construct the service or open saves.
+class BatchRoomMoveFixturesFG {
+ static Assembly service;static byte[] keys=new byte[334];
+ static byte[] Flow(byte[] data,bool encrypt){return (byte[])service.GetType("Offline70FlowCipherFG").GetMethod("Crypt",BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic).Invoke(null,new object[]{data,keys,6,encrypt});}
+ static byte[] Room(byte[] data){return (byte[])service.GetType("ProbeLoginCandidate").GetMethod("Crypt",BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic).Invoke(null,new object[]{data,keys,false});}
+ static byte[] Frame(ushort op,byte[] body){byte[] b=new byte[13+body.Length];b[0]=1;BitConverter.GetBytes(op).CopyTo(b,1);BitConverter.GetBytes(b.Length).CopyTo(b,3);body.CopyTo(b,13);return b;}
+ static int Main(string[] args){if(args.Length!=4)return 2;service=Assembly.LoadFile(Path.GetFullPath(args[0]));for(int i=0;i<keys.Length;i++)keys[i]=(byte)i;Directory.CreateDirectory(args[3]);
+  if(args[1]=="moves"){byte[] captured=File.ReadAllBytes(args[2]);if(captured.Length!=72)throw new InvalidDataException("Live move must be 72 bytes");byte[] plain=Flow(captured,false);File.WriteAllBytes(Path.Combine(args[3],"captured.plain.bin"),plain);foreach(byte y in new byte[]{0,1,2}){byte[] p=(byte[])plain.Clone();p[0]=0;p[1]=y;File.WriteAllBytes(Path.Combine(args[3],"move-"+y+".bin"),Frame(48,Flow(p,true)));}foreach(int position in new int[]{70,71}){byte[] p=(byte[])plain.Clone();p[position]=1;File.WriteAllBytes(Path.Combine(args[3],"padding-"+position+".bin"),Frame(48,Flow(p,true)));}byte[] invalid=(byte[])plain.Clone();invalid[0]=1;File.WriteAllBytes(Path.Combine(args[3],"bad-x.bin"),Frame(48,Flow(invalid,true)));invalid=(byte[])plain.Clone();invalid[1]=3;File.WriteAllBytes(Path.Combine(args[3],"bad-y.bin"),Frame(48,Flow(invalid,true)));return 0;}
+  if(args[1]=="decode"){foreach(string file in Directory.GetFiles(args[2],"*.bin")){byte[] packet=File.ReadAllBytes(file);if(packet.Length<23)throw new InvalidDataException("Short reply");ushort op=BitConverter.ToUInt16(packet,1);byte[] body=new byte[packet.Length-15];Array.Copy(packet,15,body,0,body.Length);if(op==48)body=Flow(body,false);else if(op==29)body=Room(body);else throw new InvalidDataException("Unexpected opcode");File.WriteAllBytes(Path.Combine(args[3],Path.GetFileName(file)),body);}return 0;}return 2;
+ }
+}

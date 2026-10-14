@@ -1,0 +1,12 @@
+using System;using System.Collections.Generic;
+class Offline70BlessingCatalogFG95 {
+ internal const uint Box=2682272;
+ internal const int Denominator=1000000; // TW850EE85, original A14 multi-box rule.
+ internal class Pool {internal uint[] Fallback;internal uint[][] Rewards;}
+ internal static readonly Pool[] Pools=new Pool[]{
+ new Pool{Fallback=new uint[]{42,2,0},Rewards=new uint[][]{new uint[]{2681358,300,1,1},new uint[]{2747023,300,1,1},new uint[]{63145,400,1,1},new uint[]{42,27000,1,0},new uint[]{42,6000,5,0},new uint[]{36,6000,1,0},new uint[]{36,3000,2,0},new uint[]{36,2000,5,0},new uint[]{3,200,1,0},new uint[]{3,100,2,0},new uint[]{15,9000,1,0},new uint[]{15,3000,2,0},new uint[]{15,2000,5,0},new uint[]{15,500,10,0},new uint[]{14,500,1,0},new uint[]{14,200,5,0},new uint[]{44,3500,1,0},new uint[]{31,4000,1,0}}},
+ new Pool{Fallback=new uint[]{2682154,5,0},Rewards=new uint[][]{new uint[]{2600014,18000,1,0},new uint[]{2682154,5000,10,0},new uint[]{2682154,500,50,0},new uint[]{2682154,100,100,0},new uint[]{421,1000,5,0},new uint[]{421,4000,50,0},new uint[]{421,500,10,0},new uint[]{421,100,100,0},new uint[]{2600027,500,1,0},new uint[]{2600027,100,3,0},new uint[]{2600028,1000,1,0},new uint[]{2600028,500,3,0},new uint[]{2600019,1500,1,0},new uint[]{2600019,800,3,0},new uint[]{2681588,1000,1,0},new uint[]{2681589,500,1,0},new uint[]{2681590,100,1,1},new uint[]{2681591,700,1,0},new uint[]{2681592,300,1,0},new uint[]{2681593,80,1,1},new uint[]{2681594,2,1,1}}},
+ new Pool{Fallback=new uint[]{1085,10,0},Rewards=new uint[][]{new uint[]{2682148,300,1,0},new uint[]{2682149,1200,1,0},new uint[]{2682150,900,1,0},new uint[]{2682151,310,1,1},new uint[]{2682152,3,1,1},new uint[]{2682153,1,1,1},new uint[]{2682155,400,1,1},new uint[]{2682156,400,1,1},new uint[]{2682157,155,1,1},new uint[]{2682591,50,1,0},new uint[]{2682592,50,1,0},new uint[]{2682593,80,1,0},new uint[]{2682594,20,1,0},new uint[]{2682595,125,1,0},new uint[]{2682596,250,1,0},new uint[]{2682597,30,1,0},new uint[]{2682598,600,1,0},new uint[]{2682599,300,1,0},new uint[]{2682600,10,1,1},new uint[]{2682601,150,1,0},new uint[]{2682602,50,1,0},new uint[]{2682603,5,1,1},new uint[]{2682604,100,1,0},new uint[]{2682605,25,1,1},new uint[]{2682606,1,1,1},new uint[]{1085,14000,20,0},new uint[]{2681767,15000,10,0},new uint[]{2681767,14000,20,0},new uint[]{8,15000,10,0},new uint[]{8,14000,20,0},new uint[]{37,7170,3,0}}},
+ };
+ internal static bool IsEgg(uint item){return item==2681358||item==2747023||item==63145;}
+}

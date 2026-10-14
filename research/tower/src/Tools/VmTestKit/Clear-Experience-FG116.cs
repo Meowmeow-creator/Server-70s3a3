@@ -1,0 +1,27 @@
+﻿using System;using System.IO;
+// Ordinary solo clear_reward arithmetic: current CN70 PVF, supplied TW70 ELF.
+// Each native float store is retained before the next multiply/truncation.
+class Offline70ClearExperienceFG116 {
+ internal class Reward {internal ushort Dungeon,Basis;internal byte Difficulty,Player,Rank;internal int Kills,RankIndex;internal uint Reference,Pool,Base,RankBonus,BaseAward,RankAward,Award;internal float BeforeDifficulty,AfterDifficulty,AfterPenalty;}
+ internal static readonly ushort[] RankGrades=new ushort[]{99,97,95,81,76,71,66,61};
+ internal static readonly float[] RankRates=new float[]{0.05f,0.1f,0.15f,0.2f,0.3f};
+ internal static ushort Basis(ushort dungeon){switch(dungeon){case 1:return 1;case 2:return 2;case 3:return 4;case 4:return 6;case 5:return 8;case 6:return 10;case 7:return 13;case 8:return 15;case 9:return 11;case 11:return 19;case 12:return 21;case 13:return 23;case 14:return 25;case 15:return 28;case 17:return 27;case 1000:return 17;case 21:return 30;case 22:return 31;case 23:return 32;case 24:return 33;case 25:return 35;case 26:return 37;case 27:return 39; default:throw new InvalidDataException("Unproven clear dungeon basis");}}
+ internal static int RankIndex(byte rank){for(int i=0;i<5;i++)if(rank>=RankGrades[i])return 4-i;return -1;}
+ // Marshal float bits to force the original f32 store even with CLR x87 locals.
+ static float Store(double value){return BitConverter.ToSingle(BitConverter.GetBytes((float)value),0);}
+ internal static Reward Calculate(ushort dungeon,byte difficulty,byte player,int killed,byte rank){
+  if(difficulty>3||player<1||player>70||killed<1||killed>4096)throw new InvalidDataException("Clear XP verified inputs");
+  Reward r=new Reward{Dungeon=dungeon,Basis=Basis(dungeon),Difficulty=difficulty,Player=player,Kills=killed,Rank=rank,RankIndex=RankIndex(rank)};
+  r.Reference=Offline70MonsterExperienceFG115.BaseReward(r.Basis);
+  r.BeforeDifficulty=Store((double)Store(r.Reference)*killed/2.0*1f);
+  r.AfterDifficulty=Store((double)r.BeforeDifficulty*Offline70MonsterExperienceFG115.Difficulty[difficulty]);
+  r.Pool=checked((uint)((double)r.AfterDifficulty*Offline70MonsterExperienceFG115.DungeonWeight(dungeon)));
+  r.AfterPenalty=Store((double)Store(r.Pool)*Offline70MonsterExperienceFG115.LevelPenalty(player,r.Basis));
+  r.Base=checked((uint)r.AfterPenalty); // MemberPenaltyRate1 and member count1.
+  r.RankBonus=r.RankIndex<0?0:checked((uint)((double)r.Base*RankRates[r.RankIndex]));
+  r.BaseAward=Offline70TestRatesFG114.Experience(r.Base);r.RankAward=Offline70TestRatesFG114.Experience(r.RankBonus);r.Award=checked(r.BaseAward+r.RankAward);return r;
+ }
+ // Current CN35 is clear-base, rank-bonus, party-bonus, avatar-bonus ... .
+ // It contains earned XP, not the account's cumulative XP or prior balance.
+ internal static byte[] Body(uint actualBase,uint actualRank){byte[] b=new byte[91];BitConverter.GetBytes(actualBase).CopyTo(b,0);BitConverter.GetBytes(actualRank).CopyTo(b,4);b[62]=1;BitConverter.GetBytes(Offline70DungeonFlowFG.DiagnosticClearGold).CopyTo(b,67);BitConverter.GetBytes(Offline70PaidCardFG.Cost).CopyTo(b,74);return b;}
+}
