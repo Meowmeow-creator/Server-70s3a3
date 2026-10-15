@@ -1,4 +1,4 @@
-﻿using System;using System.IO;using System.Collections.Generic;
+using System;using System.IO;using System.Collections.Generic;
 // Bound to current CN70 PVF quest4307, maze1 and map1618/1619/APC201.
 partial class Offline70DungeonFlowFG {
  internal bool TowerRescueFG156;internal bool GsdRunFG130,GsdSpawnedFG130,GsdDeadFG130;internal ushort GsdQuestFG135,GsdApcFG135,GsdStartMapFG135;internal string GsdQuestInstanceFG130;

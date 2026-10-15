@@ -1,0 +1,79 @@
+{
+  "sourceCount": 155,
+  "serviceSha256": "619a7e9e6a231c24f89f6398f3278da9416129d00b6b733748a50900e5a7420a",
+  "baseSourceCount": 150,
+  "inputs": {
+    "1": "d21452ae10abd093dbc3f941a5aaa1678413be05",
+    "2": "a399f4eb339ca6c00e98d8970ccfc579649a4784",
+    "3": "30a2d11b3e836e7d853b5182b97b8ea8b1e9994e",
+    "4": "49502eb296ef48a85ca3ffa326195fd16d584b8c"
+  },
+  "compiled": {
+    "reinforcementTransactions": 645,
+    "retryProjectionCases": 9,
+    "reinforcementChecks": 5737,
+    "worldNativeQuoteCases": 9002,
+    "worldAssets": 87,
+    "worldChecks": 9267,
+    "newBoundaries": 31,
+    "act4Mechanics": 42,
+    "repositoryTests": 8
+  },
+  "actualTcp": {
+    "kills": 215,
+    "ordinaryKills": 214,
+    "apcBosses": 1,
+    "routes": [
+      37,
+      31
+    ],
+    "worldDrops": 20,
+    "pickups": 20,
+    "cases": [
+      {
+        "case": "loaded-apc-boss-clear-handshake-duplicate",
+        "uid": 100
+      },
+      {
+        "case": "combined-fatigue22-no-mutation"
+      },
+      {
+        "case": "ticket-content-unavailable-no-bypass",
+        "dungeon": 33,
+        "error": 21,
+        "repeatNoMutation": true
+      },
+      {
+        "case": "ticket-content-unavailable-no-bypass",
+        "dungeon": 1502,
+        "error": 21,
+        "repeatNoMutation": true
+      }
+    ],
+    "sameBinaryRetainedKills": 215,
+    "admissionsOnlyResumed": true,
+    "noSettlementClaim": true
+  },
+  "saveCompatibility": {
+    "checks": 23,
+    "clones": 3,
+    "originalFilesReadOnly": 22
+  },
+  "proofHashes": {
+    "combined-replay.json": "3ce8ea3d86c27a30fe252fbaafc21f0f4e31b5c583cfed389e2cb263c874ac43",
+    "compatibility/save-compatibility.json": "b01eb6d4ffef191a7f58d50f9628ba3f46382ecf5addcbf997e2cf86f172df39",
+    "boundaries-result.json": "ac64d69f96583b05683f375c96021b13fa70290158549faeb7b9c469ad0929fc"
+  },
+  "releaseAllowed": false,
+  "deployed": false,
+  "actualStoresWritten": false,
+  "actualGameControlled": false,
+  "limits": [
+    "Author PR4 historical replay claims not counted as this155-source replay",
+    "Only37/31 rerun as complete actual routes; other Act4 rooms use static tables/mechanics and author reports",
+    "No score/card settlement of current candidate claimed; high-level reward domains and APC direct kill XP/drop remain unfinished",
+    "Full GSD quest/old15-service groups not rerun; new GSD UID/death boundaries compiled;23 current save checks executed",
+    "Native/UI proofs from separate earlier versions reused only where fields/source unchanged; no actual rendering acceptance",
+    "33/1502 ticket/coin rules and quest41 clear condition remain closed; full six towers unfinished"
+  ]
+}

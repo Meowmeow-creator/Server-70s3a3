@@ -34,7 +34,11 @@ class Offline70GeneralStackFG126 {
  internal static uint Choose(int pool,int rarity,int level,uint draw){uint[][] rows;if(!Tables.TryGetValue(Key(pool,rarity,level),out rows))throw new InvalidDataException("Unproven floor stack table");if(rows.Length==0)return 0;if(draw>rows[rows.Length-1][0])throw new InvalidDataException("Floor stack CDF draw");int low=0,high=rows.Length-1;while(low<high){int middle=(low+high)/2;if(rows[middle][0]>=draw)high=middle;else low=middle+1;}return rows[low][1];}
  internal static uint Select(int level,int basis,byte diff,byte kind,int pool,uint chance,uint rarity,uint cdf){if(chance>10000)throw new InvalidDataException("Floor stack chance draw");if(chance>Threshold(basis,diff,kind,pool))return 0;return Choose(pool,Rarity(pool,rarity),level,cdf);}
  internal static void Append(List<Offline70FloorDropsFG119.Reward> rewards,int level,int basis,byte diff,byte kind,byte rolls,string receipt){
-  if(level<1||level>40||rolls>32||receipt==null||receipt.Length>200)throw new InvalidDataException("Floor stack roster context");
+  // The extracted catalog covers pool1/3 rarity0..5 levels1..40 only (480 tables, data/floor-stack-FG126.dat);
+  // Act4 monsters sit at level 41..58, outside that evidence domain, so that source is skipped instead of
+  // rejecting the kill. Levels 1..40 (every previously supported dungeon) keep the exact behavior.
+  if(level>40)return;
+  if(level<1||rolls>32||receipt==null||receipt.Length>200)throw new InvalidDataException("Floor stack roster context");
   for(int i=0;i<rolls;i++)foreach(int pool in new int[]{1,3}){
    string purpose="floor126:"+i+":"+pool;uint chance=Offline70ClearItemsFG125.Draw(receipt,purpose+":chance",10000);if(chance>Threshold(basis,diff,kind,pool))continue;
    int rarity=Rarity(pool,Offline70ClearItemsFG125.Draw(receipt,purpose+":rarity",1000000));uint total=Total(pool,rarity,level);if(total==0)continue;

@@ -1,11 +1,11 @@
-﻿using System;using System.IO;
+using System;using System.IO;
 // Ordinary solo clear_reward arithmetic: current CN70 PVF, supplied TW70 ELF.
 // Each native float store is retained before the next multiply/truncation.
 class Offline70ClearExperienceFG116 {
  internal class Reward {internal ushort Dungeon,Basis;internal byte Difficulty,Player,Rank;internal int Kills,RankIndex;internal uint Reference,Pool,Base,RankBonus,BaseAward,RankAward,Award;internal float BeforeDifficulty,AfterDifficulty,AfterPenalty;}
  internal static readonly ushort[] RankGrades=new ushort[]{99,97,95,81,76,71,66,61};
  internal static readonly float[] RankRates=new float[]{0.05f,0.1f,0.15f,0.2f,0.3f};
- internal static ushort Basis(ushort dungeon){switch(dungeon){case 1:return 1;case 2:return 2;case 3:return 4;case 4:return 6;case 5:return 8;case 6:return 10;case 7:return 13;case 8:return 15;case 9:return 11;case 11:return 19;case 12:return 21;case 13:return 23;case 14:return 25;case 15:return 28;case 17:return 27;case 1000:return 17;case 21:return 30;case 22:return 31;case 23:return 32;case 24:return 33;case 25:return 35;case 26:return 37;case 27:return 39; default:throw new InvalidDataException("Unproven clear dungeon basis");}}
+ internal static ushort Basis(ushort dungeon){switch(dungeon){case 1:return 1;case 2:return 2;case 3:return 4;case 4:return 6;case 5:return 8;case 6:return 10;case 7:return 13;case 8:return 15;case 9:return 11;case 11:return 19;case 12:return 21;case 13:return 23;case 14:return 25;case 15:return 28;case 17:return 27;case 1000:return 17;case 21:return 30;case 22:return 31;case 23:return 32;case 24:return 33;case 25:return 35;case 26:return 37;case 27:return 39; case 31:return 40; case 32:return 41; case 33:return 55; case 34:return 43; case 35:return 42; case 36:return 54; case 37:return 44; case 1502:return 64; default:throw new InvalidDataException("Unproven clear dungeon basis");}}
  internal static int RankIndex(byte rank){for(int i=0;i<5;i++)if(rank>=RankGrades[i])return 4-i;return -1;}
  // Marshal float bits to force the original f32 store even with CLR x87 locals.
  static float Store(double value){return BitConverter.ToSingle(BitConverter.GetBytes((float)value),0);}

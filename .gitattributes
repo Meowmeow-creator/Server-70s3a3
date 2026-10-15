@@ -7,3 +7,4 @@
 *.md text eol=lf
 *.json text eol=lf
 *.yml text eol=lf
+research/worlddrop/tests/native-quotes.tsv -text
