@@ -145,3 +145,15 @@ python scripts/build.py --smoke
 - 提交前跑 `python scripts/check_repo.py` 与 `python scripts/build.py --smoke`
 - 真实存档不动
 - 不要修改 `src/Tools/VmTestKit/` 下已有文件的代码内容（除非是明确的 bug 修复）
+
+## 6. 相关本地资料（在本机、不在本仓库内）
+
+- `D:8S3A3\local-run\docsix-efficiency-playbook.md` — 修 bug 效率手册：PVF 数据路线、协议级验收骨架（帧格式与各种 Cipher 选择子）、隔离实例配方、已知坑清单、日志判定对照表、标准 8 步修复循环。
+- `D:8S3A3eferenceednf-comparison.md` — 与台服 1031 服务端重建工程 `LoyieKing/rednf` 的对比报告，可借鉴清单（动态 NPC 状态机 `NPCDynamicInfo.h`、网格迷宫 `MazeScript.inc`、其 Python PVF 解析器仅作对照）。
+- `D:8S3A3eferenceednf\` — 上述对比用的只读克隆。
+
+## 7. 远端与推送
+
+- 本次提交已推送到 `https://github.com/Meowmeow-creator/Server-70s3a3`（本仓库 git remote 名为 `mine`，凭据账号 Meowmeow-creator）。
+- 原协作远端 `origin` = `https://github.com/zzdiandian/Server-70s3a3`：本机凭据对它**只有读权限**，`git push origin main` 会 403。若要推回 origin，需要仓库所有者授权或改用有权限的凭据。
+
