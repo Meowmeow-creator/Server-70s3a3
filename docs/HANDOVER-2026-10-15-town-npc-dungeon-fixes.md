@@ -148,9 +148,9 @@ python scripts/build.py --smoke
 
 ## 6. 相关本地资料（在本机、不在本仓库内）
 
-- `D:8S3A3\local-run\docsix-efficiency-playbook.md` — 修 bug 效率手册：PVF 数据路线、协议级验收骨架（帧格式与各种 Cipher 选择子）、隔离实例配方、已知坑清单、日志判定对照表、标准 8 步修复循环。
-- `D:8S3A3eferenceednf-comparison.md` — 与台服 1031 服务端重建工程 `LoyieKing/rednf` 的对比报告，可借鉴清单（动态 NPC 状态机 `NPCDynamicInfo.h`、网格迷宫 `MazeScript.inc`、其 Python PVF 解析器仅作对照）。
-- `D:8S3A3eferenceednf\` — 上述对比用的只读克隆。
+- `D:/70S3A3/local-run/docs/fix-efficiency-playbook.md` — 修 bug 效率手册：PVF 数据路线、协议级验收骨架（帧格式与各种 Cipher 选择子）、隔离实例配方、已知坑清单、日志判定对照表、标准 8 步修复循环。
+- `D:/70S3A3/reference/rednf-comparison.md` — 与台服 1031 服务端重建工程 `LoyieKing/rednf` 的对比报告，可借鉴清单（动态 NPC 状态机 `NPCDynamicInfo.h`、网格迷宫 `MazeScript.inc`、其 Python PVF 解析器仅作对照）。
+- `D:/70S3A3/reference/rednf/` — 上述对比用的只读克隆。
 
 ## 7. 远端与推送
 

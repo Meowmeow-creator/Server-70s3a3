@@ -1651,8 +1651,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[target character]</Reason>
+      <Supported>true</Supported>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>10</GoldMultiple>
@@ -1685,8 +1684,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[target character]</Reason>
+      <Supported>true</Supported>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>10</GoldMultiple>
@@ -1729,8 +1727,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[target character]</Reason>
+      <Supported>true</Supported>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>150</GoldMultiple>

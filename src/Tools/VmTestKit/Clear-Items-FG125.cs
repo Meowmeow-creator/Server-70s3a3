@@ -1,4 +1,4 @@
-﻿using System;using System.IO;using System.Text;using System.Security.Cryptography;using System.Collections.Generic;
+using System;using System.IO;using System.Text;using System.Security.Cryptography;using System.Collections.Generic;
 // Current CN70 ordinary solo card rules. Native source/proofs are in FG125.
 // Magic-seal, premium events, luck accrual and high-level amplification are
 // separate mechanics; the original clear constructor disables magic-seal.
@@ -58,6 +58,7 @@ class Offline70ClearItemsFG125 {
   if(type==2){int delta=-unchecked((basis[2]-basis[1])*3000)/10000;basis[0]+=unchecked(basis[0]*delta)/basis[1];basis[1]+=delta;}
   for(int i=0;i<basis.Length;i++)if(basis[i]>=draw)return i;return 0;
  }
+ internal static bool HasTable(int level){for(int type=1;type<=4;type++)for(int rarity=0;rarity<=5;rarity++)if(Tables.ContainsKey(Key(type,rarity,level)))return true;return false;}
  internal static uint Total(int type,int rarity,int level){uint[][] rows;if(!Tables.TryGetValue(Key(type,rarity,level),out rows))throw new InvalidDataException("Unproven card table");return rows.Length==0?0:rows[rows.Length-1][0];}
  internal static uint Choose(int type,int rarity,int level,uint draw){
   uint[][] rows;if(!Tables.TryGetValue(Key(type,rarity,level),out rows))throw new InvalidDataException("Unproven card table");if(rows.Length==0)return 0;if(draw>rows[rows.Length-1][0])throw new InvalidDataException("Card CDF draw");
@@ -82,6 +83,10 @@ class Offline70ClearItemsFG125 {
  }
  internal static Offline70CardOfferFG125 Offer(string run,ushort dungeon,byte difficulty,int passed,int total){
   Guid parsed=new Guid(run);if(parsed.ToString("N")!=run)throw new InvalidDataException("Card run identifier");int level=Offline70ClearExperienceFG116.Basis(dungeon);
+  // The extracted card catalog covers levels 1..38 only; Act4 basis levels (40..55) lie outside that
+  // evidence domain, so an empty offer is produced (no invented item) and Claim skips the fee for an
+  // empty paid card. Dungeons inside the catalog keep the exact behavior.
+  if(!HasTable(level))return new Offline70CardOfferFG125{RunId=run,Dungeon=dungeon,Difficulty=difficulty,Fee=Offline70PaidCostFG120.ForDungeon(dungeon),Free=new Offline70CardItemFG125(),Paid=new Offline70CardItemFG125()};
   return new Offline70CardOfferFG125{RunId=run,Dungeon=dungeon,Difficulty=difficulty,Fee=Offline70PaidCostFG120.ForDungeon(dungeon),Free=Plan(run,level,difficulty,passed,total,false),Paid=Plan(run,level,difficulty,passed,total,true)};
  }
  internal static void ValidateItem(Offline70CardItemFG125 item){if(item==null||item.ItemId==0&&(item.Seed!=-1||item.Durability!=0||item.Sealed))throw new InvalidDataException("Empty card item state");if(item.ItemId==0)return;Offline70CardItemFG125 p;if(!Properties.TryGetValue(item.ItemId,out p)||item.Seed<-1||(p.Seed<0)!=(item.Seed<0)||item.Durability!=p.Durability||item.Sealed!=p.Sealed)throw new InvalidDataException("Card item creation state");}
@@ -96,7 +101,7 @@ class Offline70ClearItemsFG125 {
  }
  internal static Offline70EconomyState Claim(string path,string run,bool paid,out bool duplicate){
   Offline70CardOfferFG125 expected=Find(Offline70Economy.Load(path),run);Offline70CardItemFG125 item=paid?expected.Paid:expected.Free;
-  return Offline70Economy.Apply(path,run+(paid?"-paid-card-125":"-free-card-125"),paid?"paid-card":"free-card",expected.Dungeon+":"+expected.Difficulty+":"+(paid?expected.Fee:0)+":"+item.Fingerprint,delegate(Offline70EconomyState s){Offline70CardOfferFG125 o=Find(s,run);if(paid?o.PaidPurchased:o.FreeDelivered)throw new InvalidDataException("Card delivery state conflict");if(paid&&s.Gold<o.Fee)throw new InvalidDataException("Insufficient paid-card gold");Add(s,paid?o.Paid:o.Free);if(paid){s.Gold-=o.Fee;o.PaidPurchased=true;}else o.FreeDelivered=true;},out duplicate);
+  return Offline70Economy.Apply(path,run+(paid?"-paid-card-125":"-free-card-125"),paid?"paid-card":"free-card",expected.Dungeon+":"+expected.Difficulty+":"+(paid?expected.Fee:0)+":"+item.Fingerprint,delegate(Offline70EconomyState s){Offline70CardOfferFG125 o=Find(s,run);if(paid?o.PaidPurchased:o.FreeDelivered)throw new InvalidDataException("Card delivery state conflict");if(paid&&o.Paid.ItemId!=0&&s.Gold<o.Fee)throw new InvalidDataException("Insufficient paid-card gold");Add(s,paid?o.Paid:o.Free);if(paid){if(o.Paid.ItemId!=0)s.Gold-=o.Fee;o.PaidPurchased=true;}else o.FreeDelivered=true;},out duplicate);
  }
  // Keep a full-bag free result pending across leaving the dungeon and login.
  // Its seed and identity are fixed. No item is silently discarded or rerolled.

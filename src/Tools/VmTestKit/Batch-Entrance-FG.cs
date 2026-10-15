@@ -28,12 +28,13 @@ class Offline70BatchEntranceFG {
   }
   byte[] packet=new byte[43];packet[1]=6;packet[2]=43;packet[10]=1;Buffer.BlockCopy(payload,0,packet,11,32);return packet;
  }
+ static int channelPort=7002;   // advertised in the channel row; --channel-port overrides it (isolated tests)
  static byte[] ChannelResponse() {
   // Client verifies: i16 integrated PvP group, u32 count, then a 48-byte row.
   byte[] plain=new byte[64];plain[0]=1;plain[2]=1;
   System.Text.Encoding.ASCII.GetBytes("#ch."+channelId).CopyTo(plain,6);plain[26]=100;
   System.Text.Encoding.ASCII.GetBytes("127.0.0.1").CopyTo(plain,34);
-  BitConverter.GetBytes(7002).CopyTo(plain,50);
+  BitConverter.GetBytes((ushort)channelPort).CopyTo(plain,50);
   byte[] aesKey=new byte[16];Buffer.BlockCopy(key,0,aesKey,0,16);byte[] encrypted;
   using(RijndaelManaged aes=new RijndaelManaged()) {
    aes.KeySize=128;aes.BlockSize=128;aes.Mode=CipherMode.ECB;aes.Padding=PaddingMode.None;aes.Key=aesKey;
@@ -69,13 +70,17 @@ class Offline70BatchEntranceFG {
   bool interactive=args.Length>0&&args[args.Length-1]=="--interactive";
   if(interactive)Array.Resize(ref args,args.Length-1);
   int port=7001;
-  if(args.Length!=4&&args.Length!=6)return 2;
-  if(args.Length==6&&(args[4]!="--test-port"||!Int32.TryParse(args[5],out port)||port<17000||port>17999))return 2;
+  if(args.Length!=4&&args.Length!=6&&args.Length!=8)return 2;
+  if(args.Length>=6&&(args[4]!="--test-port"||!Int32.TryParse(args[5],out port)||port<17000||port>17999))return 2;
+  if(args.Length==8&&(args[6]!="--channel-port"||!Int32.TryParse(args[7],out channelPort)||channelPort<17000||channelPort>17999))return 2;
   if(args[1]!="--script-response"||args[3]!="10")return 2;
   channelId=10;channelScript=File.ReadAllBytes(args[2]);
   if(channelScript.Length<1||channelScript.Length>60000)return 2;
-  using(StreamWriter log=new StreamWriter(args[0],false)){
-   log.AutoFlush=true;TcpListener listener=new TcpListener(IPAddress.Loopback,port);int session=0;
+  // A log that cannot be opened must not stop the entrance: fall back to a null writer.
+  TextWriter log;
+  try{StreamWriter sink=new StreamWriter(args[0],false);sink.AutoFlush=true;log=sink;}catch(Exception logFailure){try{Console.Error.WriteLine("DNF70 entrance log disabled: "+logFailure.Message);}catch{}log=TextWriter.Null;}
+  using(log){
+   TcpListener listener=new TcpListener(IPAddress.Loopback,port);int session=0;
    try{
     listener.Start();log.WriteLine(DateTime.Now.ToString("o")+" LISTENING loopback="+port+" interactive="+interactive+" noTimeLimit="+interactive);
     do{
