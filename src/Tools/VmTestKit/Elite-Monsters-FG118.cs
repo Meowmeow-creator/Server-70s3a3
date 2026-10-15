@@ -1,4 +1,4 @@
-﻿using System;using System.IO;using System.Collections.Generic;
+using System;using System.IO;using System.Collections.Generic;
 // Current CN70 five-value [champion] plus original TW getAddChampionMobCnt.
 // Ordinary selected mazes only; named-dungeon lists are absent in this catalog.
 class Offline70EliteMonstersFG118 {
@@ -17,7 +17,7 @@ class Offline70EliteMonstersFG118 {
    case 25:values=new int[]{3,6,9,12,15};break;
    case 26:values=new int[]{7,14,21,28,30};break;
    case 27:values=new int[]{6,9,12,15,18};break;
-   default:throw new InvalidDataException("Unproven champion dungeon");
+   case 31:values=new int[]{7,14,21,28,30};break; case 32:values=new int[]{7,14,21,28,30};break; case 33:values=new int[]{0,0,0,0,0};break; case 34:values=new int[]{6,12,18,24,26};break; case 35:values=new int[]{6,12,18,24,26};break; case 36:values=new int[]{6,12,18,24,26};break; case 37:values=new int[]{6,12,18,24,26};break; case 1502:values=new int[]{0,0,0,0,0};break; default:throw new InvalidDataException("Unproven champion dungeon");
   }return values[difficulty];
  }
  internal static int Quota(int basis,byte difficulty,int width,int height,int fixedCount,bool noRandom,int draw){
@@ -38,6 +38,9 @@ partial class Offline70DungeonFlowFG {
   ushort[][] original;
   if(DungeonId==1){original=new ushort[Counts[Y]][];for(int i=0;i<original.Length;i++)original[i]=new ushort[]{(ushort)(IsBossRoom&&i==4?2:1),1,(ushort)(IsBossRoom&&i==4?3:0)};}
   else original=GsdMonstersFG130()??(DungeonId==2?Offline70DeepLorienFG72.Monsters(X,Y):Offline70ForestFG75.Monsters(DungeonId,X,Y));
+  // The 37 boss room keeps a stand-in normal boss (50098 kind 3) in the PVF-derived table so
+  // the APC fallback stays available; when the real 刹影 APC is active it must not also spawn.
+  if(BossApcRoomFG176){List<ushort[]> keep=new List<ushort[]>();foreach(ushort[] row in original)if(!(row[0]==50098&&row[2]==3))keep.Add(row);original=keep.ToArray();}
   cached=new ushort[original.Length][];List<int> candidates=new List<int>();
   for(int i=0;i<original.Length;i++){cached[i]=(ushort[])original[i].Clone();if(Offline70EliteMonstersFG118.Eligible(cached[i][0],cached[i][2]))candidates.Add(i);}
   Func<int,int> draw=Offline70QuestDropsFG.StableDraws(RunId+"-elite-room"+RoomIndex);

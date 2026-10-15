@@ -15,7 +15,8 @@ class Offline70Gate {
   bool dungeonEntrance=currentArea==0&&area==2&&x==8&&y==247;
   // Reverse gate targets the right edge of the original Elvengard map. Retain the client's validated position.
   bool dungeonReturn=currentArea==2&&area==0&&x>=1500&&x<=1568&&y>=176&&y<=333;
-  if(currentTown==1&&town==1&&!roomExit&&!roomReturn&&!dungeonEntrance&&!dungeonReturn)throw new InvalidDataException("Unimplemented Elvengard gate route");
+  bool campEntry=currentArea==0&&area==3;bool campReturn=currentArea==3&&area==0;
+  if(currentTown==1&&town==1&&!roomExit&&!roomReturn&&!dungeonEntrance&&!dungeonReturn&&!campEntry&&!campReturn)throw new InvalidDataException("Unimplemented Elvengard gate route");
   Offline70Gate result=new Offline70Gate{Town=town,Area=area,X=x,Y=y,Direction=dir,Plain=b};
   // New town links may spawn directly inside the reverse portal. Move the
   // actor just into the destination interior to avoid bouncing back at once.

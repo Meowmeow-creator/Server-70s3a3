@@ -28,3 +28,38 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/build.py --research --smoke
+  compile-reinforcement-research:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python research/reinforcement/build.py
+      - run: python research/reinforcement/test.py
+  compile-fatigue-feedback:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python research/fatigue/build.py
+  compile-worlddrop-research:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python research/worlddrop/build.py
+      - run: python research/worlddrop/test.py
+  compile-integrated-candidate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python research/integration/build.py
+      - run: python research/integration/test.py

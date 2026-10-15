@@ -1,0 +1,41 @@
+{
+  "status": "fatigue-entry-feedback-internal-research",
+  "updatedUtc": "2026-10-15T11:53:13.561590+00:00",
+  "serviceSha256": "9dee22a9220b13ae2e6b8457342028e8c5327ab2ee3c6c5963b9f39790a8d572",
+  "sourceCount": 145,
+  "sharedPatches": [
+    "Fatigue-State-FG50.cs"
+  ],
+  "stableSourceAndDataByteUnchanged": 153,
+  "currentClientSha256": "c05860015f7cb468f3ddb6903d045c048f5b00d1cabed3e6dec4cf786a1bb487",
+  "actualTcpCases": 34,
+  "actualReplyFrames": 40,
+  "actualFailureFrames": 38,
+  "nativeReaderCases": 10,
+  "wireFrames": 40,
+  "oldError": 19,
+  "correctedError": 22,
+  "errorWidthBytes": 4,
+  "partySeatWidthBytes": 1,
+  "soloSeat": 0,
+  "logicalReplyBytes": 6,
+  "nativeCallback": "C02080",
+  "nativeErrorDispatch": "C014B0",
+  "nativeNoticeEndpoint": "922990",
+  "localizedMessage": 32017,
+  "releaseAllowed": false,
+  "deployed": false,
+  "automaticContinuation": false,
+  "actualGameControlled": false,
+  "actualStoresWritten": false,
+  "limits": [
+    "Party/name/localization/formatting andUI endpoints modeled; no actual rendering acceptance",
+    "Current single-player party position0; does not implement multiplayer fatigue",
+    "Unchanged fatigue/black core and policies; no timer reset or actual character edits",
+    "Separate branch based onmain; reinforcementPR and full six towers remain independent and unfinished"
+  ],
+  "reusedProofs": [
+    "FG179 current v48 resource151/152 native decode loop; exact151 decoded hash rechecked for message32017",
+    "Stable original fatigue/black ledger and existing source are unchanged;34 current service cases separately run"
+  ]
+}

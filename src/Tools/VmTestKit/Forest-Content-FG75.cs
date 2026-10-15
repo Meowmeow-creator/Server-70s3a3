@@ -1,7 +1,7 @@
-﻿using System;using System.IO;
+using System;using System.IO;
 // Original fixed CN70 mazes; accepted FG78 and FG79 forest rooms retained.
 class Offline70ForestFG75 {
- internal static bool Supported(ushort id){return id>=3&&id<=9||id>=11&&id<=15||id==17||id==1000||id>=21&&id<=27;}
+ internal static bool Supported(ushort id){return id>=3&&id<=9||id>=11&&id<=15||id==17||id==1000||id>=21&&id<=27||id>=31&&id<=37||id>=1502&&id<=1502;}
  internal static byte Width(ushort id){switch(id){
  case 3:return 3;
  case 4:return 3;
@@ -24,7 +24,14 @@ class Offline70ForestFG75 {
  case 25:return 4;
  case 26:return 5;
  case 27:return 5;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 4;
+ case 32:return 6;
+ case 33:return 6;
+ case 34:return 3;
+ case 35:return 5;
+ case 36:return 6;
+ case 37:return 3;
+ case 1502:return 5;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte Height(ushort id){switch(id){
  case 3:return 4;
  case 4:return 4;
@@ -47,7 +54,14 @@ class Offline70ForestFG75 {
  case 25:return 4;
  case 26:return 4;
  case 27:return 4;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 5;
+ case 32:return 5;
+ case 33:return 1;
+ case 34:return 8;
+ case 35:return 3;
+ case 36:return 3;
+ case 37:return 3;
+ case 1502:return 2;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte MinimumLevel(ushort id){switch(id){
  case 3:return 2;
  case 4:return 3;
@@ -70,7 +84,14 @@ class Offline70ForestFG75 {
  case 25:return 32;
  case 26:return 34;
  case 27:return 36;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 37;
+ case 32:return 38;
+ case 33:return 52;
+ case 34:return 40;
+ case 35:return 39;
+ case 36:return 51;
+ case 37:return 41;
+ case 1502:return 61;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte StartX(ushort id){switch(id){
  case 3:return 0;
  case 4:return 0;
@@ -93,7 +114,14 @@ class Offline70ForestFG75 {
  case 25:return 0;
  case 26:return 4;
  case 27:return 2;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 1;
+ case 32:return 0;
+ case 33:return 5;
+ case 34:return 0;
+ case 35:return 2;
+ case 36:return 0;
+ case 37:return 0;
+ case 1502:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte StartY(ushort id){switch(id){
  case 3:return 0;
  case 4:return 3;
@@ -116,7 +144,14 @@ class Offline70ForestFG75 {
  case 25:return 3;
  case 26:return 0;
  case 27:return 0;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 4;
+ case 32:return 1;
+ case 33:return 0;
+ case 34:return 0;
+ case 35:return 2;
+ case 36:return 1;
+ case 37:return 2;
+ case 1502:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte BossX(ushort id){switch(id){
  case 3:return 0;
  case 4:return 0;
@@ -139,7 +174,14 @@ class Offline70ForestFG75 {
  case 25:return 1;
  case 26:return 1;
  case 27:return 0;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 0;
+ case 32:return 5;
+ case 33:return 0;
+ case 34:return 0;
+ case 35:return 2;
+ case 36:return 5;
+ case 37:return 2;
+ case 1502:return 4;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte BossY(ushort id){switch(id){
  case 3:return 3;
  case 4:return 0;
@@ -162,7 +204,14 @@ class Offline70ForestFG75 {
  case 25:return 2;
  case 26:return 0;
  case 27:return 2;
- default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 31:return 0;
+ case 32:return 2;
+ case 33:return 0;
+ case 34:return 7;
+ case 35:return 1;
+ case 36:return 1;
+ case 37:return 0;
+ case 1502:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static ushort Map(ushort id,byte x,byte y){if(!Supported(id)||x>=Width(id)||y>=Height(id))return 0;switch(id*256+y*Width(id)+x){
  case 768:return 201;
  case 769:return 204;
@@ -435,7 +484,105 @@ class Offline70ForestFG75 {
  case 6928:return 6011;
  case 6929:return 6010;
  case 6930:return 6012;
- default:return 0;}}
+ case 7936:return 4235;
+ case 7937:return 4229;
+ case 7938:return 4229;
+ case 7939:return 4234;
+ case 7940:return 4213;
+ case 7941:return 4217;
+ case 7942:return 4219;
+ case 7943:return 4215;
+ case 7944:return 4209;
+ case 7947:return 4209;
+ case 7948:return 4207;
+ case 7949:return 4203;
+ case 7950:return 4203;
+ case 7951:return 4208;
+ case 7952:return 4201;
+ case 7953:return 4201;
+ case 7954:return 4201;
+ case 7955:return 4201;
+ case 8194:return 4406;
+ case 8195:return 4407;
+ case 8196:return 4416;
+ case 8198:return 4401;
+ case 8199:return 4403;
+ case 8200:return 4405;
+ case 8201:return 4407;
+ case 8202:return 4409;
+ case 8206:return 4410;
+ case 8207:return 4409;
+ case 8208:return 4413;
+ case 8209:return 4420;
+ case 8213:return 4412;
+ case 8214:return 4414;
+ case 8215:return 4416;
+ case 8219:return 4413;
+ case 8220:return 4416;
+ case 8448:return 4806;
+ case 8449:return 4805;
+ case 8450:return 4804;
+ case 8451:return 4803;
+ case 8452:return 4802;
+ case 8453:return 4801;
+ case 8704:return 5001;
+ case 8705:return 5002;
+ case 8706:return 5015;
+ case 8708:return 5003;
+ case 8711:return 5004;
+ case 8714:return 5005;
+ case 8716:return 5010;
+ case 8717:return 5006;
+ case 8718:return 5007;
+ case 8719:return 5011;
+ case 8721:return 5008;
+ case 8722:return 5012;
+ case 8724:return 5009;
+ case 8725:return 5013;
+ case 8960:return 5407;
+ case 8961:return 5408;
+ case 8962:return 5412;
+ case 8963:return 5411;
+ case 8964:return 5410;
+ case 8965:return 5406;
+ case 8967:return 5424;
+ case 8969:return 5409;
+ case 8970:return 5403;
+ case 8971:return 5402;
+ case 8972:return 5401;
+ case 8973:return 5404;
+ case 8974:return 5405;
+ case 9216:return 6602;
+ case 9217:return 6604;
+ case 9219:return 6611;
+ case 9220:return 6612;
+ case 9222:return 6601;
+ case 9223:return 6606;
+ case 9224:return 6607;
+ case 9225:return 6609;
+ case 9226:return 6613;
+ case 9227:return 6615;
+ case 9228:return 6603;
+ case 9229:return 6605;
+ case 9230:return 6608;
+ case 9231:return 6610;
+ case 9232:return 6614;
+ case 9472:return 7015;
+ case 9473:return 7011;
+ case 9474:return 7027;
+ case 9475:return 7016;
+ case 9476:return 7008;
+ case 9477:return 7003;
+ case 9478:return 7023;
+ case 9479:return 7001;
+ case 9480:return 7004;
+ case 384512:return 7101;
+ case 384513:return 7102;
+ case 384514:return 7105;
+ case 384515:return 7106;
+ case 384516:return 7107;
+ case 384518:return 7103;
+ case 384519:return 7104;default:return 0;}}
  internal static int Mask(ushort id,byte x,byte y){if(!Supported(id)||x>=Width(id)||y>=Height(id))return 0;switch(id*256+y*Width(id)+x){
  case 768:return 9;
  case 769:return 13;
@@ -708,7 +855,105 @@ class Offline70ForestFG75 {
  case 6928:return 3;
  case 6929:return 7;
  case 6930:return 6;
- default:return 0;}}
+ case 7936:return 1;
+ case 7937:return 13;
+ case 7938:return 13;
+ case 7939:return 4;
+ case 7940:return 9;
+ case 7941:return 6;
+ case 7942:return 3;
+ case 7943:return 12;
+ case 7944:return 10;
+ case 7947:return 10;
+ case 7948:return 11;
+ case 7949:return 13;
+ case 7950:return 13;
+ case 7951:return 14;
+ case 7952:return 2;
+ case 7953:return 2;
+ case 7954:return 2;
+ case 7955:return 2;
+ case 8194:return 9;
+ case 8195:return 5;
+ case 8196:return 4;
+ case 8198:return 1;
+ case 8199:return 5;
+ case 8200:return 15;
+ case 8201:return 5;
+ case 8202:return 12;
+ case 8206:return 3;
+ case 8207:return 12;
+ case 8208:return 3;
+ case 8209:return 4;
+ case 8213:return 11;
+ case 8214:return 5;
+ case 8215:return 4;
+ case 8219:return 3;
+ case 8220:return 4;
+ case 8448:return 1;
+ case 8449:return 5;
+ case 8450:return 5;
+ case 8451:return 5;
+ case 8452:return 5;
+ case 8453:return 4;
+ case 8704:return 1;
+ case 8705:return 13;
+ case 8706:return 4;
+ case 8708:return 10;
+ case 8711:return 10;
+ case 8714:return 10;
+ case 8716:return 9;
+ case 8717:return 7;
+ case 8718:return 12;
+ case 8719:return 10;
+ case 8721:return 10;
+ case 8722:return 10;
+ case 8724:return 2;
+ case 8725:return 2;
+ case 8960:return 9;
+ case 8961:return 5;
+ case 8962:return 5;
+ case 8963:return 5;
+ case 8964:return 12;
+ case 8965:return 10;
+ case 8967:return 8;
+ case 8969:return 10;
+ case 8970:return 3;
+ case 8971:return 5;
+ case 8972:return 7;
+ case 8973:return 5;
+ case 8974:return 6;
+ case 9216:return 9;
+ case 9217:return 12;
+ case 9219:return 9;
+ case 9220:return 12;
+ case 9222:return 10;
+ case 9223:return 11;
+ case 9224:return 13;
+ case 9225:return 7;
+ case 9226:return 15;
+ case 9227:return 4;
+ case 9228:return 3;
+ case 9229:return 6;
+ case 9230:return 3;
+ case 9231:return 5;
+ case 9232:return 6;
+ case 9472:return 9;
+ case 9473:return 13;
+ case 9474:return 4;
+ case 9475:return 3;
+ case 9476:return 7;
+ case 9477:return 12;
+ case 9478:return 1;
+ case 9479:return 5;
+ case 9480:return 6;
+ case 384512:return 1;
+ case 384513:return 12;
+ case 384514:return 9;
+ case 384515:return 5;
+ case 384516:return 4;
+ case 384518:return 3;
+ case 384519:return 6;default:return 0;}}
  internal static bool CanMove(ushort id,byte x,byte y,byte nx,byte ny){int dx=(int)nx-x,dy=(int)ny-y;if(Math.Abs(dx)+Math.Abs(dy)!=1||Map(id,nx,ny)==0)return false;int from=dx==1?1:dx==-1?4:dy==1?8:2;int to=dx==1?4:dx==-1?1:dy==1?2:8;return (Mask(id,x,y)&from)!=0&&(Mask(id,nx,ny)&to)!=0;}
  internal static ushort[][] Monsters(ushort id,byte x,byte y){switch(Map(id,x,y)){
  case 201:return new ushort[][]{new ushort[]{11,4,0},new ushort[]{2,4,0},new ushort[]{1,4,0},new ushort[]{1,3,0},new ushort[]{1,3,0},new ushort[]{1,4,0},new ushort[]{2,3,0},new ushort[]{11,4,0}};
@@ -953,5 +1198,92 @@ class Offline70ForestFG75 {
  case 6011:return new ushort[][]{new ushort[]{1041,39,0},new ushort[]{1040,39,0},new ushort[]{1042,39,0},new ushort[]{1041,39,0},new ushort[]{1040,39,0},new ushort[]{1042,39,0},new ushort[]{1041,39,0},new ushort[]{1040,39,0}};
  case 6010:return new ushort[][]{new ushort[]{1041,39,0},new ushort[]{1040,39,0},new ushort[]{1041,39,0},new ushort[]{1042,39,0},new ushort[]{1041,39,0},new ushort[]{1040,39,0},new ushort[]{1042,39,0},new ushort[]{1040,39,0}};
  case 6012:return new ushort[][]{new ushort[]{1040,39,0},new ushort[]{1041,39,0},new ushort[]{1040,39,0},new ushort[]{1042,39,0},new ushort[]{1041,39,0},new ushort[]{1042,39,0},new ushort[]{1041,39,0},new ushort[]{1040,39,0}};
- default:throw new InvalidDataException("Unsupported original room");}}
+ case 4201:return new ushort[][]{new ushort[]{400,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0}};
+ case 4203:return new ushort[][]{new ushort[]{602,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0},new ushort[]{602,39,0},new ushort[]{602,39,0},new ushort[]{400,39,0},new ushort[]{400,39,0}};
+ case 4207:return new ushort[][]{new ushort[]{401,40,0},new ushort[]{400,40,0},new ushort[]{410,40,0},new ushort[]{410,40,0},new ushort[]{410,40,0},new ushort[]{400,40,0},new ushort[]{401,40,0}};
+ case 4208:return new ushort[][]{new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{410,40,0},new ushort[]{401,40,0},new ushort[]{410,40,0}};
+ case 4209:return new ushort[][]{new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{400,40,0},new ushort[]{401,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{401,40,0},new ushort[]{400,40,0}};
+ case 4213:return new ushort[][]{new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0}};
+ case 4215:return new ushort[][]{new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0}};
+ case 4217:return new ushort[][]{new ushort[]{400,40,0},new ushort[]{400,40,0},new ushort[]{401,40,0},new ushort[]{600,40,0},new ushort[]{400,40,0},new ushort[]{600,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{600,40,0}};
+ case 4219:return new ushort[][]{new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{600,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0},new ushort[]{401,40,0}};
+ case 4229:return new ushort[][]{new ushort[]{401,40,0},new ushort[]{410,40,0},new ushort[]{602,40,0},new ushort[]{410,40,0},new ushort[]{401,40,0},new ushort[]{602,40,0},new ushort[]{600,40,0},new ushort[]{401,40,0},new ushort[]{600,40,0},new ushort[]{602,40,0}};
+ case 4234:return new ushort[][]{new ushort[]{401,40,0},new ushort[]{400,40,0},new ushort[]{600,41,0},new ushort[]{410,41,0},new ushort[]{600,41,0},new ushort[]{401,40,0},new ushort[]{410,41,0},new ushort[]{400,40,0},new ushort[]{410,41,0},new ushort[]{600,41,0},new ushort[]{600,41,0},new ushort[]{401,40,0},new ushort[]{400,40,0}};
+ case 4235:return new ushort[][]{new ushort[]{400,40,0},new ushort[]{401,40,0},new ushort[]{400,40,0},new ushort[]{410,41,0},new ushort[]{401,40,0},new ushort[]{402,42,3},new ushort[]{401,40,0},new ushort[]{400,40,0},new ushort[]{400,40,0},new ushort[]{410,41,0},new ushort[]{401,40,0}};
+ case 4401:return new ushort[][]{new ushort[]{600,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{600,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0}};
+ case 4403:return new ushort[][]{new ushort[]{600,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{600,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0}};
+ case 4405:return new ushort[][]{new ushort[]{405,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0},new ushort[]{411,41,0},new ushort[]{405,41,0},new ushort[]{420,41,0}};
+ case 4406:return new ushort[][]{new ushort[]{405,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{405,41,0},new ushort[]{405,41,0},new ushort[]{400,41,0}};
+ case 4407:return new ushort[][]{new ushort[]{400,41,0},new ushort[]{405,41,0},new ushort[]{400,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{405,41,0},new ushort[]{411,41,0},new ushort[]{400,41,0},new ushort[]{420,41,0}};
+ case 4409:return new ushort[][]{new ushort[]{411,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0},new ushort[]{411,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0}};
+ case 4410:return new ushort[][]{new ushort[]{411,41,0},new ushort[]{405,41,0},new ushort[]{411,41,0},new ushort[]{405,41,0},new ushort[]{405,41,0},new ushort[]{405,41,0},new ushort[]{405,41,0},new ushort[]{411,41,0}};
+ case 4412:return new ushort[][]{new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{405,41,0},new ushort[]{420,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0},new ushort[]{405,41,0}};
+ case 4413:return new ushort[][]{new ushort[]{421,41,0},new ushort[]{411,41,0},new ushort[]{421,41,0},new ushort[]{405,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0},new ushort[]{421,41,0},new ushort[]{405,41,0},new ushort[]{411,41,0},new ushort[]{420,41,0}};
+ case 4414:return new ushort[][]{new ushort[]{421,41,0},new ushort[]{421,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0},new ushort[]{421,41,0},new ushort[]{420,41,0},new ushort[]{420,41,0},new ushort[]{421,41,0},new ushort[]{421,41,0},new ushort[]{420,41,0}};
+ case 4416:return new ushort[][]{new ushort[]{405,41,0},new ushort[]{421,42,0},new ushort[]{400,41,0},new ushort[]{420,41,0},new ushort[]{405,41,0},new ushort[]{421,42,0},new ushort[]{420,41,0},new ushort[]{400,41,0},new ushort[]{400,41,0},new ushort[]{405,41,0},new ushort[]{421,42,0},new ushort[]{420,41,0}};
+ case 4420:return new ushort[][]{new ushort[]{411,42,0},new ushort[]{421,42,0},new ushort[]{421,42,0},new ushort[]{600,41,0},new ushort[]{420,41,0},new ushort[]{600,41,0},new ushort[]{422,44,3},new ushort[]{411,42,0},new ushort[]{421,42,0},new ushort[]{420,41,0},new ushort[]{600,41,0}};
+ case 4801:return new ushort[][]{new ushort[]{50065,55,0}};
+ case 4802:return new ushort[][]{new ushort[]{50066,55,0}};
+ case 4803:return new ushort[][]{new ushort[]{50067,55,0}};
+ case 4804:return new ushort[][]{new ushort[]{50064,55,0}};
+ case 4805:return new ushort[][]{new ushort[]{50068,55,0}};
+ case 4806:return new ushort[][]{new ushort[]{711,58,3}};
+ case 5001:return new ushort[][]{new ushort[]{400,45,0},new ushort[]{400,45,0},new ushort[]{401,45,0},new ushort[]{401,45,0},new ushort[]{401,45,0},new ushort[]{400,45,0}};
+ case 5002:return new ushort[][]{new ushort[]{401,43,0},new ushort[]{405,43,0},new ushort[]{400,43,0},new ushort[]{400,43,0},new ushort[]{401,43,0},new ushort[]{405,43,0}};
+ case 5003:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{50031,45,0},new ushort[]{407,43,0},new ushort[]{407,43,0}};
+ case 5004:return new ushort[][]{new ushort[]{401,43,0},new ushort[]{405,43,0},new ushort[]{400,43,0},new ushort[]{50033,43,0},new ushort[]{405,43,0},new ushort[]{400,43,0},new ushort[]{401,43,0}};
+ case 5005:return new ushort[][]{new ushort[]{401,43,0},new ushort[]{50033,43,0},new ushort[]{401,43,0},new ushort[]{401,43,0},new ushort[]{401,43,0}};
+ case 5006:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{401,43,0},new ushort[]{401,43,0},new ushort[]{50030,45,0},new ushort[]{50034,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0}};
+ case 5007:return new ushort[][]{new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{50069,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0}};
+ case 5008:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{50034,44,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0}};
+ case 5009:return new ushort[][]{new ushort[]{50034,43,0},new ushort[]{50033,43,0},new ushort[]{601,43,0},new ushort[]{50033,43,0},new ushort[]{50033,43,0},new ushort[]{601,43,0},new ushort[]{50034,44,0},new ushort[]{50033,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0},new ushort[]{50033,43,0},new ushort[]{50033,43,0},new ushort[]{50033,43,0}};
+ case 5010:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{50034,43,0},new ushort[]{50034,43,0},new ushort[]{50034,44,0},new ushort[]{407,43,0},new ushort[]{407,43,0}};
+ case 5011:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{50069,44,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{407,43,0}};
+ case 5012:return new ushort[][]{new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{50034,44,0},new ushort[]{407,43,0},new ushort[]{407,43,0},new ushort[]{404,43,0},new ushort[]{50032,45,0},new ushort[]{404,43,0},new ushort[]{601,43,0},new ushort[]{601,43,0}};
+ case 5013:return new ushort[][]{new ushort[]{760,46,3},new ushort[]{761,46,3},new ushort[]{762,46,3}};
+ case 5015:return new ushort[][]{new ushort[]{50069,43,0},new ushort[]{50069,43,0},new ushort[]{50069,43,0},new ushort[]{50069,43,0}};
+ case 5401:return new ushort[][]{new ushort[]{1000,43,0},new ushort[]{1000,43,0},new ushort[]{1000,43,0},new ushort[]{1000,43,0},new ushort[]{1000,43,0},new ushort[]{1000,43,0}};
+ case 5402:return new ushort[][]{new ushort[]{1000,43,0},new ushort[]{1001,43,0},new ushort[]{1000,43,0},new ushort[]{1001,43,0},new ushort[]{1000,43,0},new ushort[]{1000,43,0}};
+ case 5403:return new ushort[][]{new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0}};
+ case 5404:return new ushort[][]{new ushort[]{410,43,0},new ushort[]{410,43,0},new ushort[]{410,43,0},new ushort[]{410,43,0},new ushort[]{410,43,0},new ushort[]{410,43,0}};
+ case 5405:return new ushort[][]{new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{410,42,0},new ushort[]{410,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0}};
+ case 5406:return new ushort[][]{new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{410,42,0},new ushort[]{1000,42,0},new ushort[]{410,42,0}};
+ case 5407:return new ushort[][]{new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0},new ushort[]{411,42,0},new ushort[]{410,42,0},new ushort[]{410,42,0},new ushort[]{411,42,0}};
+ case 5408:return new ushort[][]{new ushort[]{1000,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0}};
+ case 5409:return new ushort[][]{new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{411,42,0},new ushort[]{411,42,0},new ushort[]{410,42,0},new ushort[]{410,42,0}};
+ case 5410:return new ushort[][]{new ushort[]{410,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0}};
+ case 5411:return new ushort[][]{new ushort[]{1000,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{1000,42,0}};
+ case 5412:return new ushort[][]{new ushort[]{50069,43,0},new ushort[]{50069,43,0},new ushort[]{1001,42,0},new ushort[]{1000,42,0},new ushort[]{50077,44,0},new ushort[]{411,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0},new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{411,42,0},new ushort[]{1000,42,0}};
+ case 5424:return new ushort[][]{new ushort[]{1001,42,0},new ushort[]{1001,42,0},new ushort[]{1010,44,3},new ushort[]{1000,42,0},new ushort[]{1000,42,0}};
+ case 6601:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0}};
+ case 6602:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0}};
+ case 6603:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0}};
+ case 6604:return new ushort[][]{new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0}};
+ case 6605:return new ushort[][]{new ushort[]{1094,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{1094,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{1094,54,0}};
+ case 6606:return new ushort[][]{new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{409,54,0},new ushort[]{1094,54,0},new ushort[]{413,54,0},new ushort[]{1094,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{413,54,0},new ushort[]{409,54,0}};
+ case 6607:return new ushort[][]{new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{50090,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0}};
+ case 6608:return new ushort[][]{new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0}};
+ case 6609:return new ushort[][]{new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{413,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0}};
+ case 6610:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{1095,54,0},new ushort[]{409,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0},new ushort[]{1095,54,0}};
+ case 6611:return new ushort[][]{new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0}};
+ case 6612:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{413,54,0},new ushort[]{413,54,0},new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{1094,54,0},new ushort[]{1094,54,0},new ushort[]{413,54,0}};
+ case 6613:return new ushort[][]{new ushort[]{413,54,0},new ushort[]{413,54,0},new ushort[]{413,54,0},new ushort[]{50091,54,0},new ushort[]{413,54,0},new ushort[]{413,54,0}};
+ case 6614:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{1095,54,0},new ushort[]{409,54,0},new ushort[]{413,54,0},new ushort[]{413,54,0},new ushort[]{1095,54,0},new ushort[]{413,54,0},new ushort[]{409,54,0}};
+ case 6615:return new ushort[][]{new ushort[]{409,54,0},new ushort[]{409,54,0},new ushort[]{1095,54,0},new ushort[]{409,54,0},new ushort[]{1081,54,3},new ushort[]{409,54,0},new ushort[]{413,54,0},new ushort[]{1095,54,0},new ushort[]{413,54,0}};
+ case 7001:return new ushort[][]{new ushort[]{601,44,0},new ushort[]{600,44,0},new ushort[]{602,44,0},new ushort[]{601,44,0},new ushort[]{603,44,0},new ushort[]{601,44,0},new ushort[]{602,44,0},new ushort[]{601,44,0}};
+ case 7003:return new ushort[][]{new ushort[]{600,44,0},new ushort[]{602,44,0},new ushort[]{602,44,0},new ushort[]{600,44,0},new ushort[]{602,44,0},new ushort[]{601,44,0},new ushort[]{603,44,0},new ushort[]{602,44,0}};
+ case 7004:return new ushort[][]{new ushort[]{600,44,0},new ushort[]{603,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{602,44,0},new ushort[]{603,44,0}};
+ case 7008:return new ushort[][]{new ushort[]{602,44,0},new ushort[]{602,44,0},new ushort[]{602,44,0},new ushort[]{602,44,0},new ushort[]{50096,44,0},new ushort[]{602,44,0},new ushort[]{602,44,0},new ushort[]{602,44,0}};
+ case 7011:return new ushort[][]{new ushort[]{601,44,0},new ushort[]{603,44,0},new ushort[]{601,44,0},new ushort[]{600,44,0},new ushort[]{601,44,0},new ushort[]{1098,44,0},new ushort[]{600,44,0},new ushort[]{603,44,0},new ushort[]{602,44,0},new ushort[]{601,44,0},new ushort[]{602,44,0}};
+ case 7015:return new ushort[][]{new ushort[]{602,44,0},new ushort[]{601,44,0},new ushort[]{602,44,0},new ushort[]{600,44,0},new ushort[]{603,44,0},new ushort[]{601,44,0},new ushort[]{603,44,0},new ushort[]{600,44,0},new ushort[]{50098,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{602,44,0}};
+ case 7016:return new ushort[][]{new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{50069,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0},new ushort[]{601,44,0}};
+ case 7023:return new ushort[][]{new ushort[]{1095,44,0},new ushort[]{1095,44,0},new ushort[]{1095,44,0},new ushort[]{1095,44,0}};
+ case 7027:return new ushort[][]{new ushort[]{50098,47,3}};
+ case 7101:return new ushort[][]{new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0}};
+ case 7102:return new ushort[][]{new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{56000,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0},new ushort[]{61003,64,0}};
+ case 7103:return new ushort[][]{new ushort[]{61420,64,0},new ushort[]{61419,64,0},new ushort[]{61420,64,0},new ushort[]{61419,64,0},new ushort[]{61420,64,0},new ushort[]{61419,64,0},new ushort[]{61419,64,0},new ushort[]{61420,64,0},new ushort[]{61420,64,0},new ushort[]{61419,64,0},new ushort[]{61420,64,0},new ushort[]{61419,64,0},new ushort[]{61420,64,0},new ushort[]{61419,64,0}};
+ case 7104:return new ushort[][]{new ushort[]{61000,64,0},new ushort[]{61000,64,0},new ushort[]{61000,64,0},new ushort[]{56801,64,0},new ushort[]{61000,64,0},new ushort[]{61000,64,0},new ushort[]{61000,64,0}};
+ case 7105:return new ushort[][]{new ushort[]{56803,64,0},new ushort[]{56802,64,0}};
+ case 7106:return new ushort[][]{new ushort[]{56408,64,0},new ushort[]{61004,64,0}};
+ case 7107:return new ushort[][]{new ushort[]{61001,64,3}};default:throw new InvalidDataException("Unsupported original room");}}
 }
