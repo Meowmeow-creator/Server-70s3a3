@@ -8,7 +8,7 @@
 | 普通副本 | Dungeon-*、Forest-*、GBL-*、Room-*、Town-* | 按副本/房间分工；入口、等级/难度、加载、清房、移动、领主、结算联检 |
 | 掉落/物品 | Item-*、Floor-*、Object-*、Clear-Items-*；item-metadata.xml、掉落表 | 不私自扩大掉落范围；真实掉落/拾取/满包恢复、扣量和重登联检 |
 | 商城/NPC/宠物 | Cash-*、Npc-*、Commerce-*、Pet-* 等 | 公共经济写入只能走同一事务入口；新功能不得绕过收据或背包校验 |
-| 门票/疲劳/黑钻 | Tower-DailyTickets-*、Fatigue-*、Black* | 20级、每天本地06点共享票补至5等现有规则保留；时钟、满包、同日重复联检 |
+| 门票/疲劳/黑钻 | Tower-DailyTickets-*、Fatigue-*、Black* | 20级、每天本地06点共享票补至5等现有规则保留；时钟、满包、同日重复联检；research/fatigue只补Fatigue-State-FG50的命令16错误/队员字段，不覆盖账本或黑钻判断 |
 | 核心共享区 | Batch-Service-FG.cs、Economy-State/Protocol-FG.cs、Progression-FG.cs、Role-*、各 Cipher/Protocol | 提前声明，多人同改由一人集成；协议与经济/任务审查不能省略 |
 | 研究塔 | research/tower/src、research/tower/data | 独立分支与输出；同步稳定修复按小补丁双向合并，完整塔未验证不能晋升 |
 | 构建/发布 | scripts/、.github/、baseline/ | 构建源清单、数据版本、哈希和检查同步修改；基线 manifest 只读保留，新增基线另建记录 |
