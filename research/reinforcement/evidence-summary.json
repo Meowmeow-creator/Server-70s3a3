@@ -1,8 +1,8 @@
 {
-  "status": "break-return-internal-research",
-  "updatedUtc": "2026-10-15T08:17:14.133123+00:00",
-  "serviceSha256": "4daff322803e2388ac380af0b9df4770722afd7c2b4ebe707749d8ff7e4bf724",
-  "sourceCount": 147,
+  "status": "retry-projection-internal-research",
+  "updatedUtc": "2026-10-15T09:25:24.058674+00:00",
+  "serviceSha256": "a8dbf5bcbe909808afb554d68a0de96e799cbe3fb60754bc4a4e4b48b86aff58",
+  "sourceCount": 148,
   "currentPvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
   "stableSourceAndDataByteUnchanged": 153,
   "ordinaryTransactionCases": 195,
@@ -10,13 +10,12 @@
   "breakTransactionCases": 224,
   "breakChecks": 1326,
   "breakTargetProfiles": 1308,
-  "breakTcpCases": 12,
-  "ordinaryTcpCases": 2,
+  "ordinaryTcpCases": 5,
   "legacyCouponPassed": true,
-  "wireFrames": 41,
-  "native83Cases": 30,
-  "nativeInventoryCases": 17,
-  "nativeRestores": 6,
+  "wireFrames": 36,
+  "native83Cases": 16,
+  "nativeInventoryCases": 12,
+  "nativeRestores": 2,
   "bonusReferenceCases": 210,
   "compatibilityChecks": 23,
   "releaseAllowed": false,
@@ -29,26 +28,46 @@
     "1308 current existing targets: normal failure destruction + base/extra/upgrade bonus material returns",
     "current grade0..30 with resulting grade<=31; unsupported destroy profiles reject before charging",
     "atomic saved random outcome and variable-length return tail; repeat destructive reply suppressed, stale new sequence rejected",
-    "material/quick-bar free space checked before debit; old fixed coupon path preserved"
+    "material/quick-bar free space checked before debit; old fixed coupon path preserved",
+    "Same-sequence ordinary retries send current absolute14 inventory and wallet, with tombstones for empty prior slots",
+    "Cached non-destructive83 only replayed when target grade and material still match; stale83 and all destructive83 suppressed",
+    "Current original14 reader tested three times per initial inventory model, moved returns and reused target remain current"
   ],
   "limits": [
     "Protection activation/consumption not proved; holding current8050/8378 or specifying protection slot rejects without debit",
     "Random denominator, event/worn/continuous modifiers remain unvalidated for current CN service",
     "New3243/8050/8378 metadata uses conservative server stack cap1000; source documents omit explicit stack limit, no original client cap claim",
     "TW reference methods/current table projection and modeled UI/inventory endpoints are not gameplay acceptance",
-    "Lost-ACK retry with suppressed destructive delta reply needs complete actual UI recovery proof before release",
-    "Full affected old-service groups and maintainer/friend review remain pending"
+    "Full affected old-service groups and maintainer/friend review remain pending",
+    "Destructive lost-first83 waiting animation recovery remains unproved; absolute inventory repair is not complete UI recovery"
   ],
   "reusedProofs": [
     "FG141 current restricted upgrade parser255 records / calculation2055 cases (endpoint limitations retained)",
     "FG145 original disjoint base arithmetic / unchanged stable profile source, current intersection1308 rechecked",
-    "two completed common/uncommon TCP cases from same binary service-failure-76ac155a.json reused; subsequent .5s fixture wait was too short, no claim of latency fix"
+    "FG177 compatibility23: identical Economy-State and Ordinary-Reinforcement sources; not rerun against current service",
+    "FG177 bonusReference210: identical Break-Returns source/data and metadata; original endpoint limits retained"
   ],
   "researchCorrections": [
     "REA native provider unavailable (Ghidra not configured/Java missing, IDA not configured); offline Capstone/Unicorn fallback labeled",
     "Original6B40C0 runtime copy is0x94, old receiver model0xA8 overwrote local target; corrected model, not a player crash fix",
     "Current83 factory inserts with flag0; Norton28 model uses flag1; no cross-version wire copied",
     "Fixture for-loop increment stripped by template cleanup; retained failure and fixed fixture only",
-    "23-check compatibility fixture updated historical10000 ledger boundary to current50000, source snapshots read-only"
-  ]
+    "23-check compatibility fixture updated historical10000 ledger boundary to current50000, source snapshots read-only",
+    "FG178 first slot validator incorrectly excluded existing task page153..184; actual TCP rejected recovery, corrected and regression added",
+    "Original4333C0 quantity notification vector append modeled after old harness reached CRT iterator failure; item quantities/readers still executed, not a gameplay crash fix"
+  ],
+  "projectionCases": 8,
+  "projectionChecks": 193,
+  "retryTcpCases": 6,
+  "nativeInventoryExecutions": 36,
+  "priorStage": {
+    "serviceSha256": "4daff322803e2388ac380af0b9df4770722afd7c2b4ebe707749d8ff7e4bf724",
+    "sourceCount": 147,
+    "breakTcpCases": 12,
+    "wireFrames": 41,
+    "native83Cases": 30,
+    "nativeInventoryCases": 17,
+    "nativeRestores": 6,
+    "note": "Prior binary; not counted as full rerun of current binary"
+  }
 }

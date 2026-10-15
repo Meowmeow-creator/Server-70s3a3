@@ -29,17 +29,17 @@ for p in sorted((root/'src/Tools/VmTestKit').glob('*.cs')):
         text=replace(text,'internal byte Old,New,Result;','internal byte[] TailFG177;internal byte MechanismFG176=1;internal byte Old,New,Result;')
         text=replace(text,'w.Write((byte)1);w.Write(result.Old);','w.Write(result.MechanismFG176);w.Write(result.Old);')
         text=replace(text,'w.Write(r.Target);body=m.ToArray();','w.Write(r.Target);if(result.TailFG177!=null)w.Write(result.TailFG177);body=m.ToArray();')
-        text=replace(text,'readonly Dictionary<ushort,string> couponRequestsFG141=', 'readonly HashSet<ushort> destroyedRepliesFG177=new HashSet<ushort>();readonly Dictionary<ushort,string> couponRequestsFG141=')
-        text=replace(text,'Send("coupon-repeat83",couponRepliesFG141[sequence]);','if(destroyedRepliesFG177.Contains(sequence)){Note("BREAK_RETURN_DUPLICATE_IGNORED seq="+sequence);return;}Send("coupon-repeat83",couponRepliesFG141[sequence]);')
-        text=replace(text,'couponRequestsFG141.Add(sequence,fingerprint);','if(error==0&&result.MechanismFG176==0&&result.Result==3)destroyedRepliesFG177.Add(sequence);couponRequestsFG141.Add(sequence,fingerprint);')
+        text=replace(text,'readonly Dictionary<ushort,string> couponRequestsFG141=', 'readonly Dictionary<ushort,Offline70ReinforcementRetryFG178.Context> ordinaryRetryFG178=new Dictionary<ushort,Offline70ReinforcementRetryFG178.Context>();readonly Dictionary<ushort,string> couponRequestsFG141=')
+        text=replace(text,'Send("coupon-repeat83",couponRepliesFG141[sequence]);','Offline70ReinforcementRetryFG178.Context retryFG178;if(ordinaryRetryFG178.TryGetValue(sequence,out retryFG178)){Sync();if(retryFG178.CanReplay83(assets))Send("coupon-repeat83",couponRepliesFG141[sequence]);Send("reinforcement-recovery14",retryFG178.Reply(assets,keys));Note("REINFORCEMENT_RETRY_PROJECTED seq="+sequence);return;}Send("coupon-repeat83",couponRepliesFG141[sequence]);')
+        text=replace(text,'couponRequestsFG141.Add(sequence,fingerprint);','if(error==0&&result.MechanismFG176==0)ordinaryRetryFG178.Add(sequence,new Offline70ReinforcementRetryFG178.Context(before,assets,request,result));couponRequestsFG141.Add(sequence,fingerprint);')
         old='assets=Offline70CouponFG141.Use(economyPath,session+"-coupon-"+sequence,request,Offline70CouponFG141.Roll(),now,out result,out duplicate);'
         new='Offline70EconomyEntry materialFG176=Offline70Economy.Find(assets,0,request.Ticket);if(materialFG176!=null&&materialFG176.ItemId==3171||request.Ticket>=105&&request.Ticket<137){if(dungeon.Active||!Offline70TownContentFG75.Npc(town,area,17))throw new CouponEligibilityErrorFG141(0x13,"Ordinary reinforcement requires current Kiri area");assets=Offline70OrdinaryReinforcementFG176.Use(economyPath,session+"-npc-reinforce-"+sequence,request,Offline70OrdinaryReinforcementFG176.Roll(),out result,out duplicate);}else{'+old+'}'
         text=replace(text,old,new)
     if p.name=='Batch-Service-FG.cs':
         text=replace(text,'Offline70CouponFG141.Load(Path.Combine(baseDir,"coupon-rules-FG141.xml"));','Offline70CouponFG141.Load(Path.Combine(baseDir,"coupon-rules-FG141.xml"));Offline70OrdinaryReinforcementFG176.Load(Path.Combine(baseDir,"ordinary-reinforcement-FG176.xml"));')
     (src/p.name).write_text(text,encoding='utf-8-sig')
-for name in ['Ordinary-Reinforcement-FG176.cs','Break-Returns-FG177.cs']:shutil.copyfile(here/name,src/name)
-expected=set(origin)|{'Ordinary-Reinforcement-FG176.cs','Break-Returns-FG177.cs'}
+for name in ['Ordinary-Reinforcement-FG176.cs','Break-Returns-FG177.cs','Retry-Projection-FG178.cs']:shutil.copyfile(here/name,src/name)
+expected=set(origin)|{'Ordinary-Reinforcement-FG176.cs','Break-Returns-FG177.cs','Retry-Projection-FG178.cs'}
 assert {p.name for p in src.glob('*.cs')}==expected, 'Unexpected stale source in isolated build'
 for p in (root/'data').iterdir():
     if p.is_file():shutil.copyfile(p,out/p.name)
