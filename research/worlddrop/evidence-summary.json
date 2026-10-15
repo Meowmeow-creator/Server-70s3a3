@@ -1,0 +1,129 @@
+{
+  "status": "isolated-draft-verified",
+  "baseCommit": "1ad65f0ae8c49b345e29d345c0136475360f74bc",
+  "sourceCount": 146,
+  "serviceSha256": "091ade93ee7147a3882a03d48b0aedb1fa6b0bfccf447d01855216287c5fbd5e",
+  "pvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
+  "referenceElfSha256": "da417c5e65918f655afcddb6edfdaf2fa1e77b2f208e5aa397f021fa23b79979",
+  "table": {
+    "levels": 99,
+    "profiles": 24,
+    "entriesIncludingZero": 9108,
+    "positiveItems": 87,
+    "existingDefinitionsKept": 23,
+    "newDefinitions": 64
+  },
+  "compiled": {
+    "nativeQuoteCases": 9002,
+    "assets": 87,
+    "checks": 9267
+  },
+  "tcp": {
+    "kills": 1183,
+    "completeFarmingRoutes": 9,
+    "worldSelections": 115,
+    "uniqueWorldItems": 17,
+    "pickups": 115,
+    "quest30IronDebited": 3,
+    "cases": [
+      {
+        "case": "quest30-original-material-debit-and-choice-reward",
+        "ironBefore": 3,
+        "ironAfter": 0,
+        "repeatNoAward": true
+      },
+      {
+        "case": "natural-world-loot-and-quest-completion-relogin"
+      },
+      {
+        "case": "full-bag-no-loss-then-real-discard-same-ground-pickup",
+        "item": 2749689
+      }
+    ],
+    "sameBinaryRetained": {
+      "kills": 1173,
+      "routes": 9,
+      "cases": 2,
+      "reason": "Only remaining full-bag scenario resumed after fixture gate wait timed out; original reports/logs retained"
+    },
+    "settlementRequested": false
+  },
+  "native": {
+    "fullWire": 466,
+    "sourceFrames": 1530,
+    "death38": 119,
+    "pickup39": 230,
+    "pickupBodies": 115,
+    "fixture87ItemsUpdateRestore": 174,
+    "actualInventory14": 1,
+    "actualInventory13Restore": 1,
+    "originalMethods": [
+      "089022BE",
+      "085383B8",
+      "085334A4",
+      "F2A900",
+      "FB20F0",
+      "756EC0",
+      "4950D0",
+      "49BE30",
+      "493510",
+      "492E70"
+    ]
+  },
+  "saveCompatibility": {
+    "checks": 23,
+    "clones": 3,
+    "readOnlyOriginalFiles": 22
+  },
+  "proofs": {
+    "world-replay.json": {
+      "sha256": "d89b9d2f2946dce42415a3a43a64e2dacd0ba3e73f87d5326d778d48e1eca669",
+      "allPassed": true
+    },
+    "world-native.json": {
+      "sha256": "80e2b20f8dab1a29cee09a7e846b6feafb4b9de7d9974cf0c2e1b3961fd3ca76",
+      "allPassed": true
+    },
+    "all-world-items-native.json": {
+      "sha256": "3a5945608b3c3f4d799985a93ed87b3125d91c7a739b73c3a20ba61384294fe9",
+      "allPassed": true
+    },
+    "current-wire.json": {
+      "sha256": "70aad22e32b1aeb775d07891fee57b0aadb545f617c15d93ac00d4a066ed854a",
+      "allPassed": true
+    },
+    "world-death-native.json": {
+      "sha256": "aac482b4e0c148537e07bd90993a712e9429468ccca1b7d3060ae3a9fae4d837",
+      "allPassed": true
+    },
+    "world-pickup-native.json": {
+      "sha256": "3f19247b77d7f58eb872b5ebb4aacbd3ce74e338007032f6faeafb1071e14ccf",
+      "allPassed": true
+    },
+    "world-inventory-native.json": {
+      "sha256": "1eec991a61104248d418eafe0b667bc397323f73422784372a0fa258ca1b953c",
+      "allPassed": true
+    },
+    "compatibility/save-compatibility.json": {
+      "sha256": "cdb20d16f866499b3f9cd4c5befd3c074d18faec3e6a3937df7541ad6fd56179",
+      "allPassed": true
+    }
+  },
+  "sharedPatches": [
+    "Batch-Service-FG.cs metadata initialization in isolated build",
+    "Floor-Drops-FG119.cs append in isolated build"
+  ],
+  "releaseAllowed": false,
+  "deployed": false,
+  "mainChanged": false,
+  "actualStoresWritten": false,
+  "actualGameControlled": false,
+  "limits": [
+    "Current CN PVF table exact; full current-CN outer caller/party/event/war trigger policy not independently recovered",
+    "Only ordinary solo non-boss once with neutral100; reference TW complete selector and bounded RNG method, not original MT stream reproduction",
+    "New item drop/pickup does not implement potion effects, crafting, emblem operations or higher hardeners absent from table",
+    "45 items without explicit stack cap use existing conservative1000 cap, not proven original default",
+    "Native parse/factory/container/RNG/actor/UI endpoints partly modeled; no real game rendering or zero-latency claim",
+    "Current player version remains FG175/v48; no new launcher or deployment"
+  ]
+}
