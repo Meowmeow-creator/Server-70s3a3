@@ -1,21 +1,21 @@
 {
-  "status": "retry-projection-internal-research",
-  "updatedUtc": "2026-10-15T09:25:24.058674+00:00",
-  "serviceSha256": "a8dbf5bcbe909808afb554d68a0de96e799cbe3fb60754bc4a4e4b48b86aff58",
-  "sourceCount": 148,
+  "status": "user-confirmed-7804-protection-internal-research",
+  "updatedUtc": "2026-10-15T10:54:03.471996+00:00",
+  "serviceSha256": "86629a141f3f6d36f71c09b5b70f67d10eeaabda321711c1fe8fbbd173183822",
+  "sourceCount": 149,
   "currentPvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
   "stableSourceAndDataByteUnchanged": 153,
   "ordinaryTransactionCases": 195,
   "ordinaryChecks": 2763,
-  "breakTransactionCases": 224,
-  "breakChecks": 1326,
+  "breakTransactionCases": 225,
+  "breakChecks": 1331,
   "breakTargetProfiles": 1308,
-  "ordinaryTcpCases": 5,
+  "ordinaryTcpCases": 2,
   "legacyCouponPassed": true,
-  "wireFrames": 36,
-  "native83Cases": 16,
+  "wireFrames": 44,
+  "native83Cases": 21,
   "nativeInventoryCases": 12,
-  "nativeRestores": 2,
+  "nativeRestores": 4,
   "bonusReferenceCases": 210,
   "compatibilityChecks": 23,
   "releaseAllowed": false,
@@ -31,21 +31,26 @@
     "material/quick-bar free space checked before debit; old fixed coupon path preserved",
     "Same-sequence ordinary retries send current absolute14 inventory and wallet, with tombstones for empty prior slots",
     "Cached non-destructive83 only replayed when target grade and material still match; stale83 and all destructive83 suppressed",
-    "Current original14 reader tested three times per initial inventory model, moved returns and reused target remain current"
+    "Current original14 reader tested three times per initial inventory model, moved returns and reused target remain current",
+    "User-confirmed7804 policy: atomic cost/material/ticket/reset with saved result and non-destructive repeat/reload",
+    "Different item reusing old gear slot: tombstone before absolute live14 to avoid unchanged native item ID"
   ],
   "limits": [
-    "Protection activation/consumption not proved; holding current8050/8378 or specifying protection slot rejects without debit",
     "Random denominator, event/worn/continuous modifiers remain unvalidated for current CN service",
     "New3243/8050/8378 metadata uses conservative server stack cap1000; source documents omit explicit stack limit, no original client cap claim",
     "TW reference methods/current table projection and modeled UI/inventory endpoints are not gameplay acceptance",
-    "Full affected old-service groups and maintainer/friend review remain pending",
-    "Destructive lost-first83 waiting animation recovery remains unproved; absolute inventory repair is not complete UI recovery"
+    "Destructive lost-first83 waiting animation recovery remains unproved; absolute inventory repair is not complete UI recovery",
+    "Automatic7804 policy is user-configured, not independently recovered CN server activation code",
+    "Current8050/8378 and explicit protection slots remain refused, including unknown mixed priorities",
+    "Original material capacity preflight and1308 supported destruction profiles remain required even with7804",
+    "FG179 baseline15 old groups are reused by source boundary; not claimed as149-source rerun",
+    "Current216 extra UI virtual5C/localization endpoints modeled; original resource decoding is separate from full game UI acceptance"
   ],
   "reusedProofs": [
     "FG141 current restricted upgrade parser255 records / calculation2055 cases (endpoint limitations retained)",
     "FG145 original disjoint base arithmetic / unchanged stable profile source, current intersection1308 rechecked",
-    "FG177 compatibility23: identical Economy-State and Ordinary-Reinforcement sources; not rerun against current service",
-    "FG177 bonusReference210: identical Break-Returns source/data and metadata; original endpoint limits retained"
+    "FG177 bonusReference210: identical Break-Returns source/data and metadata; original endpoint limits retained",
+    "FG179148-source baseline15 actual old service groups; unchanged core/economy modules, not current149-source full rerun"
   ],
   "researchCorrections": [
     "REA native provider unavailable (Ghidra not configured/Java missing, IDA not configured); offline Capstone/Unicorn fallback labeled",
@@ -54,10 +59,13 @@
     "Fixture for-loop increment stripped by template cleanup; retained failure and fixed fixture only",
     "23-check compatibility fixture updated historical10000 ledger boundary to current50000, source snapshots read-only",
     "FG178 first slot validator incorrectly excluded existing task page153..184; actual TCP rejected recovery, corrected and regression added",
-    "Original4333C0 quantity notification vector append modeled after old harness reached CRT iterator failure; item quantities/readers still executed, not a gameplay crash fix"
+    "Original4333C0 quantity notification vector append modeled after old harness reached CRT iterator failure; item quantities/readers still executed, not a gameplay crash fix",
+    "FG180 native inventory fixture initially seeded unique gearID14126 for common10050 frames; corrected fixture to captured incoming identity",
+    "FG180 extra216 UI5C endpoint missing in receiver model; modeled endpoint, not a player crash fix",
+    "FG180 cross-ID retry requires remove-before-insert; added product projection and actual10050-to10004 replay/native coverage"
   ],
-  "projectionCases": 8,
-  "projectionChecks": 193,
+  "projectionCases": 9,
+  "projectionChecks": 197,
   "retryTcpCases": 6,
   "nativeInventoryExecutions": 36,
   "priorStage": {
@@ -69,5 +77,23 @@
     "nativeInventoryCases": 17,
     "nativeRestores": 6,
     "note": "Prior binary; not counted as full rerun of current binary"
+  },
+  "protectionCases": 225,
+  "protectionChecks": 1446,
+  "totalCompiledChecks": 5737,
+  "protectionTcpCases": 9,
+  "nativeProtectionErrorCases": 16,
+  "nativeProtectionInventoryExecutions": 18,
+  "protectionPolicy": {
+    "item": 7804,
+    "source": "Explicit user confirmation plus current item reset/no-amplification text",
+    "automaticInBag": true,
+    "chargeOnlyWhenWouldDestroy": 1,
+    "protectedGrade": 0,
+    "successCharge": 0,
+    "ordinaryDowngradeCharge": 0,
+    "amplification": false,
+    "wire83Bytes": 2,
+    "privateReceiptBytes": 26
   }
 }

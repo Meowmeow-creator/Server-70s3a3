@@ -31,3 +31,11 @@ r=subprocess.run([str(exe),str(retryDir),str(out)],capture_output=True,timeout=6
 (fixture/'retry-result.txt').write_bytes(r.stdout+r.stderr);assert r.returncode==0,r.stdout+r.stderr
 report=json.loads(r.stdout);report['serviceSha256']=json.loads((out/'build-proof.json').read_text())['serviceSha256']
 (fixture/'retry-result.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(json.dumps(report))
+exe=out/'ProtectionTransactions-FG180.exe'
+r=subprocess.run([str(compiler),'/nologo','/target:exe','/main:ProtectionTransactionsFG180','/out:'+str(exe),*map(str,sorted((out/'source').glob('*.cs'))),str(here/'tests/Protection-Transactions-FG180.cs')],capture_output=True)
+(fixture/'protection-compile.txt').write_bytes(r.stdout+r.stderr);assert r.returncode==0,r.stdout+r.stderr
+protectionDir=fixture/'protection';protectionDir.mkdir()
+r=subprocess.run([str(exe),str(protectionDir),str(out)],capture_output=True,timeout=90)
+(fixture/'protection-result.txt').write_bytes(r.stdout+r.stderr);assert r.returncode==0,r.stdout+r.stderr
+report=json.loads(r.stdout);report['serviceSha256']=json.loads((out/'build-proof.json').read_text())['serviceSha256']
+(fixture/'protection-result.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(json.dumps(report))

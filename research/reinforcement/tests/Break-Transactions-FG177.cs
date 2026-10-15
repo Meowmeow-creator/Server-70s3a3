@@ -35,7 +35,11 @@ class BreakTransactionsFG177 {
         Seed(high,10);Mutate(delegate(Offline70EconomyState s){for(ushort slot=105;slot<137;slot++)if(slot!=113)s.Inventory.Add(new Offline70EconomyEntry{List=0,Slot=slot,ItemId=3015,Quantity=1000});for(ushort slot=3;slot<9;slot++)s.Inventory.Add(new Offline70EconomyEntry{List=0,Slot=slot,ItemId=3015,Quantity=1000});});Reject(Request(high.Id),0x15);
         // Equipment space cannot be substituted for material/quick-bar space.
         Check(Offline70Economy.Find(Offline70Economy.Load(path),0,11)==null,"Equipment page fixture should remain free");
-        foreach(uint protector in new uint[]{8050,8378}){Seed(high,10);Mutate(delegate(Offline70EconomyState s){Offline70Economy.AddAssetItem(s,protector,1);});Reject(Request(high.Id),0x13);Check(Count(Offline70Economy.Load(path),protector)==1,"Unsupported protection consumed");}
+        foreach(uint protector in new uint[]{8050,8378}){
+            Seed(high,10);Mutate(delegate(Offline70EconomyState s){Offline70Economy.AddAssetItem(s,protector,1);});Reject(Request(high.Id),0x13);Check(Count(Offline70Economy.Load(path),protector)==1,"Unsupported protection consumed");
+            byte[] saved=File.ReadAllBytes(path);try{Offline70OrdinaryReinforcementFG176.Use(path,"protected-failure",Request(high.Id),0,0,0,out o,out dup);throw new Exception("Expected protection rejection");}catch(CouponEligibilityErrorFG141 e){Check(e.Code==0x13,"Protection failure refusal");}Check(Convert.ToBase64String(saved)==Convert.ToBase64String(File.ReadAllBytes(path)),"Fixed failure draw must not destroy or charge through protection");
+        }
+        Seed(high,0);Mutate(delegate(Offline70EconomyState s){Offline70Economy.AddAssetItem(s,7804,1);});state=Offline70OrdinaryReinforcementFG176.Use(path,"low-grade-with-protection",Request(high.Id),100000,0,0,out o,out dup);Check(o.Result==0&&o.New==1&&Count(state,7804)==1,"Non-destructive upgrade preserves unused current protection");
         Seed(high,10);CouponRequestFG141 explicitTicket=Request(high.Id);explicitTicket.Additional=114;Reject(explicitTicket,0x13);
         Seed(high,31);Reject(Request(high.Id),0x13);
         Console.WriteLine("{\"allPassed\":true,\"breakCases\":"+cases+",\"checks\":"+checks+",\"scope\":\"compiled transaction, fixed rolls and saved return plans\",\"releaseAllowed\":false}");return 0;

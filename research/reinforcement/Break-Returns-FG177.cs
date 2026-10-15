@@ -9,8 +9,9 @@ class Offline70BreakReturnsFG177 {
     }
     internal static void Preflight(Offline70EconomyState s,OrdinaryReinforcementTargetFG176 t) {
         if(!CanReturn(t))throw new CouponEligibilityErrorFG141(0x13,"Unproved break-return equipment profile");
-        // These two reference protection IDs exist in the CN PVF. Their actual
-        // CN activation/consumption is unproved, so do not destroy through them.
+        // CN7804 has its own user-confirmed policy. The reference8050/8378
+        // candidates still have placeholder CN localizations and unknown
+        // priority/effects; do not silently select through either of them.
         foreach(Offline70EconomyEntry e in s.Inventory)if(e.List==0&&(e.ItemId==8050||e.ItemId==8378))throw new CouponEligibilityErrorFG141(0x13,"Protection semantics not integrated");
         int empty=0;
         for(ushort slot=105;slot<137;slot++)if(Offline70Economy.Find(s,0,slot)==null)empty++;

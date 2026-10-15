@@ -60,6 +60,7 @@ class Offline70OrdinaryReinforcementFG176 {
         }
     }
     static byte[] Outcome(CouponRequestFG141 r,CouponResultFG141 o) {
+        if(o.NoticeFG180==Offline70ReinforcementProtectionFG180.Notice)return Offline70ReinforcementProtectionFG180.Encode(r,o);
         using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)) {
             w.Write((byte)1);w.Write(r.Type);w.Write(r.Ticket);w.Write(o.Remaining);w.Write(r.Additional);
             w.Write((byte)0);w.Write(o.Old);w.Write(o.Result);w.Write(o.New);w.Write(r.Target);if(o.TailFG177!=null)w.Write(o.TailFG177);return m.ToArray();
@@ -69,6 +70,7 @@ class Offline70OrdinaryReinforcementFG176 {
         if(receipt.ReinforcementOutcomeFG176==null)return;
         byte[] b;
         try{b=Convert.FromBase64String(receipt.ReinforcementOutcomeFG176);}catch(FormatException){throw new InvalidDataException("Ordinary reinforcement receipt encoding");}
+        if(b.Length>0&&b[0]==0){Offline70ReinforcementProtectionFG180.Validate(receipt,b);return;}
         if(receipt.Kind!="npc-reinforce"||b.Length<16||b.Length>397||b[0]!=1||b[1]!=0||b[10]!=0||b[11]>30||b[13]>31||b[12]>3||BitConverter.ToUInt16(b,8)!=65535||BitConverter.ToUInt16(b,14)<3||BitConverter.ToUInt16(b,14)>40)throw new InvalidDataException("Ordinary reinforcement receipt outcome");
         if(b[12]==3){if(b.Length<17||b[13]!=0||b[16]<1||b[16]>38||b.Length!=17+10*b[16])throw new InvalidDataException("Break-return receipt tail");}else if(b.Length!=16)throw new InvalidDataException("Unexpected reinforcement receipt tail");
     }
@@ -77,6 +79,7 @@ class Offline70OrdinaryReinforcementFG176 {
             ValidateReceipt(saved);
             if(saved.ReinforcementOutcomeFG176==null)throw new InvalidDataException("Ordinary reinforcement missing saved outcome");
             byte[] b=Convert.FromBase64String(saved.ReinforcementOutcomeFG176);
+            if(b[0]==0)return Offline70ReinforcementProtectionFG180.Restore(b,r);
             if(b[1]!=r.Type||BitConverter.ToUInt16(b,2)!=r.Ticket||BitConverter.ToUInt16(b,8)!=r.Additional||BitConverter.ToUInt16(b,14)!=r.Target)throw new InvalidDataException("Ordinary reinforcement saved routing");
             byte[] tail=null;if(b.Length>16){tail=new byte[b.Length-16];Buffer.BlockCopy(b,16,tail,0,tail.Length);}
             return new CouponResultFG141{MechanismFG176=0,Old=b[11],New=b[13],Result=b[12],Remaining=BitConverter.ToUInt32(b,4),TailFG177=tail};
@@ -109,7 +112,8 @@ class Offline70OrdinaryReinforcementFG176 {
             outcome.New=fail?(byte)Math.Max(0,target.Upgrade-step.Drop):(byte)(target.Upgrade+1);
             s.Gold-=t.GoldCost;material.Quantity-=step.Quantity;
             outcome.Remaining=material.Quantity;if(material.Quantity==0)s.Inventory.Remove(material);
-            if(fail&&destroys){outcome.New=0;outcome.TailFG177=Offline70BreakReturnsFG177.Destroy(s,target,t,choice,chance);}else target.Upgrade=outcome.New;
+            if(fail&&destroys&&Offline70ReinforcementProtectionFG180.Find(s)!=null){outcome.New=0;outcome.Result=2;target.Upgrade=0;Offline70ReinforcementProtectionFG180.Consume(s,outcome);}
+            else if(fail&&destroys){outcome.New=0;outcome.TailFG177=Offline70BreakReturnsFG177.Destroy(s,target,t,choice,chance);}else target.Upgrade=outcome.New;
             saved.ReinforcementOutcomeFG176=Convert.ToBase64String(Outcome(r,outcome));
         },out duplicate);
         result=Restore(after,receipt,r);return after;

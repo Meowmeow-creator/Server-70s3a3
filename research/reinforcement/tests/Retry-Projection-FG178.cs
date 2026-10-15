@@ -3,7 +3,7 @@ class RetryProjectionTestsFG178 {
     static int checks,cases;
     static void Check(bool b,string message){checks++;if(!b)throw new Exception(message);}
     static Offline70EconomyEntry Item(ushort slot,uint id,uint qty){return new Offline70EconomyEntry{List=0,Slot=slot,ItemId=id,Quantity=qty,Durability=Offline70Economy.Definition(id).MaxDurability};}
-    static Dictionary<ushort,byte[]> Rows(byte[] body){Check(body[0]==0,"Inventory list");int n=BitConverter.ToUInt16(body,1);Check(body.Length==3+31*n,"Plain ordinary row widths");Dictionary<ushort,byte[]> r=new Dictionary<ushort,byte[]>();for(int i=0;i<n;i++){byte[] row=new byte[31];Buffer.BlockCopy(body,3+31*i,row,0,31);r.Add(BitConverter.ToUInt16(row,0),row);}return r;}
+    static Dictionary<ushort,byte[]> Rows(byte[] body){Check(body[0]==0,"Inventory list");int n=BitConverter.ToUInt16(body,1);Check(body.Length==3+31*n,"Plain ordinary row widths");Dictionary<ushort,byte[]> r=new Dictionary<ushort,byte[]>();for(int i=0;i<n;i++){byte[] row=new byte[31];Buffer.BlockCopy(body,3+31*i,row,0,31);r[BitConverter.ToUInt16(row,0)]=row;}return r;}
     static void Reject(Offline70EconomyState current,ushort[] slots){try{Offline70ReinforcementRetryFG178.Body(current,slots);throw new Exception("Expected invalid projection");}catch(InvalidDataException){checks++;}}
     static int Main(string[] a){try{
         if(a.Length!=2)return 2;string dir=Path.GetFullPath(a[0]);if(dir.IndexOf("reinforcement-research",StringComparison.OrdinalIgnoreCase)<0)throw new Exception("Disposable scope");Directory.CreateDirectory(dir);
@@ -43,6 +43,9 @@ class RetryProjectionTestsFG178 {
         changed=Offline70Economy.Preview(upgraded,delegate(Offline70EconomyState s){s.Inventory.Clear();});Check(!normal.CanReplay83(changed),"Missing target suppresses83");
         changed=Offline70Economy.Preview(upgraded,delegate(Offline70EconomyState s){s.Inventory.Add(Item(113,3037,1));});Check(!normal.CanReplay83(changed),"Reused material slot suppresses83");
         Offline70ReinforcementRetryFG178.Context broken=new Offline70ReinforcementRetryFG178.Context(before,committed,request,new CouponResultFG141{MechanismFG176=0,Result=3});Check(!broken.CanReplay83(upgraded),"Destructive result never replays even when target slot reused");
+        byte[] replacement=broken.Body(upgraded);bool removedBeforeReplacement=false;uint last=0;
+        for(int i=0;i<BitConverter.ToUInt16(replacement,1);i++){int off=3+31*i;if(BitConverter.ToUInt16(replacement,off)!=10)continue;uint id=BitConverter.ToUInt32(replacement,off+2);if(id==UInt32.MaxValue)removedBeforeReplacement=true;else{Check(removedBeforeReplacement,"Changed target ID needs removal before replacement");last=id;}}
+        Check(last==10050&&BitConverter.ToUInt32(Rows(replacement)[10],2)==10050,"Current different item ID wins after tombstone");cases++;
         Offline70EconomyState full=Offline70Economy.Preview(upgraded,delegate(Offline70EconomyState s){
             s.Inventory.Clear();for(ushort i=3;i<41;i++)s.Inventory.Add(Item(i,10050,1));
             for(ushort i=57;i<89;i++)s.Inventory.Add(Item(i,15,1));
