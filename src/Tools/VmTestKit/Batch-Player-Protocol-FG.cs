@@ -1,4 +1,4 @@
-﻿using System;using System.IO;using System.Collections.Generic;
+using System;using System.IO;using System.Collections.Generic;
 // The FG service uses separate state; it keeps previous bounded profiles intact.
 partial class Offline70RoleProtocol {
  internal static byte[] BatchCryptFG(byte[] data,byte[] keys,int index,bool encrypt){
@@ -13,7 +13,7 @@ partial class Offline70RoleProtocol {
   throw new InvalidDataException("Unregistered batch cipher");
  }
  internal static byte[] BatchPacketFG(byte kind,ushort opcode,byte[] plain,byte[] keys,bool integrity){if(integrity)plain=WithDungeonIntegrity(plain);int index=opcode%14,block=index==0?4:index==1||index==3||index==4||index==8||index==13?16:8;return Packet(kind,opcode,BatchCryptFG(Offline70GoldLoot.Pad(plain,block),keys,index,true));}
- internal static byte[] BatchTownReplyFG(ushort destination,ushort op,Offline70Role role,byte[] keys){BatchBaseRoleFG(role);if(destination!=2)throw new InvalidDataException("Unsupported return area");if(op==3)return Offline70TownProtocol.Reply(op,BatchBaseRoleFG(role),keys);return new Offline70Gate{Area=2,X=8,Y=247,Direction=5}.Reply(op,keys);}
+ internal static byte[] BatchTownReplyFG(ushort destination,ushort op,Offline70Role role,byte[] keys,int x,int y){BatchBaseRoleFG(role);if(destination!=2)throw new InvalidDataException("Unsupported return area");if(op==3)return Offline70TownProtocol.Reply(op,BatchBaseRoleFG(role),keys);return new Offline70Gate{Area=2,X=(ushort)x,Y=(ushort)y,Direction=5}.Reply(op,keys);}
  internal static Offline70Role BatchBaseRoleFG(Offline70Role role){if(role.Id!=1||role.Job!=0||role.Name!="yoyo"||role.Level<1||role.Level>70)throw new InvalidDataException("FG saved ghost-knight profile");return new Offline70Role{Id=role.Id,Job=role.Job,Level=1,Name=role.Name,CreatedUtc=role.CreatedUtc};}
  internal static byte[] BatchRosterFG(Offline70Role role,byte[] keys){Offline70Role basic=BatchBaseRoleFG(role);byte[] b=RosterBody(new List<Offline70Role>(new Offline70Role[]{basic}));b[15+NameEncoding.GetByteCount(role.Name)]=role.Level;return Packet(0,2,new Blowfish(keys).Encode(Pad(Zlib(b))));}
  internal static byte[] BatchRosterFG(Offline70Role role,Offline70EconomyState assets,byte[] keys){
