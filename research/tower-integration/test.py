@@ -10,6 +10,7 @@ framework=Path(os.environ.get('WINDIR','C:/Windows'))/'Microsoft.NET/Framework'
 compiler=next(p for p in [framework/'v3.5/csc.exe',framework/'v4.0.30319/csc.exe'] if p.is_file())
 env={k.upper():v for k,v in os.environ.items()}
 for name,fixture in [('TowerRebaseBoundariesFG184',here/'tests/Boundaries-FG184.cs'),
+                     ('TowerRetryBoundariesFG185',here/'tests/Retry-Boundaries-FG185.cs'),
                      ('IntegrationBoundariesFG183',root/'research/integration/tests/Boundaries-FG183.cs')]:
     exe=out/(name+'.exe')
     r=subprocess.run([str(compiler),'/nologo','/target:exe','/main:'+name,'/out:'+str(exe),

@@ -68,5 +68,11 @@
     "Tower-Service-FG172.cs": "4d278a2e71d6095e033043d577361a0a8dfe957dfc3c7065eae69f92ff76180d",
     "Typed-Enemy-Drops-FG171.cs": "27f86d8714de37386953b59df2c2013c37f6e5cd01532beef58db9e1f81375ac"
   },
-  "rewardTableSha256": "f2ce87137dc6971357fb2af63bd15eb61e61e3ae003d208a9adfb7725e454ca0"
+  "rewardTableSha256": "f2ce87137dc6971357fb2af63bd15eb61e61e3ae003d208a9adfb7725e454ca0",
+  "towerFollowupPatches": {
+    "Tower-Service-FG172.cs": {
+      "input": "4d278a2e71d6095e033043d577361a0a8dfe957dfc3c7065eae69f92ff76180d",
+      "output": "e037d6f4c2d14bd2398fe9570f7f020d8a622fe481a31be270fbf63d3164696b"
+    }
+  }
 }

@@ -57,6 +57,11 @@ def build():
     for name in extras:
         assert sha(tower / name) == manifest['towerSourceSha256'][name], 'Review tower class ' + name
         shutil.copyfile(tower / name, src / name)
+    for name, hashes in manifest.get('towerFollowupPatches', {}).items():
+        assert name in extras and sha(src / name) == hashes['input']
+        text = apply_patch((src / name).read_text('utf-8-sig'), (here / 'patches' / (name + '.patch')).read_text('utf-8'))
+        (src / name).write_text(text, encoding='utf-8-sig', newline='')
+        assert sha(src / name) == hashes['output'], 'Tower followup output ' + name
     expected_names = {p.name for p in base_sources} | extras
     assert {p.name for p in src.glob('*.cs')} == expected_names and len(expected_names) == 162
     for p in base.iterdir():
