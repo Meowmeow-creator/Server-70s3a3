@@ -28,7 +28,7 @@ class ReinforcementTransactionsFG176 {
         using(FileStream f=File.OpenRead(data))catalog=(OrdinaryReinforcementCatalogFG176)new XmlSerializer(typeof(OrdinaryReinforcementCatalogFG176)).Deserialize(f);
         // Exhaust every allowed grade/rarity at both sides of its exact threshold.
         foreach(byte rarity in new byte[]{0,1,2,3,5})foreach(OrdinaryReinforcementStepFG176 step in catalog.Steps){
-            if(rarity<2&&step.Grade>=8)continue;OrdinaryReinforcementTargetFG176 t=Target(rarity);
+            if(step.Grade>9||rarity<2&&step.Grade>=8)continue;OrdinaryReinforcementTargetFG176 t=Target(rarity);
             foreach(int roll in new int[]{0,Math.Max(0,(int)step.FailureThreshold-1),(int)step.FailureThreshold,100000}){
                 Seed(t,step.Grade,t.GoldCost+123,100);CouponResultFG141 o;bool dupe;
                 Offline70EconomyState after=Offline70OrdinaryReinforcementFG176.Use(path,"transaction",Request(t.Id),roll,out o,out dupe);
@@ -56,9 +56,9 @@ class ReinforcementTransactionsFG176 {
         Seed(rare,0,rare.GoldCost,0);Reject(req,0x16);
         Seed(rare,0,rare.GoldCost,1);Mutate(delegate(Offline70EconomyState s){Offline70Economy.Find(s,0,10).Durability--;});Reject(req,7);
         Seed(rare,0,rare.GoldCost,1);Mutate(delegate(Offline70EconomyState s){Offline70Economy.Find(s,0,10).Sealed=true;});Reject(req,0x13);
-        Seed(rare,10,rare.GoldCost,100);Reject(req,0x13);
-        Seed(Target(0),8,100000,100);Reject(Request(Target(0).Id),0x13);
-        Seed(Target(1),8,100000,100);Reject(Request(Target(1).Id),0x13);
+        Seed(rare,31,rare.GoldCost,100);Reject(req,0x13);
+        Seed(Target(0),8,100000,100);Mutate(delegate(Offline70EconomyState s){Offline70Economy.AddAssetItem(s,8050,1);});Reject(Request(Target(0).Id),0x13);
+        Seed(Target(1),8,100000,100);Mutate(delegate(Offline70EconomyState s){Offline70Economy.AddAssetItem(s,8378,1);});Reject(Request(Target(1).Id),0x13);
         Seed(rare,0,rare.GoldCost,1);CouponRequestFG141 wrong=Request(rare.Id);wrong.Additional=66;Reject(wrong,0x13);
         wrong=Request(rare.Id);wrong.Type=1;Reject(wrong,0x13);
         wrong=Request(rare.Id);wrong.Item++;Reject(wrong,4);

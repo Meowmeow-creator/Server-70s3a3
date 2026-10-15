@@ -1,41 +1,54 @@
 {
-  "status": "internal-research-only",
-  "updatedUtc": "2026-10-14T16:08:19.964828+00:00",
-  "serviceSha256": "9fc2df5acd901b38fe54a4eaef7ca33ca061ba8cc19b684003c3454ec4386386",
+  "status": "break-return-internal-research",
+  "updatedUtc": "2026-10-15T08:17:14.133123+00:00",
+  "serviceSha256": "4daff322803e2388ac380af0b9df4770722afd7c2b4ebe707749d8ff7e4bf724",
+  "sourceCount": 147,
   "currentPvfSha256": "61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d",
-  "upgradeDocumentSha256": "7102e11ce78934ef246ec24d9ab6af731547a8d1a28113990fdbe62b56a04f71",
-  "tableAndTargetDocumentsCompared": true,
-  "targetDocuments": 1852,
-  "compileTransactionCases": 195,
-  "compileTransactionChecks": 2763,
-  "actualTcpCases": 13,
-  "legacyCouponPassed": true,
-  "wireFrames": 33,
-  "nativeReceiverCases": 27,
   "stableSourceAndDataByteUnchanged": 153,
+  "ordinaryTransactionCases": 195,
+  "ordinaryChecks": 2763,
+  "breakTransactionCases": 224,
+  "breakChecks": 1326,
+  "breakTargetProfiles": 1308,
+  "breakTcpCases": 12,
+  "ordinaryTcpCases": 2,
+  "legacyCouponPassed": true,
+  "wireFrames": 41,
+  "native83Cases": 30,
+  "nativeInventoryCases": 17,
+  "nativeRestores": 6,
+  "bonusReferenceCases": 210,
+  "compatibilityChecks": 23,
   "releaseAllowed": false,
   "deployed": false,
-  "gameControlled": false,
-  "actualPlayerStoreWrites": false,
+  "actualGameControlled": false,
+  "actualStoresWritten": false,
+  "automaticContinuation": false,
+  "noUnclosedBackgroundTests": true,
   "provenScope": [
-    "common/uncommon old grade0..7; registered other rarities old grade0..9",
-    "real gold/material debit; table-backed no-destroy downgrade; full bag; cached repeat; saved randomized outcome",
-    "existing fixed coupon remains reachable with unchanged gold and mechanism1"
+    "1308 current existing targets: normal failure destruction + base/extra/upgrade bonus material returns",
+    "current grade0..30 with resulting grade<=31; unsupported destroy profiles reject before charging",
+    "atomic saved random outcome and variable-length return tail; repeat destructive reply suppressed, stale new sequence rejected",
+    "material/quick-bar free space checked before debit; old fixed coupon path preserved"
   ],
-  "blockers": [
-    "equipment destroy/disjoint returns and protection items not integrated",
-    "event/worn/continuous effect discounts or chance modifiers unvalidated",
-    "TW1031 inclusive random denominator reference; current server method not independently proved",
-    "whole-game UI/rendering and friend review pending"
+  "limits": [
+    "Protection activation/consumption not proved; holding current8050/8378 or specifying protection slot rejects without debit",
+    "Random denominator, event/worn/continuous modifiers remain unvalidated for current CN service",
+    "New3243/8050/8378 metadata uses conservative server stack cap1000; source documents omit explicit stack limit, no original client cap claim",
+    "TW reference methods/current table projection and modeled UI/inventory endpoints are not gameplay acceptance",
+    "Lost-ACK retry with suppressed destructive delta reply needs complete actual UI recovery proof before release",
+    "Full affected old-service groups and maintainer/friend review remain pending"
   ],
-  "reusedOriginalProofs": [
-    "reinforcement-coupons-FG141/table-native.json:255 rows with modeled endpoints",
-    "reinforcement-coupons-FG141/calculation-native.json:2055 cases; original protected/metadata endpoint limits retained"
+  "reusedProofs": [
+    "FG141 current restricted upgrade parser255 records / calculation2055 cases (endpoint limitations retained)",
+    "FG145 original disjoint base arithmetic / unchanged stable profile source, current intersection1308 rechecked",
+    "two completed common/uncommon TCP cases from same binary service-failure-76ac155a.json reused; subsequent .5s fixture wait was too short, no claim of latency fix"
   ],
-  "failurePreparations": [
-    "PVF helper string instead of Path; root PVF path corrected to parent",
-    "initial material fixture slot65 was consumable instead of materials slot113",
-    "rarity4 has no registered original target, so no synthetic equipment was created",
-    "old v46 helper binary unavailable; verified current v48 selected instead"
+  "researchCorrections": [
+    "REA native provider unavailable (Ghidra not configured/Java missing, IDA not configured); offline Capstone/Unicorn fallback labeled",
+    "Original6B40C0 runtime copy is0x94, old receiver model0xA8 overwrote local target; corrected model, not a player crash fix",
+    "Current83 factory inserts with flag0; Norton28 model uses flag1; no cross-version wire copied",
+    "Fixture for-loop increment stripped by template cleanup; retained failure and fixed fixture only",
+    "23-check compatibility fixture updated historical10000 ledger boundary to current50000, source snapshots read-only"
   ]
 }
