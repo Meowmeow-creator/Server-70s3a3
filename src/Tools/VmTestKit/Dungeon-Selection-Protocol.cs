@@ -25,7 +25,7 @@ class Offline70DungeonSelection {
   Offline70TownProtocol.Validate(role,keys);string cipher;
   if(opcode==3)cipher="107e8e0553966c9b9ffbc7f26f9b2855";
   else if(opcode==26)cipher="e55bd513598bfde3";
-  else if(opcode==5)return Offline70RoleProtocol.Packet(0,5,Offline70RoleProtocol.BatchCryptFG(Offline70RoleProtocol.Pad(town==2?ForestBody():town==3?((area==4||area==6)?GblBody():SkyBody()):town==4?(area==3?AncientBody():Act4Body()):Body(5)),keys,5,true));
+  else if(opcode==5)return Offline70RoleProtocol.Packet(0,5,Offline70RoleProtocol.BatchCryptFG(Offline70RoleProtocol.Pad(town==2?ForestBody():town==3?((area==4||area==6)?GblBody():SkyBody()):town==4?(area==3?AncientBody():Act4Body()):town==5?StormPassBody():Body(5)),keys,5,true));
   else if(opcode==27)cipher="67dda5765662d5df55ca73c1454fae2f";
   else throw new InvalidDataException("Unverified dungeon selection opcode");
   return Offline70RoleProtocol.Packet(0,opcode,Offline70TownProtocol.Hex(cipher));
@@ -44,6 +44,10 @@ class Offline70DungeonSelection {
 // own data, so Act4 ids must stay enterable there (8 rejected op16 attempts on 2026-10-15) while
 // 诺伊佩拉 is also reachable. The profile body therefore carries both groups at area3.
 internal static byte[] AncientBody(){return ProfileBody(new ushort[]{31,32,33,34,35,36,37,1502});}
+ // 万年雪山 (Snow Mountain / StormPass, town5) offers its two dungeons 40 (CharnakRidge) and
+ // 41 (TheBoyWithColdheart) from the client's own dungeon-gate areas area2/area3
+ // (town/stormpass.twn marks both as `[dungeon gate] 6`).
+ internal static byte[] StormPassBody(){return ProfileBody(new ushort[]{40,41,42,43,44,45,141});}
  internal static bool SupportedInTown(int town,ushort id){return SupportedInArea(town,3,id);}
- internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2)||town==2&&(id>=3&&id<=9||id==1000)||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17)||(area==4||area==6)&&id>=21&&id<=27)||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502));}
+ internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2)||town==2&&(id>=3&&id<=9||id==1000)||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17)||(area==4||area==6)&&id>=21&&id<=27)||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502))||town==5&&(area==2||area==3)&&(id>=40&&id<=45||id==141);}
 }

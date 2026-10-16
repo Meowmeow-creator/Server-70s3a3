@@ -6,6 +6,9 @@ internal static class SealDoorsFG {
   new Dictionary<ushort,ushort[]>{
   {33,new ushort[]{60026,1,0,10}},
   {36,new ushort[]{60020,3,2,1}},
+  {1502,new ushort[]{60036,3,0,10}},
+  {44,new ushort[]{60029,2,1,10}},
+  {45,new ushort[]{60031,1,0,10}},
  };
  internal static bool HasSealDoor(ushort dungeonId){
   return Table.ContainsKey(dungeonId);}

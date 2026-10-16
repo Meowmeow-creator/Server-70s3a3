@@ -1826,7 +1826,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -1918,7 +1918,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -1963,7 +1963,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -2083,7 +2083,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -4061,7 +4062,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -4134,7 +4136,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -7812,7 +7815,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -7904,7 +7908,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -7946,7 +7951,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1045</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -12550,7 +12556,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043,1045</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -16095,7 +16102,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1046</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -16167,7 +16175,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -16272,7 +16280,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -16513,7 +16521,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17111,7 +17120,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17150,7 +17159,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17190,7 +17199,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17230,7 +17239,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17271,7 +17280,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17311,7 +17320,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17351,7 +17360,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17392,7 +17401,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17432,7 +17441,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17956,7 +17965,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -17997,7 +18006,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -18038,7 +18047,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -18323,7 +18332,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -18527,7 +18537,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1045</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -18949,7 +18960,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -19035,7 +19047,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -19123,7 +19136,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -19215,7 +19229,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -19262,7 +19276,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -26636,7 +26650,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[thief]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -26687,7 +26702,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[thief]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27114,7 +27130,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27157,7 +27174,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27245,7 +27263,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27288,7 +27307,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042,1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27376,7 +27396,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27464,7 +27485,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27511,7 +27533,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27600,7 +27623,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27647,7 +27671,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042,1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27735,7 +27760,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27858,7 +27884,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27905,7 +27932,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -27952,7 +27980,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -28036,7 +28065,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -32346,7 +32376,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[fighter]</Job>
       <GrowType>1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>914</Relation>
@@ -32380,7 +32410,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[fighter]</Job>
       <GrowType>1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>915</Relation>
@@ -38576,7 +38606,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -40552,7 +40583,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -44559,7 +44591,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -46288,7 +46321,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -46427,7 +46461,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -46609,7 +46644,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -50053,7 +50089,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[thief]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -50189,7 +50226,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1045</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -50224,7 +50262,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -51329,7 +51368,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>1707</Relation>
@@ -51374,7 +51414,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>1708</Relation>
@@ -54154,7 +54195,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest];extra:[creature kind];extra:[creature level]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>2110</Relation>
@@ -54188,7 +54229,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest];extra:[creature kind];extra:[creature level]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>2111</Relation>
@@ -54228,7 +54269,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>reward:[creature evolution];reward pair width;extra:[job change quest];extra:[creature kind];extra:[creature level]</Reason>
       <Repeatable>true</Repeatable>
       <Relation>0</Relation>
@@ -54390,7 +54431,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[effect after clear quest]</Reason>
       <Repeatable>true</Repeatable>
       <Relation>0</Relation>
@@ -60638,7 +60679,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -61631,7 +61673,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65663,7 +65706,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65695,7 +65738,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65762,7 +65805,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65857,7 +65900,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65897,7 +65940,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65937,7 +65980,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -65977,7 +66020,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -66017,7 +66060,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -66131,7 +66174,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>disabled name;extra:[effect after clear quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -67760,7 +67803,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>3513</Relation>
@@ -70047,7 +70090,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -70392,7 +70435,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:0</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -70807,7 +70850,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -70902,7 +70946,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043,1044</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -74829,7 +74874,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:5;grade:[daily];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -74973,7 +75018,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:5;grade:[daily];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -75150,7 +75195,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1;grade:[daily]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -75465,7 +75510,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:5;grade:[daily];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78290,7 +78335,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78334,7 +78379,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78378,7 +78423,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78422,7 +78467,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78521,7 +78566,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78610,7 +78655,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78659,7 +78704,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -78708,7 +78753,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -85124,7 +85169,8 @@
       <MaxLevel>59</MaxLevel>
       <Job>[thief]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1040,1041</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -85211,7 +85257,8 @@
       <MaxLevel>59</MaxLevel>
       <Job>[thief]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -85908,7 +85955,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -85955,7 +86002,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -86042,7 +86089,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[collision reward int data]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -86445,7 +86492,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[depend give item]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -88421,7 +88468,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -88561,7 +88609,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1041,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -88653,7 +88702,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042,1043</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -88976,7 +89026,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1039,1040</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -92576,7 +92627,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -92620,7 +92671,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>true</Repeatable>
       <Relation>0</Relation>
@@ -94019,7 +94070,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -95169,7 +95220,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[hunt enemy]:-1</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -95901,7 +95952,8 @@
       <MaxLevel>59</MaxLevel>
       <Job>[at gunner]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1040,1041</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -95988,7 +96040,8 @@
       <MaxLevel>59</MaxLevel>
       <Job>[at gunner]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116239,7 +116292,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:12;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116276,7 +116329,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:13;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116313,7 +116366,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:14;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116350,7 +116403,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:8;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116386,7 +116439,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:9;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116422,7 +116475,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:15;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116459,7 +116512,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:10;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116495,7 +116548,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:11;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116531,7 +116584,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:16;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116897,7 +116950,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:12;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116934,7 +116987,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:13;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -116971,7 +117024,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:14;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117008,7 +117061,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:8;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117044,7 +117097,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:9;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117080,7 +117133,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:15;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117117,7 +117170,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:10;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117153,7 +117206,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:11;grade:[training];condition row width</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -117189,7 +117242,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>objective:[condition under clear]:16;grade:[training]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -125475,7 +125528,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -125643,7 +125696,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[target character]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -126909,7 +126962,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>true</Supported>
+      <Supported>false</Supported>
+      <Reason>missing client item 1042</Reason>
       <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
@@ -141242,7 +141296,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[at fighter]</Job>
       <GrowType>3</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>7629</Relation>
@@ -141278,7 +141332,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[at fighter]</Job>
       <GrowType>3</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[job change quest]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>7630</Relation>
@@ -142241,7 +142295,7 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
+      <Supported>true</Supported>
       <Reason>extra:[first exposed by npc]</Reason>
       <Repeatable>false</Repeatable>
       <Relation>7654</Relation>

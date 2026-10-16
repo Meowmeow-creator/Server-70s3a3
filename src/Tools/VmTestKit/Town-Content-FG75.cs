@@ -1,10 +1,14 @@
-using System;using System.IO;
+﻿using System;using System.IO;
 // Generated from the CN70 client's Script.pvf (town/*.twn, area .map [town movable area] and [NPC]).
 // Door rows are the client's own portal rectangles: x y w h targetTown targetArea.
 // DungeonPortal is the client's dungeon entrance rectangle (rows with target -1/-1).
 class Offline70TownContentFG75 {
- internal static bool TownSupported(int town){return town>=1&&town<=4;}
- internal static int SeriaArea(int town){if(!TownSupported(town))throw new InvalidDataException("Unsupported town region");return town==1?1:town==2?5:town==3?2:0;}
+ internal static bool TownSupported(int town){return town>=1&&town<=5;}
+ internal static int SeriaArea(int town){if(!TownSupported(town))throw new InvalidDataException("Unsupported town region");
+  // Area the role wakes up in (the shared Seria room map; the NPC trio 2/32/22 marks it in
+  // every town). Town 5 (StormPass, 万年雪山): area 1 = StormPass/Gate_Storm.map; area 0 is
+  // the town square whose board does not contain the login point (474,234).
+  return town==1?1:town==2?5:town==3?2:town==5?1:0;}
  internal static bool Exists(int town,int area){switch(town*16+area){
   case 16:return true;
   case 17:return true;
@@ -36,6 +40,10 @@ class Offline70TownContentFG75 {
   case 66:return true;
   case 67:return true;
   case 68:return true;
+  case 80:return true;
+  case 81:return true;
+  case 82:return true;
+  case 83:return true;
  default:return false;}}
  internal static bool Npc(int town,int area,int npc){switch(town*16+area){
   case 16:return npc==1||npc==8;
@@ -167,5 +175,5 @@ class Offline70TownContentFG75 {
   case 194:return new int[]{992,295,37,62};
  default:return null;}}
  internal static bool Linked(int town,int area,int targetTown,int targetArea){foreach(int[] p in Portals(town,area))if(p[4]==targetTown&&p[5]==targetArea)return true;return false;}
- internal static bool DungeonGate(int town,int area){return town==1&&area==2||town==2&&area==6||town==3&&(area==3||area==4||area==5||area==6)||town==4&&(area==2||area==3);}
+ internal static bool DungeonGate(int town,int area){return town==1&&area==2||town==2&&area==6||town==3&&(area==3||area==4||area==5||area==6)||town==4&&(area==2||area==3)||town==5&&(area==2||area==3);}
 }

@@ -17,7 +17,7 @@ class Offline70EliteMonstersFG118 {
    case 25:values=new int[]{3,6,9,12,15};break;
    case 26:values=new int[]{7,14,21,28,30};break;
    case 27:values=new int[]{6,9,12,15,18};break;
-   case 31:values=new int[]{7,14,21,28,30};break; case 32:values=new int[]{7,14,21,28,30};break; case 33:values=new int[]{0,0,0,0,0};break; case 34:values=new int[]{6,12,18,24,26};break; case 35:values=new int[]{6,12,18,24,26};break; case 36:values=new int[]{6,12,18,24,26};break; case 37:values=new int[]{6,12,18,24,26};break; case 1502:values=new int[]{0,0,0,0,0};break; default:throw new InvalidDataException("Unproven champion dungeon");
+   case 31:values=new int[]{7,14,21,28,30};break; case 32:values=new int[]{7,14,21,28,30};break; case 33:values=new int[]{0,0,0,0,0};break; case 34:values=new int[]{6,12,18,24,26};break; case 35:values=new int[]{6,12,18,24,26};break; case 36:values=new int[]{6,12,18,24,26};break; case 37:values=new int[]{6,12,18,24,26};break; case 1502:values=new int[]{0,0,0,0,0};break; case 40:values=new int[]{6,12,18,24,26};break; case 41:values=new int[]{0,0,0,0,0};break; case 42:values=new int[]{6,12,18,24,26};break; case 43:values=new int[]{6,12,18,24,26};break; case 44:values=new int[]{6,12,18,24,26};break; case 45:values=new int[]{6,12,18,24,26};break; case 141:values=new int[]{6,12,18,24,26};break; default:throw new InvalidDataException("Unproven champion dungeon");
   }return values[difficulty];
  }
  internal static int Quota(int basis,byte difficulty,int width,int height,int fixedCount,bool noRandom,int draw){
