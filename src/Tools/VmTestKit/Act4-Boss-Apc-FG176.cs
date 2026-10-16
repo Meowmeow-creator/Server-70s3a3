@@ -14,10 +14,10 @@ partial class Offline70DungeonFlowFG {
  // Native 0x8301d76 add_monster_APC_AI assigns mob.m_instId = seq++, the SAME counter that
  // numbers the room's monsters, so an APC instance id sits in the monster range (100..163).
  // The client keys actors by that id: an APC sent as 900 is never death-reported (0 op42 in a
- // whole shadowmaze run) and the clear/score flow never starts. Legacy 900 stays accepted.
+ // whole shadowmaze run) and the clear/score flow never starts. Legacy boss 900 stays accepted only inside its boss room; quest GSD keeps its own900 UID.
  internal ushort ApcUidFG176 {get{return (ushort)(100+TotalCount);}}   // after every actor incl. condition/event monsters
  internal ushort ApcSpawnedUidFG176;
- internal bool ApcRoutingFG176(ushort uid){return uid==ApcSpawnedUidFG176||uid==GsdUidFG130;}
+ internal bool ApcRoutingFG176(ushort uid){return BossApcRoomFG176&&(uid==ApcSpawnedUidFG176||uid==GsdUidFG130);}
  internal void ApcArmFG176(){ApcSpawnedUidFG176=ApcUidFG176;}
  // 2026-10-15 (second pass): the client-side roleType>=8 theory was refuted and the
  // silent exit funnel was located (secure-CRT invalid-parameter handler 0x128E513 ->
@@ -39,5 +39,5 @@ partial class Offline70DungeonFlowFG {
  internal bool BossApcAliveFG176 {get{return BossApcRoomFG176&&bossApcRunFG176==RunId&&bossApcSpawnedFG176&&!bossApcDeadFG176;}}
  internal bool BossApcSlainFG176 {get{return BossApcRoomFG176&&bossApcRunFG176==RunId&&bossApcDeadFG176;}}
  internal void BossApcSpawnFG176(){bossApcRunFG176=RunId;bossApcSpawnedFG176=true;bossApcDeadFG176=false;}
- internal bool KillBossApcFG176(ushort uid){if(!ApcRoutingFG176(uid)||!BossApcAliveFG176)throw new InvalidDataException("Act4 boss APC death outside its spawned boss room");if(bossApcDeadFG176)return false;bossApcDeadFG176=true;return true;}
+ internal bool KillBossApcFG176(ushort uid){if(!Active||!Loaded||ClearPublished||!ApcRoutingFG176(uid)||bossApcRunFG176!=RunId||!bossApcSpawnedFG176)throw new InvalidDataException("Act4 boss APC death outside its spawned boss room");if(bossApcDeadFG176)return false;bossApcDeadFG176=true;return true;}
 }

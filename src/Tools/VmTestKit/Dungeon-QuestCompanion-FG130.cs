@@ -18,7 +18,7 @@ partial class Offline70DungeonFlowFG {
  case 1620:return new ushort[][]{new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{51,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0},new ushort[]{50,20,0}};
  case 1602:return Offline70ForestFG75.Monsters(11,1,0);default:return null;}}
  internal bool GsdAliveFG130 {get{return GsdRunFG130&&GsdSpawnedFG130&&!GsdDeadFG130;}}
- internal bool DieGsdFG130(ushort uid){if(!ApcRoutingFG176(uid)||!Active||!Loaded||!GsdRunFG130||!GsdSpawnedFG130||ClearPublished)throw new InvalidDataException("GSD death outside spawned quest run");if(GsdDeadFG130)return false;GsdDeadFG130=true;return true;}
+ internal bool DieGsdFG130(ushort uid){if(uid!=GsdUidFG130||!Active||!Loaded||!GsdRunFG130||!GsdSpawnedFG130||ClearPublished)throw new InvalidDataException("GSD death outside spawned quest run");if(GsdDeadFG130)return false;GsdDeadFG130=true;return true;}
 }
 partial class Offline70BatchServiceFG {
  void MapClearFG130(){progress=quests.MapVisit(questPath,dungeon.CurrentMap,dungeon.RoomReceiptScope+"-map-clear",dungeon.DungeonId,dungeon.Difficulty,dungeon.GsdAliveFG130,dungeon.GsdQuestInstanceFG130);}

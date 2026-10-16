@@ -1,6 +1,6 @@
 # 本仓库工作约束
 
-开始前读 README、CONTRIBUTING 和 docs/MERGE_BOUNDARIES.md。稳定145源在src；研究152源在research/tower，禁止研究代码自动混入稳定构建。不要从父目录旧源码构建或修改历史封存源。
+开始前读 README、CONTRIBUTING 和 docs/MERGE_BOUNDARIES.md。历史FG175基线145源，src现为150源开发候选；research/integration为155源显式联合构建，研究152源在research/tower，禁止研究代码自动混入稳定构建。不要从父目录旧源码构建或修改历史封存源。
 
 用户新指令优先。未明确授权不得启动/结束实际游戏、改写真实账号角色或代发物品。测试只用独立可丢弃存档和17000..17999端口；不得假成功、跳条件、改掉率替代接入。代码工作不自动授权部署或发布新客户端。
 
