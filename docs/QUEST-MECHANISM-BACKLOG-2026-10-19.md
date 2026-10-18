@@ -40,6 +40,26 @@
 
 建议顺序：500 → 503 → 504 → 506 → 514（先做客户端会不会开门的验证，再做其余），完成后 **15** 条一转环 + 其 **8** 条直接依赖可交。
 
+### 1.1 本轮已落地（5 个修炼场全移植，静态验证过，入口待真人）
+
+- 表全部由 `gen_dungeon_content.py` 派生：500 `map/training`、503 `map/deadmoon`、504 `map/middleocean`、
+  506 `map/deadmoon_avenger2`、514 `map/deadmoon_avenger1`，各 3 房；`patch` 后 `compare` 0 mismatch，
+  独立第二解析器 `r3_gen_dimension.py gate 500 503 504 506 514` **0 mismatch**；等级/经验/champion 表同步；
+  Floor 名册 +15 行、掉落池补 3 个（61820 有 champion 掉料，61250/61261 的 `.mob` 无掉率标签 → 保持空池，不编造）。
+- profile 与放行：500 进 `PubBody`（town2 area4）、503/506/514 进 `ForestBody`（town2 area6）、504 进 `SkyBody`（town3 area3/5），
+  `SupportedInArea` 同步；`check_repo` PASS、159 源编译 PASS。
+- 机制侧**不需要新代码**（实测调用链）：`Batch-Service-FG.cs:275` op49 → `CaptureClearScore` → `:253`
+  `quests.Clear(questPath, DungeonId, Difficulty, party=1, rank=clearScore[0], usedRevivalCoins, elapsed, technic=clearTechnicFG184, hit=clearHitFG184, receipt)`，
+  而 `Progression-FG.cs:87` 已实现 sub6（通关即满足）/ sub7（`normalizedRank>=N`）/ sub10（`technic>=N`）。
+  ⇒ 11 条 sub6 环（7837/7876/7824/7834/7873/7884/7894/7859/7889/7865/7864）与 2 条 sub10（7829/7868，technic≥50）判据成立。
+- **两条要说清的风险**：
+  1. 7830/7869 是 sub7，要求 `normalizedRank≥80`，而 `CaptureClearScore` 里 `rank=b[0]` 与 `hit=min(100,b[0])` **读同一个字节**
+     （`PLAN §3` 已记为"需真人抓包判定 b[0] 到底是评分还是连击占比"）⇒ 这两条在拿到真人抓包前不能声称可交。
+  2. 客户端 worldmap 把这些行标了 `[in progress]`：选择列表会不会显示、op15/op16 会不会被客户端自己拦下，
+     **未验出**，必须隔离实例点一次。进不去就记成"内容已备、入口未通"。
+- `party=1` 是写死的：sub5（按队伍人数）在本构建里永远不推进，属单机语义选择，不是 bug。
+
+
 ---
 
 ## 2. 需要新机制、以后一定会用上的（按影响条数排）

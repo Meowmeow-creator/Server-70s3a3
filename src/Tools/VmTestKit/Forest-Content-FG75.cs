@@ -1,7 +1,7 @@
 using System;using System.IO;
 // Original fixed CN70 mazes; accepted FG78 and FG79 forest rooms retained.
 class Offline70ForestFG75 {
- internal static bool Supported(ushort id){return id>=3&&id<=9||id>=11&&id<=15||id==17||id==1000||id>=21&&id<=27||id>=31&&id<=37||id>=1502&&id<=1502||id>=40&&id<=41||id>=40&&id<=141||id>=1500&&id<=1501||id>=50&&id<=53||id>=1506&&id<=1506||id>=80&&id<=89||id>=90&&id<=91||id>=60&&id<=61||id>=100&&id<=100||id>=110&&id<=112||id>=86&&id<=87||id>=92&&id<=93||id>=140&&id<=140||id>=1504&&id<=1504||id>=3503&&id<=3503;}
+ internal static bool Supported(ushort id){return id>=3&&id<=9||id>=11&&id<=15||id==17||id==1000||id>=21&&id<=27||id>=31&&id<=37||id>=1502&&id<=1502||id>=40&&id<=41||id>=40&&id<=141||id>=1500&&id<=1501||id>=50&&id<=53||id>=1506&&id<=1506||id>=80&&id<=89||id>=90&&id<=91||id>=60&&id<=61||id>=100&&id<=100||id>=110&&id<=112||id>=86&&id<=87||id>=92&&id<=93||id>=140&&id<=140||id>=1504&&id<=1504||id>=3503&&id<=3503||id>=500&&id<=500||id>=503&&id<=504||id>=506&&id<=506||id>=514&&id<=514;}
  internal static byte Width(ushort id){switch(id){
  case 3:return 3;
  case 4:return 3;
@@ -68,7 +68,12 @@ class Offline70ForestFG75 {
  case 93:return 4;
  case 140:return 2;
  case 1504:return 5;
- case 3503:return 2;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 2;
+ case 500:return 3;
+ case 503:return 3;
+ case 504:return 3;
+ case 506:return 3;
+ case 514:return 3;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte Height(ushort id){switch(id){
  case 3:return 4;
  case 4:return 4;
@@ -135,7 +140,12 @@ class Offline70ForestFG75 {
  case 93:return 5;
  case 140:return 1;
  case 1504:return 1;
- case 3503:return 1;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 1;
+ case 500:return 1;
+ case 503:return 1;
+ case 504:return 1;
+ case 506:return 1;
+ case 514:return 1;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte MinimumLevel(ushort id){switch(id){
  case 3:return 2;
  case 4:return 3;
@@ -202,7 +212,12 @@ class Offline70ForestFG75 {
  case 93:return 68;
  case 140:return 49;
  case 1504:return 65;
- case 3503:return 1;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 1;
+ case 500:return 20;
+ case 503:return 20;
+ case 504:return 20;
+ case 506:return 20;
+ case 514:return 20;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte StartX(ushort id){switch(id){
  case 3:return 0;
  case 4:return 0;
@@ -269,7 +284,12 @@ class Offline70ForestFG75 {
  case 93:return 0;
  case 140:return 1;
  case 1504:return 0;
- case 3503:return 1;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 1;
+ case 500:return 2;
+ case 503:return 2;
+ case 504:return 2;
+ case 506:return 2;
+ case 514:return 2;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte StartY(ushort id){switch(id){
  case 3:return 0;
  case 4:return 3;
@@ -336,7 +356,12 @@ class Offline70ForestFG75 {
  case 93:return 0;
  case 140:return 0;
  case 1504:return 0;
- case 3503:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 0;
+ case 500:return 0;
+ case 503:return 0;
+ case 504:return 0;
+ case 506:return 0;
+ case 514:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte BossX(ushort id){switch(id){
  case 3:return 0;
  case 4:return 0;
@@ -403,7 +428,12 @@ class Offline70ForestFG75 {
  case 93:return 3;
  case 140:return 0;
  case 1504:return 4;
- case 3503:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 0;
+ case 500:return 0;
+ case 503:return 0;
+ case 504:return 0;
+ case 506:return 0;
+ case 514:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static byte BossY(ushort id){switch(id){
  case 3:return 3;
  case 4:return 0;
@@ -470,7 +500,12 @@ class Offline70ForestFG75 {
  case 93:return 4;
  case 140:return 0;
  case 1504:return 0;
- case 3503:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
+ case 3503:return 0;
+ case 500:return 0;
+ case 503:return 0;
+ case 504:return 0;
+ case 506:return 0;
+ case 514:return 0;default:throw new InvalidDataException("Unsupported original dungeon profile");}}
  internal static ushort Map(ushort id,byte x,byte y){if(!Supported(id)||x>=Width(id)||y>=Height(id))return 0;switch(id*256+y*Width(id)+x){
  case 768:return 201;
  case 769:return 204;
@@ -1198,7 +1233,22 @@ class Offline70ForestFG75 {
  case 385027:return 17025;
  case 385028:return 17026;
  case 896768:return 25040;
- case 896769:return 25039;default:return 0;}}
+ case 896769:return 25039;
+ case 128000:return 15089;
+ case 128001:return 15109;
+ case 128002:return 15090;
+ case 128768:return 15094;
+ case 128769:return 15108;
+ case 128770:return 15093;
+ case 129024:return 15095;
+ case 129025:return 15110;
+ case 129026:return 15096;
+ case 129536:return 15116;
+ case 129537:return 15115;
+ case 129538:return 15114;
+ case 131584:return 15277;
+ case 131585:return 15276;
+ case 131586:return 15275;default:return 0;}}
  internal static int Mask(ushort id,byte x,byte y){if(!Supported(id)||x>=Width(id)||y>=Height(id))return 0;switch(id*256+y*Width(id)+x){
  case 768:return 9;
  case 769:return 13;
@@ -1926,7 +1976,22 @@ class Offline70ForestFG75 {
  case 385027:return 5;
  case 385028:return 4;
  case 896768:return 1;
- case 896769:return 4;default:return 0;}}
+ case 896769:return 4;
+ case 128000:return 1;
+ case 128001:return 5;
+ case 128002:return 4;
+ case 128768:return 1;
+ case 128769:return 5;
+ case 128770:return 4;
+ case 129024:return 1;
+ case 129025:return 5;
+ case 129026:return 4;
+ case 129536:return 1;
+ case 129537:return 5;
+ case 129538:return 4;
+ case 131584:return 1;
+ case 131585:return 5;
+ case 131586:return 4;default:return 0;}}
  internal static bool CanMove(ushort id,byte x,byte y,byte nx,byte ny){int dx=(int)nx-x,dy=(int)ny-y;if(Math.Abs(dx)+Math.Abs(dy)!=1||Map(id,nx,ny)==0)return false;int from=dx==1?1:dx==-1?4:dy==1?8:2;int to=dx==1?4:dx==-1?1:dy==1?2:8;return (Mask(id,x,y)&from)!=0&&(Mask(id,nx,ny)&to)!=0;}
  internal static ushort[][] Monsters(ushort id,byte x,byte y){switch(Map(id,x,y)){
  case 201:return new ushort[][]{new ushort[]{11,4,0},new ushort[]{2,4,0},new ushort[]{1,4,0},new ushort[]{1,3,0},new ushort[]{1,3,0},new ushort[]{1,4,0},new ushort[]{2,3,0},new ushort[]{11,4,0}};
@@ -2599,5 +2664,20 @@ class Offline70ForestFG75 {
  case 17025:return new ushort[][]{new ushort[]{61485,68,0},new ushort[]{61485,68,0},new ushort[]{61485,68,0},new ushort[]{56013,68,0},new ushort[]{61485,68,0},new ushort[]{61485,68,0},new ushort[]{61485,68,0}};
  case 17026:return new ushort[][]{new ushort[]{61491,71,3}};
  case 25039:return new ushort[][]{new ushort[]{1021,5,0},new ushort[]{1021,5,0},new ushort[]{1021,5,0}};
- case 25040:return new ushort[][]{new ushort[]{64518,5,3}};default:throw new InvalidDataException("Unsupported original room");}}
+ case 25040:return new ushort[][]{new ushort[]{64518,5,3}};
+ case 15089:return new ushort[][]{new ushort[]{700,23,0},new ushort[]{701,23,0},new ushort[]{700,23,0},new ushort[]{701,23,0},new ushort[]{702,23,3},new ushort[]{81,23,0},new ushort[]{81,23,0},new ushort[]{40,23,3},new ushort[]{80,23,0},new ushort[]{80,23,0},new ushort[]{700,23,0},new ushort[]{700,23,0},new ushort[]{701,23,0},new ushort[]{701,23,0}};
+ case 15090:return new ushort[][]{new ushort[]{82,23,0},new ushort[]{84,23,0},new ushort[]{83,23,0},new ushort[]{83,23,0},new ushort[]{84,23,0},new ushort[]{84,23,0},new ushort[]{82,23,0},new ushort[]{83,23,0}};
+ case 15109:return new ushort[][]{new ushort[]{80,23,0},new ushort[]{81,23,0},new ushort[]{700,23,0},new ushort[]{701,23,0},new ushort[]{80,23,0},new ushort[]{700,23,0},new ushort[]{81,23,0},new ushort[]{80,23,0},new ushort[]{701,23,0},new ushort[]{700,23,0},new ushort[]{700,23,0}};
+ case 15093:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0}};
+ case 15094:return new ushort[][]{new ushort[]{5004,23,3},new ushort[]{211,23,0},new ushort[]{5003,23,0},new ushort[]{210,23,0},new ushort[]{5001,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{212,23,3},new ushort[]{5001,23,0}};
+ case 15108:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{5002,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{5002,23,0},new ushort[]{5002,23,0}};
+ case 15095:return new ushort[][]{new ushort[]{34,23,0},new ushort[]{70,23,0},new ushort[]{3001,23,3},new ushort[]{70,23,0},new ushort[]{71,23,3},new ushort[]{33,23,0},new ushort[]{70,23,0}};
+ case 15096:return new ushort[][]{new ushort[]{50,23,0},new ushort[]{51,23,0},new ushort[]{50,23,0},new ushort[]{50,23,0},new ushort[]{51,23,0},new ushort[]{50,23,0},new ushort[]{51,23,0},new ushort[]{50,23,0},new ushort[]{50,23,0}};
+ case 15110:return new ushort[][]{new ushort[]{51,23,0},new ushort[]{51,23,0},new ushort[]{50,23,0},new ushort[]{34,23,0},new ushort[]{70,23,0},new ushort[]{51,23,0},new ushort[]{50,23,0},new ushort[]{33,23,0},new ushort[]{70,23,0}};
+ case 15114:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0}};
+ case 15115:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{5002,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{61250,23,0},new ushort[]{211,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{5002,23,0},new ushort[]{5002,23,0}};
+ case 15116:return new ushort[][]{new ushort[]{5004,23,3},new ushort[]{211,23,0},new ushort[]{5003,23,0},new ushort[]{210,23,0},new ushort[]{5001,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{212,23,3},new ushort[]{5001,23,0}};
+ case 15275:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{61820,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0}};
+ case 15276:return new ushort[][]{new ushort[]{210,23,0},new ushort[]{5002,23,0},new ushort[]{61261,23,0},new ushort[]{61261,23,0},new ushort[]{210,23,0},new ushort[]{61261,23,0},new ushort[]{61261,23,0},new ushort[]{210,23,0},new ushort[]{5002,23,0},new ushort[]{5002,23,0}};
+ case 15277:return new ushort[][]{new ushort[]{5004,23,3},new ushort[]{211,23,0},new ushort[]{5003,23,0},new ushort[]{210,23,0},new ushort[]{5001,23,0},new ushort[]{210,23,0},new ushort[]{211,23,0},new ushort[]{211,23,0},new ushort[]{210,23,0},new ushort[]{210,23,0},new ushort[]{212,23,3},new ushort[]{5001,23,0}};default:throw new InvalidDataException("Unsupported original room");}}
 }

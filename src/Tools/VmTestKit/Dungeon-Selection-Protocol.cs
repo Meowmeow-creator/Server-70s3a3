@@ -42,14 +42,17 @@ class Offline70DungeonSelection {
   if(town==9)return area==1?LufthafenBody():Body(5);
   return Body(5);}
  internal static byte[] ProfileBody(ushort[] ids){using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){w.Write((ushort)ids.Length);foreach(ushort id in ids){w.Write(id);w.Write(TestMaximumDifficulty);}return m.ToArray();}}
- internal static byte[] ForestBody(){return ProfileBody(new ushort[]{3,4,5,6,7,8,9,1000});}
+ // 格兰之森门 (town2 area6, worldmap/granfloris.wdm) 还带 503/506/514 三行 `[in progress]` 转职修炼场，
+ // 同行第 3 列就是开门任务 (503->7824/7834/7873/7884/7894，506->7865，514->7864)；PVF 内容齐全
+ // (3 房 / 29-30 个 [monster] 行 / 无 [necessary party] / minLv 20)，证据 local-run/pvf/export/training-rooms.txt。
+ internal static byte[] ForestBody(){return ProfileBody(new ushort[]{3,4,5,6,7,8,9,1000,503,506,514});}
  // 诺斯玛尔 (northmyre, PVF worldmap/northmyre.wdm `[dungeon]` = 50 51 52 53 1506) is served by
  // the HendonMyre(town2) area9 gate: town/hendonmyre.twn area9 = `HendonMyre/Hendon2North.map`
  // with `[dungeon gate]` 7, and that area's `[town movable area]` has the -1/-1 dungeon entrance
  // rectangle already carried by Town-Content-FG75 DungeonPortal(2,9). Evidence + re-derivation:
  // local-run/pvf/port_northmyre_gen.py (gate-evidence section).
  internal static byte[] NorthmyreBody(){return ProfileBody(new ushort[]{50,51,52,53,1506});}
- internal static byte[] SkyBody(){return ProfileBody(new ushort[]{11,12,13,14,15,17});}
+ internal static byte[] SkyBody(){return ProfileBody(new ushort[]{11,12,13,14,15,17,504});}   // 504 = middleocean 转职修炼场 (skycastle.wdm `[in progress]`，任务 7859/7889)
  // 天帷巨兽 (Behemoth, town3 area4/area6 `[dungeon gate]` 4) lists 21 22 23 24 25 91 26 90 27 in
  // worldmap/behemoth.wdm.  90 树精繁殖地 (dungeon/act3/breeding.dgn, rooms map/gbl_breeding) and
  // 91 GBL女神殿 (dungeon/act3/goddesstemple.dgn, rooms map/gbl_goddess_temple) both carry `-1` in
@@ -84,7 +87,7 @@ class Offline70DungeonSelection {
  // 月光酒馆 (town2 area4 `HendonMyre/Hendon_Pub.map`, `[dungeon gate]` 8 = worldmap/moonlightpub.wdm)
  // offers only 140 月光酒馆 (dungeon/village/moonlightpub/aganzo.dgn, rooms map/aganzo); the other
  // rows of that worldmap are all `[in progress]` event dungeons (500/505/507/508/511).
- internal static byte[] PubBody(){return ProfileBody(new ushort[]{140});}
+ internal static byte[] PubBody(){return ProfileBody(new ushort[]{140,500});}   // 500 = quest/training 转职修炼场 (moonlightpub.wdm `[in progress]`，任务 7829/7830/7837/7868/7869/7876)
  // 格兰之森山麓 (town2 area7 `HendonMyre/D_Hendon2.map`, `[dungeon gate]` 14 = granflorishillside.wdm)
  // = 100 南部溪谷 (dungeon/southerndale/grimseeker.dgn, rooms map/grim).
  internal static byte[] HillsideBody(){return ProfileBody(new ushort[]{100});}
@@ -102,5 +105,5 @@ class Offline70DungeonSelection {
  // [coin limit] 3, which Offline70EntryCostFG185 enforces the same way as 1502/1506.
  internal static byte[] LufthafenBody(){return ProfileBody(new ushort[]{86,87,92,93,1504});}
  internal static bool SupportedInTown(int town,ushort id){return SupportedInArea(town,3,id);}
- internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2||(area==2&&(id==1500||id==1501)))||town==2&&(id>=3&&id<=9||id==1000||(area==9&&(id>=50&&id<=53||id==1506))||area==4&&id==140||area==7&&id==100)||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17)||(area==4||area==6)&&(id>=21&&id<=27||id==90||id==91)||area==9&&(id>=110&&id<=112)||area==10&&(id==60||id==61))||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502))||town==5&&(area==2||area==3)&&(id>=40&&id<=45||id==141||id==3503)||town==6&&(area==2||area==3)&&(id>=80&&id<=85||id==88||id==89)||town==9&&area==1&&(id==86||id==87||id==92||id==93||id==1504);}
+ internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2||(area==2&&(id==1500||id==1501)))||town==2&&(id>=3&&id<=9||id==1000||(area==9&&(id>=50&&id<=53||id==1506))||area==4&&(id==140||id==500)||area==7&&id==100||area==6&&(id==503||id==506||id==514))||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17||id==504)||(area==4||area==6)&&(id>=21&&id<=27||id==90||id==91)||area==9&&(id>=110&&id<=112)||area==10&&(id==60||id==61))||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502))||town==5&&(area==2||area==3)&&(id>=40&&id<=45||id==141||id==3503)||town==6&&(area==2||area==3)&&(id>=80&&id<=85||id==88||id==89)||town==9&&area==1&&(id==86||id==87||id==92||id==93||id==1504);}
 }
