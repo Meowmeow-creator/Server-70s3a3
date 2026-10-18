@@ -71,3 +71,16 @@ powershell -File D:/70S3A3/local-run/isolated-test/run-walk.ps1 -Tag final
 - 驱动/探针 exe **钉住数据哈希**：数据改了要重编探针（`csc` 在 `local-run/driver` 里用短横选项跑 `@rsp`）。
 - 证据日志：`local-run/isolated-test/channel-<tag>-<hhmmss>.log`（名字不能复用，否则诊断降级）；关键字 `FLOOR_DROP_PLANNED`/`REJECTED`/`ONE_HIT_KILL_SWEEP`/`KILL_DUPLICATE`/`QUEST_REWARD_COMMITTED`/`FATIGUE_ENTRY_REJECTED`。
 - 关键工件：`local-run/hunt-enemy-audit.txt`（可达性审计）、`local-run/alphlyra-flip-plan.json`（66 条 + 9 轮）、`local-run/pvf/set_quest_supported.py`（原地改写器，带三重不变量）、`local-run/pvf/reverify_quest_flips.py`（闸门）。
+
+## 附：合并上游后的复验（主控亲自跑，2026-10-17 凌晨）
+
+并发会话已把上游合进来并提交（`05ec077`，任务目录以**上游 CRLF 版为底**再改 `Supported/Reason`）。我对合并后的树重跑了全部验收：
+
+- `check_repo` → `stableSources: 155`（他们新增 FG176/177/178/180/182）；`build.py --smoke` → **155 源编译通过**。
+- 雪域 7 副本回归走查：**126 OK / 0 FAIL**（`walk-merged.txt`，驱动与服务端都是新构建）。
+- 任务域地基未变：`Batch-Service-FG.cs` 的 `AssetsKnown` 步长语义**未被上游改动**；我的 `HuntStride/HuntGoal` hunt 链**仍在** `Progression-FG.cs`。
+- 我此前落的 66 条阿法利亚翻绿 **66/66 全部存活**。
+- **但 Supported 总量从 1256 涨到 1803**，其中 hunt enemy 从 14 → **226**。用重编的 `HuntEnemyAudit.exe` 在合并后的树上重算：226 条里**只有 48 条击杀事件可达**，178 条不可达（`no-dungeon-profile` 303 处、monster 缺表 11、dungeon 9、difficulty 7）。即上游标注的"支持"包含大量**要等后续副本接入才做得完**的任务。这是数据事实，不是我这轮的改动；要不要回红请由你定。
+- 我把 `HuntEnemyCheck.cs` 里两条**快照式断言**（supported≤175、flipped==196）换成了不变量（记录数 333、宽度无残缺、计数在合理区间）+ 行为断言：合并让快照数字合法地变了，钉住数字只会让闸门长期红、失去意义。行为断言 30/30 仍全过。
+- **地雷（务必知道）**：`local-run/driver/*.rsp` 是**写死文件列表**的，旧的只列 150 个源，缺上述 5 个新文件 → 任何驱动重编**必失败**。我已把 `SnowLiveCheck/HuntEnemyCheck/HuntEnemyAudit/AlphlyraKillAudit` 的 rsp 改为按 glob 生成（且**必须用正斜杠**路径：csc 会把 `\70` 当八进制转义解成字符 `8`，报 CS2001 `D:8S3A3\...`）。
+- 一键复验：`python local-run/pvf/reverify_quest_flips.py`（合并后当前 **PASS**）。
