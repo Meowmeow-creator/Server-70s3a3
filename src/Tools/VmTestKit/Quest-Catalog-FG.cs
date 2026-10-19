@@ -20,9 +20,10 @@ class Offline70QuestCatalogFG {
  internal static Offline70QuestCatalogFG Load(string path){
   if(new FileInfo(path).Length>8388608)throw new InvalidDataException("Quest catalog size");Offline70QuestCatalogDocumentFG document;
   using(FileStream f=File.OpenRead(path))using(XmlTextReader r=new XmlTextReader(f)){r.ProhibitDtd=true;r.XmlResolver=null;document=(Offline70QuestCatalogDocumentFG)new XmlSerializer(typeof(Offline70QuestCatalogDocumentFG)).Deserialize(r);}
-  // Bounded, not exact: the shipped legacy tree is 3051 records and the appended
-  // current-tree families (T-NEWJOB: n_quest/job/*, 106 records) raise it to 3157;
-  // the ceiling keeps rejecting a scrambled or truncated file.
+  // Bounded, not exact: the shipped legacy tree is 3051 records; the appended current-tree
+  // families raise it to 3212 (T-NEWJOB: n_quest/job/*, 106 records, plus T-CURRENT: 55 n_quest
+  // records that passed the item/dungeon/prerequisite/NPC reachability gates in
+  // local-run/pvf/gen_current_quests.py). The ceiling keeps rejecting a scrambled or truncated file.
   if(document.Format!=1||document.RewardProfileVersion!=1||document.PvfSha256!=CurrentPvf||document.Quests.Count<3051||document.Quests.Count>3300)throw new InvalidDataException("Quest catalog version/reward profile");
   Offline70QuestCatalogFG result=new Offline70QuestCatalogFG();foreach(Offline70QuestDefinitionFG q in document.Quests){if(q.Id==0||result.Definitions.ContainsKey(q.Id)||q.Condition==null||q.Rewards==null||q.Selection==null||q.Prerequisites==null||q.Collisions==null||q.StartItems==null||q.StartItems.Length%2!=0||q.StartItems.Length>64||q.RewardSecondGrow>1||q.JobChangeStage>2||q.RewardExpertJob>4||q.AlternateRewardQuests==null||q.AlternateRewards==null||q.AlternateRewards.Length%2!=0||q.AlternateRewardQuests.Length>256)throw new InvalidDataException("Quest definition bounds");for(int i=0;i<q.StartItems.Length;i+=2)if(q.StartItems[i]<=2||q.StartItems[i+1]<=0||q.StartItems[i+1]>1000000)throw new InvalidDataException("Quest start item pair");foreach(ushort id in q.AlternateRewardQuests)if(id==0)throw new InvalidDataException("Alternate reward prerequisite");for(int i=0;i<q.AlternateRewards.Length;i+=2)if(q.AlternateRewards[i]<0||q.AlternateRewards[i+1]<=0)throw new InvalidDataException("Alternate reward pair");Offline70TitleBookFG157.CheckProfile(q);result.Definitions.Add(q.Id,q);}return result;
  }

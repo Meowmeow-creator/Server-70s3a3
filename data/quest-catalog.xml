@@ -152964,5 +152964,2522 @@
       </Prerequisites>
       <CanAbandon>true</CanAbandon>
     </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>3918</Id>
+      <Name>正面交锋</Name>
+      <Path>n_quest/westcost/grozni/normal_53_grozni_fight.qst</Path>
+      <Grade>[common unique]</Grade>
+      <Type>[hunt enemy]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>53</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>110</GoldMultiple>
+      <Difficulty>S</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>61</int>
+        <int>1</int>
+        <int>61202</int>
+        <int>1</int>
+        <int>20</int>
+        <int>61</int>
+        <int>1</int>
+        <int>61323</int>
+        <int>1</int>
+        <int>3</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>100</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>3911</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4015</Id>
+      <Name>维纳斯神殿</Name>
+      <Path>n_quest/behimos/goddess/epic_33_goddesstemple02.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>28</Npc>
+      <CompleteNpc>12</CompleteNpc>
+      <MinLevel>33</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>12</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+        <int>4710</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4007</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4019</Id>
+      <Name>女神的诅咒</Name>
+      <Path>n_quest/behimos/goddess/epic_33_goddesstemple06.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>19</Npc>
+      <CompleteNpc>2</CompleteNpc>
+      <MinLevel>33</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4018</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4020</Id>
+      <Name>解除诅咒</Name>
+      <Path>n_quest/behimos/goddess/epic_33_goddesstemple07.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>2</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>33</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3114</int>
+        <int>40</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>10000</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4019</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4029</Id>
+      <Name>繁殖的主犯</Name>
+      <Path>n_quest/behimos/breedingplace/epic_35_breedingplace_06.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>19</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>35</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>90</int>
+        <int>3</int>
+        <int>61605</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4028</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4032</Id>
+      <Name>皇女的下落</Name>
+      <Path>n_quest/lufthafen/haze/epic_67_haze_01.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>56</Npc>
+      <CompleteNpc>66</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>66</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>151</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4039</Id>
+      <Name>雾都赫伊斯</Name>
+      <Path>n_quest/lufthafen/haze/epic_67_haze_11.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>0</SubType>
+      <Npc>65</Npc>
+      <CompleteNpc>58</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>92</int>
+        <int>-1</int>
+        <int>180</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4038</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4040</Id>
+      <Name>不幸之门</Name>
+      <Path>n_quest/lufthafen/haze/epic_67_haze_12.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>92</int>
+        <int>-1</int>
+        <int>56033</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4039</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4043</Id>
+      <Name>梅尔文的测谎硬币</Name>
+      <Path>n_quest/lufthafen/haze/epic_67_haze_15.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>59</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3042</int>
+        <int>10</int>
+        <int>3299</int>
+        <int>30</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+        <int>4724</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4042</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4046</Id>
+      <Name>haze_name18</Name>
+      <Path>n_quest/lufthafen/haze/co_67_haze_18.qst</Path>
+      <Grade>[common unique]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>90</GoldMultiple>
+      <Difficulty>A</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>62</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4047</Id>
+      <Name>公告 : 占领雾都</Name>
+      <Path>n_quest/lufthafen/haze/da_67_haze_19.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>92</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4050</Id>
+      <Name>必胜的决心</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_02.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>57</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>57</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4049</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4051</Id>
+      <Name>旧日的终结</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_03.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>57</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>93</int>
+        <int>-1</int>
+        <int>59017</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4050</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4052</Id>
+      <Name>双枪哈斯</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_04.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[clear map]</Type>
+      <SubType>-1</SubType>
+      <Npc>57</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>12507</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4051</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4053</Id>
+      <Name>终结的传说</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_05.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>57</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>93</int>
+        <int>-1</int>
+        <int>61267</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4052</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4054</Id>
+      <Name>黎明之眼 - 安祖·赛弗</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_06.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[clear map]</Type>
+      <SubType>-1</SubType>
+      <Npc>57</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>12509</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4053</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4055</Id>
+      <Name>夕日之眼 - 安祖·赛弗</Name>
+      <Path>n_quest/lufthafen/arden/epic_68_arden_07.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>57</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>93</int>
+        <int>-1</int>
+        <int>61267</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4054</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4059</Id>
+      <Name>永远的痛</Name>
+      <Path>n_quest/lufthafen/westlawless/epic_68_westlawless_03.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>92</int>
+        <int>3</int>
+        <int>61266</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4058</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4060</Id>
+      <Name>收复失地</Name>
+      <Path>n_quest/lufthafen/westlawless/epic_68_westlawless_04.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>93</int>
+        <int>3</int>
+        <int>59016</int>
+        <int>1</int>
+        <int>93</int>
+        <int>3</int>
+        <int>59017</int>
+        <int>1</int>
+        <int>93</int>
+        <int>3</int>
+        <int>56032</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4049</unsignedShort>
+            <unsignedShort>4059</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4061</Id>
+      <Name>罪魁祸首</Name>
+      <Path>n_quest/lufthafen/westlawless/epic_68_westlawless_05.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>93</int>
+        <int>3</int>
+        <int>61267</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4060</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4062</Id>
+      <Name>寻找卡勒特指挥部</Name>
+      <Path>n_quest/lufthafen/westlawless/epic_68_westlawless_06.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>17</Npc>
+      <CompleteNpc>58</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>58</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4061</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4070</Id>
+      <Name>青龙大会入选资格</Name>
+      <Path>n_quest/shonan/blue/epic_45_blue_02.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>124</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3303</int>
+        <int>20</int>
+        <int>3035</int>
+        <int>50</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+        <int>4727</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4069</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4072</Id>
+      <Name>青龙大会入选资格 （重复）</Name>
+      <Path>n_quest/shonan/blue/nor_45_blue_01.qst</Path>
+      <Grade>[normaly repeat]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>124</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>true</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>100</GoldMultiple>
+      <Difficulty />
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3303</int>
+        <int>20</int>
+        <int>3035</int>
+        <int>50</int>
+      </Condition>
+      <Rewards>
+        <int>4727</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4070</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4076</Id>
+      <Name>穿过红色丛林</Name>
+      <Path>n_quest/shonan/epic_35_shonan_01.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>123</Npc>
+      <CompleteNpc>122</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>122</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4077</Id>
+      <Name>武人之都素喃</Name>
+      <Path>n_quest/shonan/epic_35_shonan_02.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>122</Npc>
+      <CompleteNpc>125</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>125</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4076</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4078</Id>
+      <Name>黄龙大会</Name>
+      <Path>n_quest/shonan/yellow/epic_35_yellowdragon_01.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[meet npc]</Type>
+      <SubType>-1</SubType>
+      <Npc>122</Npc>
+      <CompleteNpc>124</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>10</GoldMultiple>
+      <Difficulty>O</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>124</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4077</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4079</Id>
+      <Name>黄龙大会入选资格</Name>
+      <Path>n_quest/shonan/yellow/epic_35_yellowdragon_02.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>124</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>X</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3303</int>
+        <int>20</int>
+        <int>3035</int>
+        <int>40</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+        <int>4726</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4078</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4081</Id>
+      <Name>黄龙大会入选资格 （重复）</Name>
+      <Path>n_quest/shonan/yellow/nor_35_yellowdragon_01.qst</Path>
+      <Grade>[normaly repeat]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>124</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>70</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>true</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>100</GoldMultiple>
+      <Difficulty />
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3303</int>
+        <int>20</int>
+        <int>3035</int>
+        <int>40</int>
+      </Condition>
+      <Rewards>
+        <int>4726</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4079</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4082</Id>
+      <Name>觉醒 - 魔皇 (1/4)</Name>
+      <Path>n_quest/epicjob/achievement_50_epicjob_warlock_1.qst</Path>
+      <Grade>[achievement]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>12</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>50</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[at mage]</Job>
+      <GrowType>1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>4083</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>3039</int>
+        <int>10</int>
+        <int>3040</int>
+        <int>10</int>
+        <int>3155</int>
+        <int>100</int>
+        <int>3150</int>
+        <int>100</int>
+      </Condition>
+      <Rewards>
+        <int>1089</int>
+        <int>20</int>
+        <int>1090</int>
+        <int>20</int>
+        <int>0</int>
+        <int>100</int>
+      </Rewards>
+      <JobChangeStage>2</JobChangeStage>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4083</Id>
+      <Name>觉醒 - 魔皇 (2/4)</Name>
+      <Path>n_quest/epicjob/achievement_50_epicjob_warlock_2.qst</Path>
+      <Grade>[achievement]</Grade>
+      <Type>[clear map]</Type>
+      <SubType>-1</SubType>
+      <Npc>12</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>50</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[at mage]</Job>
+      <GrowType>1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>4084</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>30030</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>100</int>
+      </Rewards>
+      <JobChangeStage>2</JobChangeStage>
+      <Selection>
+        <int>33662</int>
+        <int>1</int>
+        <int>33963</int>
+        <int>1</int>
+        <int>33366</int>
+        <int>1</int>
+        <int>33062</int>
+        <int>1</int>
+      </Selection>
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4082</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4086</Id>
+      <Name>觉醒 - 冰冻之心 (1/4)</Name>
+      <Path>n_quest/epicjob/achievement_50_epicjob_fheart_1.qst</Path>
+      <Grade>[achievement]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>12</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>50</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[at mage]</Job>
+      <GrowType>2</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>4087</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>3039</int>
+        <int>10</int>
+        <int>3040</int>
+        <int>10</int>
+        <int>3155</int>
+        <int>100</int>
+        <int>3150</int>
+        <int>100</int>
+      </Condition>
+      <Rewards>
+        <int>1089</int>
+        <int>20</int>
+        <int>1090</int>
+        <int>20</int>
+        <int>0</int>
+        <int>100</int>
+      </Rewards>
+      <JobChangeStage>2</JobChangeStage>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>4087</Id>
+      <Name>觉醒 - 冰冻之心 (2/4)</Name>
+      <Path>n_quest/epicjob/achievement_50_epicjob_fheart_2.qst</Path>
+      <Grade>[achievement]</Grade>
+      <Type>[clear map]</Type>
+      <SubType>-1</SubType>
+      <Npc>12</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>50</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[at mage]</Job>
+      <GrowType>2</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>4088</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>30030</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>100</int>
+      </Rewards>
+      <JobChangeStage>2</JobChangeStage>
+      <Selection>
+        <int>33662</int>
+        <int>1</int>
+        <int>33963</int>
+        <int>1</int>
+        <int>33366</int>
+        <int>1</int>
+        <int>33062</int>
+        <int>1</int>
+      </Selection>
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4086</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20538</Id>
+      <Name>击退逆袭之谷的敌人</Name>
+      <Path>n_quest/daily/daily1-1_test.qst</Path>
+      <Grade>[special daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>6</SubType>
+      <Npc>40</Npc>
+      <CompleteNpc>40</CompleteNpc>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>100</GoldMultiple>
+      <Difficulty />
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>3503</int>
+        <int>-1</int>
+      </Condition>
+      <Rewards>
+        <int>2680669</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20585</Id>
+      <Name>[魔王]卡勒特的暗号文类型</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20585.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>60</CompleteNpc>
+      <MinLevel>57</MinLevel>
+      <MaxLevel>59</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4334</int>
+        <int>1</int>
+        <int>4335</int>
+        <int>1</int>
+        <int>4336</int>
+        <int>1</int>
+      </Condition>
+      <Rewards />
+      <Selection>
+        <int>3229</int>
+        <int>25</int>
+        <int>3300</int>
+        <int>10</int>
+      </Selection>
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20586</Id>
+      <Name>[魔王]收集GT-203</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20586.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>59</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>58</MinLevel>
+      <MaxLevel>60</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4415</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>8</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>61710</int>
+        <int>82</int>
+        <int>-1</int>
+        <int>4415</int>
+        <int>1</int>
+        <int>80</int>
+        <int>1</int>
+      </MonsterDrops>
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20587</Id>
+      <Name>[魔王]调查机械臂</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20587.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>59</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>58</MinLevel>
+      <MaxLevel>60</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>90</GoldMultiple>
+      <Difficulty>A</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>88</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>10</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20588</Id>
+      <Name>[魔王]远古 - 再次传来的悲鸣声</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20588.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>1</CompleteNpc>
+      <MinLevel>59</MinLevel>
+      <MaxLevel>61</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>1501</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3229</int>
+        <int>20</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20589</Id>
+      <Name>[魔王]根特防御战</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20589.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>59</MinLevel>
+      <MaxLevel>61</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>90</GoldMultiple>
+      <Difficulty>A</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>89</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>10</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20590</Id>
+      <Name>[魔王]压抑的悲鸣声</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20590.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>1</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>59</MinLevel>
+      <MaxLevel>61</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>3254</int>
+        <int>10</int>
+      </Condition>
+      <Rewards>
+        <int>4351</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20591</Id>
+      <Name>[魔王]记忆中的往事</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20591.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>1</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>59</MinLevel>
+      <MaxLevel>61</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4350</int>
+        <int>25</int>
+      </Condition>
+      <Rewards>
+        <int>4351</int>
+        <int>2</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>61143</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>56117</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>56113</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>56112</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>56115</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>56116</int>
+        <int>1501</int>
+        <int>1</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>50</int>
+        <int>25</int>
+        <int>61143</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>56117</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>56113</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>56112</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>56115</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>56116</int>
+        <int>1501</int>
+        <int>2</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>65</int>
+        <int>25</int>
+        <int>61143</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+        <int>56117</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+        <int>56113</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+        <int>56112</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+        <int>56115</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+        <int>56116</int>
+        <int>1501</int>
+        <int>3</int>
+        <int>4350</int>
+        <int>1</int>
+        <int>80</int>
+        <int>25</int>
+      </MonsterDrops>
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20596</Id>
+      <Name>[魔王]完美的突袭</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20596.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>60</MinLevel>
+      <MaxLevel>62</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>83</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>10</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20597</Id>
+      <Name>[魔王]希望的火种</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20597.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>59</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>60</MinLevel>
+      <MaxLevel>62</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>40</GoldMultiple>
+      <Difficulty>E</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4379</int>
+        <int>10</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>8</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20598</Id>
+      <Name>[魔王]远古 - 爆发瘟疫的暗精灵城镇</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20598.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>26</CompleteNpc>
+      <MinLevel>61</MinLevel>
+      <MaxLevel>63</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>1502</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3229</int>
+        <int>20</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20599</Id>
+      <Name>[魔王]制胜的关键</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20599.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>61</MinLevel>
+      <MaxLevel>63</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>84</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>10</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20600</Id>
+      <Name>[魔王]保障物资</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20600.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>61</MinLevel>
+      <MaxLevel>63</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>150</GoldMultiple>
+      <Difficulty>W</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>3273</int>
+        <int>20</int>
+        <int>3266</int>
+        <int>10</int>
+        <int>3270</int>
+        <int>5</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>8</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20601</Id>
+      <Name>[魔王]趁胜追击</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20601.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>58</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>62</MinLevel>
+      <MaxLevel>64</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>85</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>10</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20603</Id>
+      <Name>[魔王]沙漠地带的危机</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20603.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>18</CompleteNpc>
+      <MinLevel>63</MinLevel>
+      <MaxLevel>65</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>52</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>13</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20605</Id>
+      <Name>[魔王]恐怖的矿山村</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20605.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>64</MinLevel>
+      <MaxLevel>66</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>53</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>13</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20606</Id>
+      <Name>[魔王]登上海上列车</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20606.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>65</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>65</MinLevel>
+      <MaxLevel>67</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>86</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>15</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20607</Id>
+      <Name>[魔王]远古 - 远古宝藏的线索</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20607.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>65</Npc>
+      <CompleteNpc>66</CompleteNpc>
+      <MinLevel>65</MinLevel>
+      <MaxLevel>67</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>3304</int>
+        <int>10</int>
+        <int>4428</int>
+        <int>5</int>
+      </Condition>
+      <Rewards>
+        <int>4429</int>
+        <int>2</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>59000</int>
+        <int>1504</int>
+        <int>2</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>30</int>
+        <int>20</int>
+        <int>56013</int>
+        <int>1504</int>
+        <int>2</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>30</int>
+        <int>20</int>
+        <int>61491</int>
+        <int>1504</int>
+        <int>2</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>40</int>
+        <int>20</int>
+        <int>59000</int>
+        <int>1504</int>
+        <int>3</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>35</int>
+        <int>20</int>
+        <int>56013</int>
+        <int>1504</int>
+        <int>3</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>35</int>
+        <int>20</int>
+        <int>61491</int>
+        <int>1504</int>
+        <int>3</int>
+        <int>4428</int>
+        <int>1</int>
+        <int>50</int>
+        <int>20</int>
+      </MonsterDrops>
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20608</Id>
+      <Name>[魔王]疾驰的列车</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20608.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>65</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>66</MinLevel>
+      <MaxLevel>68</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>87</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>15</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20609</Id>
+      <Name>[魔王]寻找空空伊</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20609.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[hunt monster]</Type>
+      <SubType>-1</SubType>
+      <Npc>66</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>66</MinLevel>
+      <MaxLevel>68</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>-1</int>
+        <int>3</int>
+        <int>61194</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>3300</int>
+        <int>16</int>
+        <int>4420</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20610</Id>
+      <Name>[魔王]海贼们的财产</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20610.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>65</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>69</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4419</int>
+        <int>10</int>
+      </Condition>
+      <Rewards>
+        <int>4420</int>
+        <int>5</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>61194</int>
+        <int>-1</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>3</int>
+        <int>100</int>
+        <int>10</int>
+        <int>61192</int>
+        <int>86</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>56139</int>
+        <int>86</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>56008</int>
+        <int>86</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>56137</int>
+        <int>87</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>61223</int>
+        <int>87</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>56010</int>
+        <int>87</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+        <int>56011</int>
+        <int>87</int>
+        <int>-1</int>
+        <int>4419</int>
+        <int>1</int>
+        <int>100</int>
+        <int>10</int>
+      </MonsterDrops>
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20611</Id>
+      <Name>[魔王]公告 : 占领雾都</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20611.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[condition under clear]</Type>
+      <SubType>5</SubType>
+      <Npc>15</Npc>
+      <CompleteNpc>-1</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>69</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>92</int>
+        <int>3</int>
+        <int>2</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops />
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
+    <Offline70QuestDefinitionFG>
+      <Id>20612</Id>
+      <Name>[魔王]远古 - 暗黑疫苗</Name>
+      <Path>n_quest/event/chn_2012_dailyquest_20612.qst</Path>
+      <Grade>[daily]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>64</Npc>
+      <CompleteNpc>64</CompleteNpc>
+      <MinLevel>68</MinLevel>
+      <MaxLevel>70</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>200</GoldMultiple>
+      <Difficulty>D</Difficulty>
+      <IgnoreRewardLevel>true</IgnoreRewardLevel>
+      <Condition>
+        <int>4441</int>
+        <int>10</int>
+        <int>3305</int>
+        <int>10</int>
+        <int>3306</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>4438</int>
+        <int>2</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>56144</int>
+        <int>1506</int>
+        <int>2</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>35</int>
+        <int>40</int>
+        <int>56143</int>
+        <int>1506</int>
+        <int>2</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>45</int>
+        <int>40</int>
+        <int>56142</int>
+        <int>1506</int>
+        <int>2</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>60</int>
+        <int>40</int>
+        <int>62116</int>
+        <int>1506</int>
+        <int>2</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>80</int>
+        <int>40</int>
+        <int>56144</int>
+        <int>1506</int>
+        <int>3</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>40</int>
+        <int>40</int>
+        <int>56143</int>
+        <int>1506</int>
+        <int>3</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>50</int>
+        <int>40</int>
+        <int>56142</int>
+        <int>1506</int>
+        <int>3</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>65</int>
+        <int>40</int>
+        <int>62116</int>
+        <int>1506</int>
+        <int>3</int>
+        <int>4441</int>
+        <int>1</int>
+        <int>90</int>
+        <int>40</int>
+      </MonsterDrops>
+      <ClearDrops />
+      <Prerequisites />
+      <CanAbandon>true</CanAbandon>
+    </Offline70QuestDefinitionFG>
   </Quests>
 </Offline70QuestCatalogDocumentFG>
