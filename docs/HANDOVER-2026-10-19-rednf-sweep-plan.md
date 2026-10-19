@@ -48,6 +48,37 @@
 **明确不做**：PVP/比武、公会、好友、拍卖行、个人商店与交易、中继/多服基建、反作弊、账号安全卡、
 邮件系统（除非单独决定做单机邮件）、蓝色大理石/突袭/哈迪斯等活动玩法。
 
+## 3.1 P0 台账（本轮实测，`research/tower-integration/rebase-ledger-2026-10-19.txt`）
+
+三个研究覆盖层**已经并入稳定源**，它们的构建脚本因此成了陷阱（锚点找不到就整体红）：
+
+- `research/reinforcement` 的旧锚点 `if(error!=0)body=new byte[]{0,error};` 在稳定源里**已不存在**，
+  稳定源本身就是打过补丁的形态（`Coupon-Service-FG141.cs:18` 带 `NoticeFG180`）；
+- 它期望的 4 个文件 `Ordinary-Reinforcement-FG176 / Break-Returns-FG177 / Retry-Projection-FG178 / Protection-FG180`
+  连同 `World-Drops-FG182` 现在**直接住在稳定 src**；
+- `research/integration` 断言 155 源，稳定 src 已是 **159** 源 ⇒ 必然失败（是过期，不是回归）。
+
+塔候选要改成"稳定 159 源 + 7 个塔类"直接组合。10 份共享补丁对当前稳定源的逐块实测：
+
+| 状态 | 补丁（hunk 数） |
+|---|---|
+| 仍可干净套用（5） | Batch-Player-Protocol(1)、Economy-Protocol(3)、Quest-Catalog(1)、TitleBook-Service(1)、Tower-DailyTickets(1) |
+| 上下文已变、需手工重导（5） | Batch-Service(7：塔路由 / 临时物品回收 / 换角色与断线清理 / 塔物品使用门 / 维护循环)、Economy-State(3)、Progression(4)、Dungeon-Selection(1：(3,7) 塔列表体)、Town-Content(1：`DungeonGate` 加 (3,7)) |
+
+**没有半套落地**：后 5 份是一套（塔入口 + 临时物品 + 死亡目标范围）。只补 `DungeonGate(3,7)` 和选择列表体，
+会让"亡者峡谷"变成一个进去就报错的门 —— 那是假成功。P0 下一步＝整批重导 + 重建 `patch-manifest.json` 哈希
++ `test.py`（135 层状态循环）跑通，再谈 45 层晋升。
+
+## 3.2 P1 称号奖励实测结论（38 条）
+
+- 38 条 `reward:[title]` 全是 `Grade=[achievement]`；其中 **32 条**的奖励称号物品在
+  `TitleBook-Rules-FG157.cs`（原 CN `titlebook.etc`，SHA 9094b134…）里**唯一对应一个称号格**，
+  6 条的物品不在表里，0 条歧义。
+- 但**不能**直接打开这 32 条：引擎的 `Reward(q)` 现在由 13 项白名单 + 序号算出，`CheckProfile` 用它反向核对
+  目录里的奖励物品 —— 这是一次**独立交叉校验**。若改成"从目录奖励物品反推称号格"，校验就自我循环了。
+- 非循环的来源是**成就表**：每条称号规则带 `achievement` 号（如 quest 1 → 物品 26607 → 成就 6512），
+  要先从 PVF 的 achievement 记录取"成就 ⇐ 任务"这条边，才能批量放开。列为 P1 第一步，未做完不写"已支持"。
+
 ## 4. 旧 60 项差距表里已过期或需要更正的行
 
 - A16/A17 翻牌与通用堆叠：1..70 已接（wave2 实测），不再算缺口。

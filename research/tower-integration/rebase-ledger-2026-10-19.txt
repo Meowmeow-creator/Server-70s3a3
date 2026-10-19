@@ -1,0 +1,23 @@
+=== tower-integration 的 10 份共享补丁：对当前稳定源的适用性（逐块实测）===
+Batch-Player-Protocol-FG.cs      hunks=1  APPLIES CLEAN
+Batch-Service-FG.cs              hunks=7  CONTEXT CHANGED (needs hand re-port)
+Dungeon-Selection-Protocol.cs    hunks=1  CONTEXT CHANGED (needs hand re-port)
+Economy-Protocol-FG.cs           hunks=3  APPLIES CLEAN
+Economy-State-FG.cs              hunks=3  CONTEXT CHANGED (needs hand re-port)
+Progression-FG.cs                hunks=4  CONTEXT CHANGED (needs hand re-port)
+Quest-Catalog-FG.cs              hunks=1  APPLIES CLEAN
+TitleBook-Service-FG157.cs       hunks=1  APPLIES CLEAN
+Tower-DailyTickets-FG174.cs      hunks=1  APPLIES CLEAN
+Town-Content-FG75.cs             hunks=1  CONTEXT CHANGED (needs hand re-port)
+
+clean 5 个补丁 / blocked 5 个补丁（blocked 清单：Batch-Service-FG.cs, Dungeon-Selection-Protocol.cs, Economy-State-FG.cs, Progression-FG.cs, Town-Content-FG75.cs）
+
+=== 三个研究覆盖层是否已并入稳定源（实测锚点）===
+reinforcement  Coupon-Service-FG141.cs          旧锚点=False 新形态=True   旧锚点已消失 => 补丁内容已在稳定源
+reinforcement  Batch-Service-FG.cs              旧锚点=True  新形态=True   稳定源已加载 FG176 表
+worlddrop      Batch-Service-FG.cs              旧锚点=True  新形态=True   稳定源已加载世界掉落
+worlddrop      Floor-Drops-FG119.cs             旧锚点=True  新形态=True   稳定源掉落计划已接世界掉落
+fatigue        Fatigue-State-FG50.cs            稳定源含 Fatigue-State-FG50（命令16错误22 的修改见 git 历史）
+
+integration 期望的 155 源里，这些文件现在直接住在稳定 src：['Ordinary-Reinforcement-FG176.cs', 'Break-Returns-FG177.cs', 'Retry-Projection-FG178.cs', 'Protection-FG180.cs', 'World-Drops-FG182.cs']
+稳定 src 源数=159（integration 断言 155 -> 必然失败）
