@@ -64424,6 +64424,7 @@
         <int>3</int>
       </Condition>
       <Rewards />
+      <RewardExpertJob>1</RewardExpertJob>
       <Selection />
       <Collisions>
         <int>2708</int>
@@ -64634,6 +64635,7 @@
         <int>4</int>
       </Condition>
       <Rewards />
+      <RewardExpertJob>2</RewardExpertJob>
       <Selection />
       <Collisions>
         <int>2702</int>
@@ -64716,6 +64718,7 @@
         <int>50</int>
       </Condition>
       <Rewards />
+      <RewardExpertJob>3</RewardExpertJob>
       <Selection />
       <Collisions>
         <int>2702</int>
@@ -64798,6 +64801,7 @@
         <int>5</int>
       </Condition>
       <Rewards />
+      <RewardExpertJob>4</RewardExpertJob>
       <Selection />
       <Collisions>
         <int>2702</int>
