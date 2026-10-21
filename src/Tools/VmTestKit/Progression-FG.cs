@@ -20,7 +20,7 @@ partial class Offline70ProgressionFG {
  internal static uint AddExperience(uint total,uint amount){return (uint)Math.Min((ulong)Thresholds[68],(ulong)total+amount);}
  internal static byte[] ExperienceBody(uint total){if(total>Thresholds[68])throw new InvalidDataException("Level70 experience cap");byte[] b=new byte[38];b[0]=Level(total);BitConverter.GetBytes(total).CopyTo(b,1);return b;}
 }
-class Offline70QuestEngineFG {
+partial class Offline70QuestEngineFG {
  readonly Offline70QuestCatalogFG catalog;internal Offline70QuestEngineFG(Offline70QuestCatalogFG value){catalog=value;}
  static readonly XmlSerializer Serializer=new XmlSerializer(typeof(Offline70ProgressionStateFG));
  static void Validate(Offline70ProgressionStateFG s){
