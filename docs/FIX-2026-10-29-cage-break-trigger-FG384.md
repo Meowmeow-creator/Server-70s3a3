@@ -9,9 +9,10 @@ FG383 已让 `[hunt enemy]` enemyType=3（破坏囚牢/了望台/书架/油桶�
 
 ## 验证
 
-- 补丁脚本在副本上 dry-run/写入/verify 全过；真实 exe 已 PATCHED + cave MATCH；客户端启动冒烟通过（窗口正常）。
-- 服务端 `check_repo` 429 文件通过、`build.py --smoke` 199 源通过。
-- 待实机确认（用户）：打破笼子瞬间任务计数 +1；服务端日志 `PASSIVE_OBJECT_REPORT id=8824`（无 `CREDIT_SYNTHETIC` 前缀）后跟 `PASSIVE_OBJECT_CREDITED`。
+- 补丁脚本在副本上 dry-run/写入/verify 全过；服务端 `check_repo` 429 文件通过、`build.py --smoke` 199 源通过，已部署。
+- **v1 实机失败教训（2026-10-29 09:xx）**：v1 在钩子里用代码洞内的绝对地址写诊断计数器（每次 actor 死亡都写、先于类型过滤），实机"一打怪就崩"（AppHang + 多次 10 秒内静默退出）。根因：运行时代码页保护 = `PAGE_EXECUTE_WRITECOPY`（VirtualQueryEx 实测 0x80），运行时写代码页会让页面变私有脏页，反篡改扫描当场杀进程；静态改文件（补丁本身）不受影响（副职业补丁先例）。**已回退客户端，玩家恢复可玩。**
+- **v2 设计**：运行时零镜像写入——8 字节 op35 包体改为栈上现场构造（`sub esp,8` / 写 `[esp..]` / `mov ebx,esp`），三个发包调用后 `add esp,8` 归还；诊断计数器全部删除（验证信号改用服务端日志 `PASSIVE_OBJECT_REPORT`）。cave 126 字节，capstone 逐条核对，栈平衡。副本上 PATCHED + MATCH 通过。
+- 待实机确认（v2）：打破笼子瞬间任务计数 +1；服务端日志 `PASSIVE_OBJECT_REPORT id=8824`（无 `CREDIT_SYNTHETIC` 前缀）后跟 `PASSIVE_OBJECT_CREDITED`。
 
 ## 诊断与回退
 
