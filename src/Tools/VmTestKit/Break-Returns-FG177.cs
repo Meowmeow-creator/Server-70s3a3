@@ -35,7 +35,7 @@ class Offline70BreakReturnsFG177 {
         Dictionary<ushort,Offline70EconomyEntry> before=new Dictionary<ushort,Offline70EconomyEntry>();
         foreach(Offline70EconomyEntry e in s.Inventory)if(e.List==0)before[e.Slot]=new Offline70EconomyEntry{ItemId=e.ItemId,Quantity=e.Quantity};
         byte old=target.Upgrade;s.Inventory.Remove(target);
-        Offline70Economy.AddAssetItem(s,3037,Offline70DisjointFG92.BaseCount(p));
+        Offline70Economy.AddAssetItem(s,3037,Offline70DisjointFG92.BaseCount(p.Value,p.Rarity));
         uint[] pool=Offline70DisjointCatalogFG92.Extras[p.Rarity];
         if(pool.Length>0) {
             float divisor=chance<Offline70DisjointCatalogFG92.JackpotPercents[p.Rarity]*100?Offline70DisjointCatalogFG92.JackpotDivisors[p.Rarity]:Offline70DisjointCatalogFG92.NormalDivisors[p.Rarity];

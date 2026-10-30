@@ -1,4 +1,13 @@
 ﻿using System;using System.Collections.Generic;
+// Disjoint.etc constants (BaseFactors/Jackpot*/NormalDivisors/Extras) plus the 1310-row catalog
+// this class was originally built around.
+//
+// Runtime command 28 no longer reads Profiles: Offline70DisjointParamsFG92 carries [value]/
+// [rarity]/[grade]/[impossible contents]/[attach type] for the whole registered Kind=4 closure
+// (data/disjoint-params-FG92.dat). These rows are kept as the derivation fixture --
+// local-run/pvf/gen_disjoint_params.py refuses to write the table unless every row here still
+// re-derives bit-identically -- and Break-Returns-FG177 (a separately proved feature) still
+// gates on it. Do not widen or prune it to "fix" a disassembly request.
 class Offline70DisjointCatalogFG92 {
  internal class Profile {internal byte Rarity,Grade;internal uint Value;}
  internal static readonly Dictionary<uint,Profile> Profiles=Build();

@@ -16,7 +16,8 @@ class Offline70InventorySortFG76 {
   if(r==null||r.List!=0&&r.List!=1&&r.List!=2&&r.List!=7)throw new InvalidDataException("Sort20 unsupported container");
   return Offline70Economy.Apply(path,receipt,"inventory-sort",r.List+":"+r.Tab,delegate(Offline70EconomyState s){
    // Wallet, item shortcuts, worn equipment and other containers stay fixed.
-   int[] first=r.List==0?new int[]{9,57,105,153,201}:r.List==7?new int[]{0,140,189}:new int[]{0};
+   // 201 is the 副职业 page and 249 the 装扮->徽章 page (CSlotBoundChecker 0xc9/0xf9 bases).
+   int[] first=r.List==0?new int[]{9,57,105,153,201,249}:r.List==7?new int[]{0,140,189}:new int[]{0};
    foreach(int start in first){int end=start+(r.List==0?32:r.List==7?(start==0?140:49):r.List==2?s.CargoSlotsFG129:104);List<Offline70EconomyEntry> page=new List<Offline70EconomyEntry>();
     foreach(Offline70EconomyEntry e in s.Inventory)if(e.List==r.List&&e.Slot>=start&&e.Slot<end)page.Add(e);
     page.Sort(delegate(Offline70EconomyEntry a,Offline70EconomyEntry b){return a.Slot.CompareTo(b.Slot);});

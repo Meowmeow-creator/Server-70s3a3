@@ -1,26 +1,35 @@
 using System;using System.IO;
-// r6 (2026-10-17): post-promotion attribute growth, measured from the six CN70 client
-// scripts character/<job>/<job>.chr [growtype N] (native fixed-point10, GetRoundInt(10f*v)
+// r6 (2026-10-17): post-promotion attribute growth, measured from the CN70 client scripts
+// character/<job>/<job>.chr [growtype N]
+// (native fixed-point10, GetRoundInt(10f*v)
 // per reference/rednf ImportCharacterScript.inc:218-326). Grow row index = chr growtype-1 =
 // first grow 0..5 (Reward-Types-FG183.EncodeGrow packs first|second<<4; reward grows measured
 // 1..4, IsGrowByte bounds first 1..5). Field order: HPmax MPmax pAtk pDef mAtk mDef invLimit
-// mpRegen hitRecovery. Only row set 0 (swordman) is reachable in this build: s.Job/role.Job
-// never leave 0 (recon/job-advancement-report.md section 2); rows 1..5 are the standby tables
-// of the other five character scripts, same convention as Offline70RewardTypesFG183.AwakeningTable.
+// mpRegen hitRecovery. Rows follow the native job enum for all nine creatable jobs; see
+// Offline70RoleCreateJobsFG202 for the creation-side table and
+// local-run/recon/role-create-jobs-report.md for the evidence.
 // Growth is a DERIVED quantity (level + grow byte + this table); nothing new is persisted, so
 // old archives load unchanged. Model: CalcStat.inc:5-33 / calc_lev_stat.inc:6-37 (levels 2..15
 // baseRow, 16..50 first-grow branch, 51+ awakening block; the awakening1 blocks were measured
 // equal to their growtype rows for every served branch EXCEPT where the manifest flags a
 // difference, so growth never changes at awakening).
 class Offline70GrowthTableFG200 {
- // [job][grow 0..5] per-level growth rows (fixed-point10).
+ // [job][grow 0..5] per-level growth rows (fixed-point10). Rows are indexed by the native
+ // job enum (getCharacterJob): 0 swordman 1 fighter 2 gunner 3 mage 4 priest 5 at gunner
+ // 6 thief 7 at fighter 8 at mage. Rows 5/7/8 were added with the nine-job creation table
+ // (recon/role-create-jobs-report.md); the at-variants are NOT copies of their base family
+ // (at gunner grow1 515,475 vs gunner 540,450), so the old six-family ordering that put
+ // thief at index 5 would have handed every at-variant the wrong curve.
  internal static readonly int[][][] GrowFG200=new int[][][]{
-  new int[][]{new int[]{590,400,69,68,63,62,3000,25,15},new int[]{640,350,71,70,61,60,3000,25,20},new int[]{540,450,56,55,76,75,3000,50,10},new int[]{690,300,76,75,56,55,3000,25,20},new int[]{590,400,66,65,66,65,3000,40,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // swordman  (served job)
-  new int[][]{new int[]{640,350,71,70,61,60,2700,25,15},new int[]{540,450,56,55,76,75,2700,50,10},new int[]{665,325,76,75,56,55,2700,30,30},new int[]{615,375,71,60,71,60,2700,35,20},new int[]{690,300,71,80,56,55,2700,30,30},new int[]{0,0,0,0,0,0,0,0,0}}, // fighter
+  new int[][]{new int[]{590,400,69,68,63,62,3000,25,15},new int[]{640,350,71,70,61,60,3000,25,20},new int[]{540,450,56,55,76,75,3000,50,10},new int[]{690,300,76,75,56,55,3000,25,20},new int[]{590,400,66,65,66,65,3000,40,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // swordman
+  new int[][]{new int[]{640,350,71,70,61,60,2700,25,15},new int[]{540,450,56,55,76,75,2700,50,10},new int[]{665,325,76,75,56,55,2700,30,30},new int[]{615,375,71,60,71,60,2700,35,20},new int[]{690,300,71,80,56,55,2700,30,30},new int[]{0,0,0,0,0,0,0,0,0}}, // fighter (no [growtype 6] row)
   new int[][]{new int[]{540,450,66,65,66,65,3000,25,10},new int[]{615,375,76,75,56,55,3000,25,20},new int[]{590,400,76,75,56,55,3000,25,20},new int[]{490,500,56,55,76,75,3000,50,10},new int[]{540,450,53,48,53,48,3000,30,20},new int[]{540,450,66,65,66,65,3000,25,10}}, // gunner
   new int[][]{new int[]{490,500,61,60,71,70,2500,40,10},new int[]{440,550,56,55,76,75,2500,50,10},new int[]{465,525,59,57,74,72,2500,50,10},new int[]{540,450,71,60,71,60,2500,40,30},new int[]{490,500,66,60,73,63,2500,50,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // mage
   new int[][]{new int[]{640,350,68,68,61,65,3000,25,10},new int[]{690,300,56,75,56,75,3000,25,20},new int[]{640,350,73,70,60,59,3000,25,20},new int[]{540,450,71,60,71,60,3000,50,10},new int[]{540,450,56,55,76,75,3000,25,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // priest
+  new int[][]{new int[]{515,475,66,65,66,65,3000,25,10},new int[]{590,400,76,75,56,55,3000,25,20},new int[]{565,425,76,75,56,55,3000,25,20},new int[]{465,525,56,55,76,75,3000,50,10},new int[]{515,475,53,48,53,48,3000,30,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // at gunner
   new int[][]{new int[]{565,425,71,60,71,60,2700,25,15},new int[]{615,375,74,65,63,60,2700,30,20},new int[]{515,475,68,55,74,65,2700,40,10},new int[]{490,500,66,55,76,65,2700,50,10},new int[]{590,400,76,65,66,55,2700,30,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // thief
+  new int[][]{new int[]{640,330,71,70,61,60,2700,25,15},new int[]{565,430,56,55,76,75,2700,50,10},new int[]{690,305,76,75,56,55,2700,30,30},new int[]{640,355,71,60,71,60,2700,35,20},new int[]{715,280,71,80,56,55,2700,30,30},new int[]{0,0,0,0,0,0,0,0,0}}, // at fighter (no [growtype 6] row)
+  new int[][]{new int[]{485,505,56,60,76,70,2500,40,10},new int[]{440,550,56,55,76,75,2500,50,10},new int[]{460,530,56,57,76,72,2500,50,10},new int[]{540,450,71,60,71,60,2500,40,30},new int[]{490,500,66,60,73,63,2500,50,20},new int[]{615,375,71,60,71,60,2700,35,20}}, // at mage
 };
  // [job] [initial value] growth columns (fixed-point10, same field order).
  internal static readonly int[][] InitialFG200=new int[][]{
@@ -29,7 +38,10 @@ class Offline70GrowthTableFG200 {
   new int[]{1740,1750,86,85,76,75,400000,500,6000}, // gunner
   new int[]{1340,2150,66,65,96,95,340000,800,5000}, // mage
   new int[]{2340,1150,86,85,66,85,480000,500,5000}, // priest
+  new int[]{1640,1850,86,85,76,75,400000,500,5500}, // at gunner
   new int[]{1840,1650,96,75,86,65,430000,500,6000}, // thief
+  new int[]{2240,1250,96,95,66,65,430000,500,6000}, // at fighter
+  new int[]{1290,2200,61,65,101,95,340000,800,5000}, // at mage
 };
  // The four remaining wire constants come from the swordman [initial value] block only
  // (elemResist fire/water/dark/light, hpRegen, jump, weight, move/attack/cast speed, the

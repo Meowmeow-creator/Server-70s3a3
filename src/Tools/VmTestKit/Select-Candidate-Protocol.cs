@@ -20,12 +20,23 @@ partial class Offline70SelectCipher {
  internal static byte[] Body(Offline70Role role,bool completedTutorial,bool acceptedQuest){
   return Body(role,completedTutorial,acceptedQuest,1);
  }
- internal static byte[] Body(Offline70Role role,bool completedTutorial,bool acceptedQuest,uint progress){
+ // The probe fixtures were captured against the town-1 diagnostic profile.
+ internal static byte[] Body(Offline70Role role,bool completedTutorial,bool acceptedQuest,uint progress){return Body(role,completedTutorial,acceptedQuest,progress,1);}
+ internal static byte[] Body(Offline70Role role,bool completedTutorial,bool acceptedQuest,uint progress,int town){
   if(progress>1)throw new InvalidDataException("Quest progress bounds");
-  if(role.Id==0||role.Job!=0||!Offline70MonsterExperience.SupportedLevel(role.Level))throw new InvalidDataException("Unverified selected role");
+  if(!Offline70TownContentFG75.TownSupported(town))throw new InvalidDataException("Select ACK town "+town);
+  // This body carries id, creation time, fatigue and the twenty quest slots - no job byte and no
+  // name - so the profile below is the whole dependency on the role: any creatable job can be
+  // selected. The old job-0 pin was a verification stamp, not a data requirement.
+  if(role.Id==0||!Offline70RoleCreateJobsFG202.CreatableFG202(role.Job)||!Offline70MonsterExperience.SupportedLevel(role.Level))throw new InvalidDataException("Unverified selected role id="+role.Id+" job="+role.Job+" level="+role.Level);
   DateTime created=DateTime.Parse(role.CreatedUtc,CultureInfo.InvariantCulture,DateTimeStyles.RoundtripKind).ToUniversalTime();double seconds=(created-new DateTime(1970,1,1,0,0,0,DateTimeKind.Utc)).TotalSeconds;if(seconds<0||seconds>UInt32.MaxValue)throw new InvalidDataException("Created time bounds");
   using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){w.Write((byte)1);w.Write((uint)0);w.Write((uint)seconds);w.Write(role.Id);w.Write((ushort)0);w.Write((ushort)156);w.Write((ushort)0);w.Write((byte)0);w.Write((uint)0);
-   for(int i=0;i<20;i++){w.Write((ushort)(acceptedQuest&&i==0?101:0xffff));w.Write((uint)(acceptedQuest&&i==0?progress:0));}w.Write((byte)1);
+   for(int i=0;i<20;i++){w.Write((ushort)(acceptedQuest&&i==0?101:0xffff));w.Write((uint)(acceptedQuest&&i==0?progress:0));}
+   // The byte after the twenty quest slots is the village the client binds before it paints the
+   // town (rednf Inter_LoadEtc::SendResult writes getCurCharacVill() here). A pinned 1 makes the
+   // client bind Elvengard and then switch to the saved town, which plays the town intro
+   // illustration the moment the character enters the Seria room.
+   w.Write((byte)town);
    // EE43A0 reads tutorial state and completed-module count before the final two u16 values.
    w.Write((byte)(completedTutorial?1:0));w.Write((byte)(completedTutorial?1:0));if(completedTutorial)w.Write((byte)31);w.Write((ushort)0);w.Write((ushort)0);return m.ToArray();}
  }

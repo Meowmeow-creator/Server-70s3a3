@@ -167,11 +167,11 @@ class Offline70FloorCatalogFG119 {
  p.Add(407,new uint[][][]{new uint[][]{new uint[]{4084,800}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(1001,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(1010,new uint[][][]{new uint[][]{new uint[]{3210,10000}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
- p.Add(50073,new uint[][][]{new uint[][]{new uint[]{10000,3210},new uint[]{11000,3227}},new uint[][]{new uint[]{7000,3171}},new uint[][]{},new uint[][]{}});
- p.Add(50074,new uint[][][]{new uint[][]{new uint[]{10000,3210},new uint[]{11000,3227}},new uint[][]{new uint[]{7000,3171}},new uint[][]{},new uint[][]{}});
- p.Add(50075,new uint[][][]{new uint[][]{new uint[]{10000,3210},new uint[]{11000,3227}},new uint[][]{new uint[]{7000,3171}},new uint[][]{},new uint[][]{}});
- p.Add(50076,new uint[][][]{new uint[][]{new uint[]{10000,3210},new uint[]{11000,3227}},new uint[][]{new uint[]{7000,3171}},new uint[][]{},new uint[][]{}});
- p.Add(50097,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{7000,3171}},new uint[][]{},new uint[][]{}});
+ p.Add(50073,new uint[][][]{new uint[][]{new uint[]{3210,10000},new uint[]{3227,1000}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(50074,new uint[][][]{new uint[][]{new uint[]{3210,10000},new uint[]{3227,1000}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(50075,new uint[][][]{new uint[][]{new uint[]{3210,10000},new uint[]{3227,1000}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(50076,new uint[][][]{new uint[][]{new uint[]{3210,10000},new uint[]{3227,1000}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(50097,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(604,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(605,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(607,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
@@ -181,7 +181,7 @@ class Offline70FloorCatalogFG119 {
  p.Add(50081,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(50082,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(50083,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
- p.Add(50503,new uint[][][]{new uint[][]{new uint[]{1013,100},new uint[]{1066,100},new uint[]{1047,100},new uint[]{3211,1500}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(50503,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(56035,new uint[][][]{new uint[][]{new uint[]{3227,800}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(56036,new uint[][][]{new uint[][]{new uint[]{3227,800}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(56037,new uint[][][]{new uint[][]{new uint[]{3227,800}},new uint[][]{},new uint[][]{},new uint[][]{}});
@@ -250,6 +250,10 @@ class Offline70FloorCatalogFG119 {
  p.Add(1072,new uint[][][]{new uint[][]{new uint[]{3218,1500}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(1073,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(1077,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,9000}},new uint[][]{},new uint[][]{}});
+ /* Dungeon 51 chain: the two fake Peters (1078/1096) mirror the real boss's pool so each of the
+    three fights plans its rolls like the kind-3 row it replaced. */
+ p.Add(1078,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,9000}},new uint[][]{},new uint[][]{}});
+ p.Add(1096,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,9000}},new uint[][]{},new uint[][]{}});
  p.Add(1079,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
  p.Add(1082,new uint[][][]{new uint[][]{new uint[]{3217,1000}},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(1093,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
@@ -439,9 +443,75 @@ class Offline70FloorCatalogFG119 {
  p.Add(61250,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(61261,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
  p.Add(61820,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
- p.Add(61806,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});return p;}
+ p.Add(61251,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(61252,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(61253,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(61254,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(61255,new uint[][][]{new uint[][]{new uint[]{6003,300},new uint[]{1000,50},new uint[]{1047,200},new uint[]{1004,100}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61256,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61257,new uint[][][]{new uint[][]{new uint[]{3016,1500},new uint[]{1001,50},new uint[]{1002,100},new uint[]{1047,200}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61258,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61259,new uint[][][]{new uint[][]{new uint[]{3016,1500},new uint[]{1001,50},new uint[]{1002,100},new uint[]{1047,200}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61260,new uint[][][]{new uint[][]{new uint[]{1013,100},new uint[]{1066,100},new uint[]{1047,100}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(61806,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}}); p.Add(61112,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}}); p.Add(61710,new uint[][][]{new uint[][]{},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}}); // FG211 hell/companion actors
+ // Tower/altar/hell/companion actors 2026-10-26: no PVF drop profile exists for these
+ // ids in the shipped extract, so their pool rows are empty (kills pay gold rolls only).
+ p.Add(50501,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50502,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50504,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50505,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50506,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50507,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50508,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(50509,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55001,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55002,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55003,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55004,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55005,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55006,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55007,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55008,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55009,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55010,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55011,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55012,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55013,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55014,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55015,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55016,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55017,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55018,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55019,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55020,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55021,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55022,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55023,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55024,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55025,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(55028,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56017,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56437,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56438,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56439,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56440,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56441,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56442,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56443,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56444,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56445,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56446,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(56719,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(60030,new uint[][][]{new uint[][]{new uint[]{1013,100},new uint[]{1066,100},new uint[]{1047,100}},new uint[][]{new uint[]{3171,7000}},new uint[][]{},new uint[][]{}});
+ p.Add(62134,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+ p.Add(61262,new uint[][][]{new uint[][]{},new uint[][]{},new uint[][]{},new uint[][]{}});
+return p;}
  internal static readonly Dictionary<ushort,byte[][]> MapRolls=Maps();
  static Dictionary<ushort,byte[][]> Maps(){var p=new Dictionary<ushort,byte[][]>();
+ // Tower floors/altar rooms 2026-10-26: one ordinary gold+specific roll per roster row
+ // (specific pools are empty above, so these pay the gold rolls only).
+p.Add(16351,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(16352,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(16353,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(17030,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30001,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30002,new byte[][]{}); p.Add(30003,new byte[][]{}); p.Add(30004,new byte[][]{}); p.Add(30005,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30006,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30007,new byte[][]{}); p.Add(30008,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30009,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30010,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30011,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30012,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30013,new byte[][]{}); p.Add(30014,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30015,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30016,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30017,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30018,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30019,new byte[][]{}); p.Add(30020,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30021,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30022,new byte[][]{new byte[]{1,1},new byte[]{1,1}}); p.Add(30023,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30024,new byte[][]{}); p.Add(30025,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30026,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30027,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30028,new byte[][]{}); p.Add(30029,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30030,new byte[][]{}); p.Add(30031,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30032,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30033,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(30034,new byte[][]{}); p.Add(30035,new byte[][]{}); p.Add(30036,new byte[][]{}); p.Add(30037,new byte[][]{new byte[]{1,1}}); p.Add(30038,new byte[][]{}); p.Add(30039,new byte[][]{}); p.Add(30040,new byte[][]{}); p.Add(30041,new byte[][]{}); p.Add(30042,new byte[][]{}); p.Add(30043,new byte[][]{}); p.Add(30044,new byte[][]{}); p.Add(30045,new byte[][]{}); p.Add(31001,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31002,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31003,new byte[][]{}); p.Add(31004,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31005,new byte[][]{}); p.Add(31006,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31007,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31008,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31010,new byte[][]{}); p.Add(31011,new byte[][]{}); p.Add(31015,new byte[][]{new byte[]{1,1}}); p.Add(31019,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Add(31020,new byte[][]{new byte[]{1,1},new byte[]{1,1}}); p.Add(31024,new byte[][]{new byte[]{1,1},new byte[]{1,1}}); p.Add(31025,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+
  p.Add(201,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(203,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(204,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -618,6 +688,10 @@ class Offline70FloorCatalogFG119 {
  p.Add(1618,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(1619,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(1620,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ // Quest 4408 (新手冒险家) boss room 4421 (map.lst marpissalair/b4402(5,3).map): one roll row per
+ // roster uid, same convention as the GSD quest maps above; used only while the companion reroute
+ // in Dungeon-QuestCompanion makes the boss cell CurrentMap=4421.
+ p.Add(4421,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(1819,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(1820,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(1821,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -815,8 +889,8 @@ class Offline70FloorCatalogFG119 {
  p.Add(9105,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(9106,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(9107,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(9108,new byte[][]{new byte[]{2,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(9200,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(9108,new byte[][]{new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(9200,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(9201,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(9202,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(9203,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -885,6 +959,13 @@ class Offline70FloorCatalogFG119 {
  p.Add(6411,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(6415,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(6422,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ /* Dungeon 51 boss-cell chain: the doubled gold roll follows the kind-3 row - index 2 on b6416
+    (the real Peter room), index 3 on both [dummy] rooms d6420 (8 rows) and d6424 (9 rows). The
+    4 trailing rows are the dungeon [event monster]+[event monster3] allowance, like b6416's. */
+ p.Add(6420,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(6424,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(6416,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(6423,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(6501,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(6502,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(6503,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -923,7 +1004,7 @@ class Offline70FloorCatalogFG119 {
  p.Add(10042,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10043,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10044,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(10045,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10045,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10050,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10051,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10052,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -938,9 +1019,9 @@ class Offline70FloorCatalogFG119 {
  p.Add(10061,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10062,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10064,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(10065,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10065,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(10067,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(10068,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10068,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13075,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13078,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13079,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -964,16 +1045,16 @@ class Offline70FloorCatalogFG119 {
  p.Add(15072,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15073,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(16319,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16320,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16322,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16323,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16324,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16325,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16326,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16327,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16328,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16329,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(16330,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16320,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16322,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16323,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16324,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16325,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16326,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16327,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16328,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16329,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(16330,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(16331,new byte[][]{new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(17001,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(17002,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -1065,7 +1146,7 @@ class Offline70FloorCatalogFG119 {
  p.Add(13022,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13023,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13024,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(13025,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(13025,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13026,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13027,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13028,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -1078,8 +1159,10 @@ class Offline70FloorCatalogFG119 {
  p.Add(13035,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13036,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13037,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(13038,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(13038,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15004,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ // FG396: (4,0)Start.map roster rows (7 monsters) for the d87 start cell.
+ p.Add(15009,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15005,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15006,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15008,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -1097,8 +1180,8 @@ class Offline70FloorCatalogFG119 {
  p.Add(15023,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15024,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15028,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(15029,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
- p.Add(15039,new byte[][]{new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15029,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15039,new byte[][]{new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15183,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15184,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15185,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
@@ -1147,8 +1230,36 @@ class Offline70FloorCatalogFG119 {
  p.Add(15114,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15115,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15116,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1}});
+ p.Add(15123,new byte[][]{new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15124,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15125,new byte[][]{new byte[]{2,1}});
+ p.Add(15126,new byte[][]{new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15127,new byte[][]{new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15128,new byte[][]{new byte[]{2,1}});
+ p.Add(15111,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15112,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15113,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15117,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15118,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15119,new byte[][]{});
+ p.Add(15271,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15272,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15273,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15274,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1}});
+ p.Add(15278,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15279,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15280,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15281,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1}});
  p.Add(15275,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15276,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15277,new byte[][]{new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1}});
+ p.Add(15120,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15121,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15122,new byte[][]{});
+ p.Add(15129,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(15270,new byte[][]{new byte[]{1,1}});
+ p.Add(4418,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4419,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(9209,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(16019,new byte[][]{new byte[]{2,1},new byte[]{1,1}});return p;}
 }

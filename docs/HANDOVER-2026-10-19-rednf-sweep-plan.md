@@ -79,6 +79,16 @@
 - 非循环的来源是**成就表**：每条称号规则带 `achievement` 号（如 quest 1 → 物品 26607 → 成就 6512），
   要先从 PVF 的 achievement 记录取"成就 ⇐ 任务"这条边，才能批量放开。列为 P1 第一步，未做完不写"已支持"。
 
+**2026-10-25 更正（P1 已按另一条非循环路径做完）**：PVF 里**没有** achievement→quest 这张表
+（`local-run/r7-pvf-all-paths.txt` 全文只有 `etc/titlebook.etc` 与 `etc/advancealtar/advancealtarachievementreward.etc`
+两个相关文件名，`etc/titlebook.etc` 的列是 `格位 类别 成就号 模式 物品`，**不含任务号**），
+所以"取成就边"这条路根本不存在。实际用的非循环来源是 **`etc/titlebook.etc`（称号格 ⇐ 物品 ⇐ 成就号）
+×  每条 `n_quest/title/*.qst` 的 `[reward type]/[reward int data]`**，由
+`local-run/titlefix/gen_title_awards.py` 生成 `AwardsFG205`，生成器硬要求 FG157/FG173 已发过的 13 条
+`(任务, 物品, 类别, 格位, 成就号)` 逐字段不变才肯落盘，因此 `CheckProfile` 拿目录奖励物品回校
+这张表仍是两次独立取数的交叉校验，而不是自我循环。实测结论与放行/留闸清单见
+[称号成就任务修复记录](FIX-2026-10-25-title-quests.md)。
+
 ## 4. 旧 60 项差距表里已过期或需要更正的行
 
 - A16/A17 翻牌与通用堆叠：1..70 已接（wave2 实测），不再算缺口。

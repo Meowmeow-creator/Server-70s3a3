@@ -1,4 +1,4 @@
-using System;using System.IO;using System.Collections.Generic;
+﻿using System;using System.IO;using System.Collections.Generic;
 // Act4 ShadowMaze (dungeon 37) has no [monster] boss: map/shadowmaze/b1..b4.map carry
 //   [ai character]
 //       1301 <x> <y> 0 `[monster]` `[boss]` <cx> <cy>
@@ -67,8 +67,23 @@ partial class Offline70DungeonFlowFG {
  internal List<ushort[]> CurrentApcMonsters(){
   List<ushort[]> result=new List<ushort[]>();
   if(!Active||DungeonId<3)return result;
+  if(HellRoomActiveFG356)return HellRoomApcsFG356();
   foreach(ushort[] row in ApcMonstersFG.GetApcMonsters(DungeonId,CurrentMap))
    if(row[1]!=BossApcIdFG176||BossApcRoomFG176)result.Add(row);
+  // Tower floors whose PVF map declares [apc random point] instead of [monster] rows: the native
+  // servers fills them with AI characters drawn by appearance point (see Tower-ApFill-FG363.cs).
+  // They are roleType-5 side-channel actors, exactly like a map's declared [ai character] rows.
+  foreach(ushort[] row in TowerApRowsFG363())result.Add(row);
+   if(HellApcRunFG211&&CurrentMap==MapFG130(BossX,BossY)&&!ApcDeclaredByQuestMazeFG361(HellApcIdFG211))result.Add(new ushort[]{CurrentMap,HellApcIdFG211,HellApcLevelFG211,(ushort)8});
+  // FG361 quest-maze rooms declare their own enemy [ai character] rows (generated
+  // Offline70QuestMazeFG361.Apcs) plus the d88 [ridable] walkers; same side channel, same
+  // no-drop rule, and ApcIdAtUid still credits [hunt enemy] rows that name the APC.
+  foreach(ushort[] row in QuestMazeApcsFG361())result.Add(row);
+  foreach(ushort[] row in QuestMazeRidablesFG361())result.Add(row);
+  // FG362 extra rooms: map 11124 (d60 quest 3912) declares ten 10601 `[monster] [boss]` actors
+  // that no .dgn block reaches; Dungeon-QuestCompanion reroutes a cell to it while 3912 is active.
+  List<ushort[]> extraFG362;
+  if(Offline70RandomMazeFG362.Apcs.TryGetValue(CurrentMap,out extraFG362))foreach(ushort[] row in extraFG362)result.Add(row);
   return result;
  }
  // roleNum 8 is the boss role the Act4 A/B switch was built for, so a boss-role row honours it.

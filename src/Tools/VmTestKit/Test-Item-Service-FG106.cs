@@ -2,15 +2,27 @@ using System;using System.IO;using System.Xml;using System.Text;using System.Col
 // Manual, local test grants run on the same service thread as gameplay.
 // The GUI never edits retained economy files; success requires durable ownership.
 class Offline70TestItemsFG106 {
- internal static bool Supported(uint id){try{Offline70EconomyItemDefinition d=Offline70Economy.Definition(id);return d.Kind>=1&&d.Kind<=8&&(d.Kind!=6||Offline70PetFG96.IsEgg(id));}catch(InvalidDataException){return false;}}
+ internal static bool Supported(uint id){try{Offline70EconomyItemDefinition d=Offline70Economy.Definition(id);return d.Kind>=1&&d.Kind<=10&&(d.Kind!=6||Offline70PetFG96.IsEgg(id));}catch(InvalidDataException){return false;}}
  internal static ulong Count(Offline70EconomyState s,uint id){ulong n=0;foreach(Offline70EconomyEntry e in s.Inventory)if(e.ItemId==id&&e.List!=3)n+=e.Quantity;return n;}
- internal static Offline70EconomyState Grant(string path,string receipt,uint item,uint count,bool shortcut,out bool duplicate){
+ internal static Offline70EconomyState Grant(string path,string receipt,uint item,uint count,bool shortcut,out bool duplicate){return Grant(path,receipt,item,count,shortcut,-1,-1,-1,-1,out duplicate);}
+ // upgrade/seed/reseal/sealed use -1 for "caller did not ask"; the equipment seed keeps the
+ // existing draw-when-unspecified behaviour so the GUI's plain grant path is unchanged.
+ internal static Offline70EconomyState Grant(string path,string receipt,uint item,uint count,bool shortcut,int upgrade,int seed,int reseal,int sealedFlag,out bool duplicate){
   if(!Supported(item))throw new InvalidDataException("Test grant unsupported item");Offline70EconomyItemDefinition d=Offline70Economy.Definition(item);
   if(count==0||count>1000000||(d.Kind==3||d.Kind==4||d.Kind==6||d.Kind==8)&&count>32)throw new InvalidDataException("Test grant count bounds");
-  return Offline70Economy.Apply(path,"manual-test-"+receipt,"manual-test-item",item+":"+count+":"+shortcut,delegate(Offline70EconomyState s){
+  bool gear=upgrade>=0||seed>=0||reseal>=0||sealedFlag>=0;
+  if(gear&&d.Kind!=4&&d.Kind!=8)throw new InvalidDataException("Test grant gear attributes need kind 4 or 8 equipment");
+  if(upgrade>31||reseal>7||seed<-1||seed>Int32.MaxValue)throw new InvalidDataException("Test grant gear attribute bounds");
+  if(reseal>=0&&d.Kind!=4)throw new InvalidDataException("Test grant reseal needs weapon gear");
+  return Offline70Economy.Apply(path,"manual-test-"+receipt,"manual-test-item",item+":"+count+":"+shortcut+":"+upgrade+":"+seed+":"+reseal+":"+sealedFlag,delegate(Offline70EconomyState s){
    HashSet<string> old=new HashSet<string>();foreach(Offline70EconomyEntry e in s.Inventory)old.Add(e.List+":"+e.Slot);
    if(shortcut)Offline70Economy.AddPurchasedItem(s,item,count);else Offline70Economy.AddAssetItem(s,item,count);
-   foreach(Offline70EconomyEntry e in s.Inventory)if(!old.Contains(e.List+":"+e.Slot)&&(d.Kind==4||d.Kind==8))e.EquipmentSeed=Offline70ItemQualityFG101.Draw();
+   foreach(Offline70EconomyEntry e in s.Inventory)if(!old.Contains(e.List+":"+e.Slot)&&(d.Kind==4||d.Kind==8)){
+    e.EquipmentSeed=seed>=0?seed:Offline70ItemQualityFG101.Draw();
+    if(upgrade>=0)e.Upgrade=(byte)upgrade;
+    if(reseal>=0)e.ResealCount=(byte)reseal;
+    if(sealedFlag>=0)e.Sealed=sealedFlag==1;
+   }
   },out duplicate);
  }
  internal static byte[] GrantedRows(Offline70EconomyState after,uint item,byte list,byte[] keys){
@@ -23,7 +35,9 @@ class Offline70TestItemsFG106 {
 partial class Offline70BatchServiceFG {
  string testItemDirectoryFG106,testItemTokenFG106=Guid.NewGuid().ToString("N"),testItemPublishedFG106;long testItemPollFG106;
  void InitializeTestItemsFG106(){testItemDirectoryFG106=Path.Combine(folder,"TestTools");Directory.CreateDirectory(testItemDirectoryFG106);PublishTestItemsFG106();}
- void PublishTestItemsFG106(){string state=selected+":"+dungeon.Active+":"+town+":"+area+":"+role.Level;if(state==testItemPublishedFG106)return;XmlDocument d=new XmlDocument();XmlElement e=d.CreateElement("TestItemService");d.AppendChild(e);e.SetAttribute("version","FG106");e.SetAttribute("token",testItemTokenFG106);e.SetAttribute("pid",Process.GetCurrentProcess().Id.ToString());e.SetAttribute("service",Process.GetCurrentProcess().MainModule.FileName);e.SetAttribute("store",folder);e.SetAttribute("role",role.Name);e.SetAttribute("ready",selected&&!dungeon.Active?"1":"0");e.SetAttribute("level",role.Level.ToString());e.SetAttribute("town",town.ToString());Offline70TestItemsFG106.Write(Path.Combine(testItemDirectoryFG106,"service.xml"),d);testItemPublishedFG106=state;}
+ // 握手指纹必须带上 roleId+job：离线 GM 换绑（op role）到同级、同镇、同副本状态的上一个角色时，
+ // 少了身份位就不会重写 service.xml，登录器会一直显示旧角色。
+ void PublishTestItemsFG106(){string state=selected+":"+dungeon.Active+":"+town+":"+area+":"+role.Level+":"+role.Id+":"+role.Job;if(state==testItemPublishedFG106)return;XmlDocument d=new XmlDocument();XmlElement e=d.CreateElement("TestItemService");d.AppendChild(e);e.SetAttribute("version","FG106");e.SetAttribute("token",testItemTokenFG106);e.SetAttribute("pid",Process.GetCurrentProcess().Id.ToString());e.SetAttribute("service",Process.GetCurrentProcess().MainModule.FileName);e.SetAttribute("store",folder);e.SetAttribute("role",role.Name);e.SetAttribute("roleId",role.Id.ToString());e.SetAttribute("job",role.Job.ToString());e.SetAttribute("ready",selected&&!dungeon.Active?"1":"0");e.SetAttribute("level",role.Level.ToString());e.SetAttribute("town",town.ToString());Offline70TestItemsFG106.Write(Path.Combine(testItemDirectoryFG106,"service.xml"),d);testItemPublishedFG106=state;}
  void TestItemReplyFG106(string receipt,bool ok,string message,uint item,uint count,bool duplicate,ulong before,ulong after){XmlDocument d=new XmlDocument();XmlElement e=d.CreateElement("TestItemReply");d.AppendChild(e);e.SetAttribute("version","FG106");e.SetAttribute("token",testItemTokenFG106);e.SetAttribute("receipt",receipt);e.SetAttribute("success",ok?"1":"0");e.SetAttribute("message",message);e.SetAttribute("item",item.ToString());e.SetAttribute("count",count.ToString());e.SetAttribute("duplicate",duplicate?"1":"0");e.SetAttribute("before",before.ToString());e.SetAttribute("after",after.ToString());e.SetAttribute("revision",assets.Revision.ToString());Offline70TestItemsFG106.Write(Path.Combine(testItemDirectoryFG106,receipt+".reply.xml"),d);}
  void MaintainTestItemsFG106(){
   if(testItemDirectoryFG106==null)return;PublishTestItemsFG106();long now=DateTime.UtcNow.Ticks;if(now-testItemPollFG106<TimeSpan.TicksPerMillisecond*200)return;testItemPollFG106=now;
@@ -33,7 +47,7 @@ partial class Offline70BatchServiceFG {
     XmlElement e=Offline70TestItemsFG106.ReadSmall(path).DocumentElement;if(e==null||e.Name!="TestItemRequest"||e.Attributes.Count!=6||e.GetAttribute("version")!="FG106"||e.GetAttribute("token")!=testItemTokenFG106||e.GetAttribute("receipt")!=receipt||!UInt32.TryParse(e.GetAttribute("item"),out item)||!UInt32.TryParse(e.GetAttribute("count"),out count)||e.GetAttribute("shortcut")!="0"&&e.GetAttribute("shortcut")!="1")throw new InvalidDataException("Test request profile");
     if(!selected||dungeon.Active)throw new InvalidDataException("Test grant requires selected character in town");Sync();before=Offline70TestItemsFG106.Count(assets,item);Dictionary<ushort,uint> collection=CollectionSnapshot();
     assets=Offline70TestItemsFG106.Grant(economyPath,receipt,item,count,e.GetAttribute("shortcut")=="1",out duplicate);Sync();after=Offline70TestItemsFG106.Count(assets,item);
-    foreach(byte list in new byte[]{0,1,7})Send("manual-test-item14",Offline70TestItemsFG106.GrantedRows(assets,item,list,keys));CollectionChanged(collection);
+    Send("manual-test-item13-bag",Offline70EconomyProtocol.InventoryRestoreReply(assets,keys));Send("manual-test-item13-avatar",Offline70EconomyProtocol.AvatarBagReply(assets,keys));Send("manual-test-item13-pet",Offline70EconomyProtocol.PetBagReply(assets,keys));CollectionChanged(collection);   // 与 FG201 发放同一条 op13 整包，op14 局部行会让客户端把补堆当成新图标
     Note("MANUAL_TEST_ITEM_COMMITTED receipt="+receipt+" item="+item+" count="+count+" before="+before+" after="+after+" duplicate="+duplicate);
     TestItemReplyFG106(receipt,true,duplicate?"已核对上次发送结果，本次没有重复发放。":"发送完成，已保存并同步到当前角色。",item,count,duplicate,before,after);
    }catch(InvalidDataException ex){Note("MANUAL_TEST_ITEM_REJECTED "+ex.Message);string message=ex.Message.IndexOf("capacity",StringComparison.OrdinalIgnoreCase)>=0?"发送失败：对应背包已满，整次发送没有增加物品。":ex.Message.IndexOf("town",StringComparison.OrdinalIgnoreCase)>=0?"发送失败：请先选择 yoyo 并回到城镇。":ex.Message.IndexOf("count",StringComparison.OrdinalIgnoreCase)>=0?"发送失败：数量超出范围；装备、装扮或宠物蛋每次最多32件。":"发送失败：物品未接入或请求无效，存档没有增加物品。";TestItemReplyFG106(receipt,false,message,item,count,false,before,after);

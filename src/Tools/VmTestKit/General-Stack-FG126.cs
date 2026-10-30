@@ -1,10 +1,10 @@
 using System;using System.IO;using System.Text;using System.Security.Cryptography;using System.Collections.Generic;
 // Original TW8535ED2 ordinary solo pools1/3 with current CN70 PVF inputs.
-// Pools2/4, magic-seal, premium/team modifiers and equipment luck are separate.
+// Pools2/4 are served by Equip-Drops-FG359.cs; difficulty/monster multipliers come from the
+// same FG359 catalog so pools 1/3 and 2/4 share the PVF rows.
 class Offline70GeneralStackFG126 {
  internal const string CatalogSha256="f9d738efa9cbc74057649a1641b1c4cd68db438bb1082646f458be137d7b1ccf";
  static readonly Dictionary<string,uint[][]> Tables=new Dictionary<string,uint[][]>();
- static readonly float[] Difficulty=new float[]{1f,1.2f,1.4f,1.6f,2f},Kinds=new float[]{1f,2f,3f,4f};
  static readonly int[] StackRarity=new int[]{700000,964900,990000,1000000,1000001,1000002},RecipeRarity=new int[]{500000,944900,999900,1000000,1000001,1000002};
  static string Key(int pool,int rarity,int level){return pool+":"+rarity+":"+level;}
  internal static void Load(string path){
@@ -16,18 +16,22 @@ class Offline70GeneralStackFG126 {
    for(int i=0;i<count;i++){
     int pool=r.ReadByte(),rarity=r.ReadByte(),level=r.ReadByte(),rows=r.ReadUInt16();string key=Key(pool,rarity,level);if(pool!=1&&pool!=3||rarity>5||level<1||level>70||rows>2048||Tables.ContainsKey(key))throw new InvalidDataException("Floor stack table profile");
     uint[][] entries=new uint[rows][];uint previous=0;
-    for(int j=0;j<rows;j++){uint weight=r.ReadUInt32(),id=r.ReadUInt32();if(weight<=previous||id<3)throw new InvalidDataException("Floor stack CDF profile");Offline70EconomyItemDefinition d=Offline70Economy.Definition(id);if(d.Kind!=1&&d.Kind!=2||d.MaxDurability!=0)throw new InvalidDataException("Floor stack item category");entries[j]=new uint[]{weight,id};previous=weight;}
+    for(int j=0;j<rows;j++){uint weight=r.ReadUInt32(),id=r.ReadUInt32();if(weight<=previous||id<3)throw new InvalidDataException("Floor stack CDF profile");Offline70EconomyItemDefinition d=Offline70Economy.Definition(id);if(d.Kind!=1&&d.Kind!=2&&d.Kind!=9&&d.Kind!=10||d.MaxDurability!=0)throw new InvalidDataException("Floor stack item category");entries[j]=new uint[]{weight,id};previous=weight;}
     Tables.Add(key,entries);
    }
    if(r.BaseStream.Position!=r.BaseStream.Length)throw new InvalidDataException("Floor stack catalog trailing bytes");
   }
  }
  internal static int Threshold(int basis,byte diff,byte kind,int pool){
-  if(basis<1||basis>99||diff>3||kind>3||pool!=1&&pool!=3)throw new InvalidDataException("Ordinary floor stack profile");int probability=0;
+  if(basis<1||basis>99||diff>4||kind>3||pool!=1&&pool!=3)throw new InvalidDataException("Ordinary floor stack profile");
+  if(Offline70EquipCatalogFG359.Normal==null)throw new InvalidDataException("Equip catalog not loaded");
+  int probability=0;
   foreach(int[] row in Offline70FloorCatalogFG119.Probability)if(row[0]<=basis&&basis<=row[1]){probability=row[pool+2];break;}
-  // Original script stores f32 rates, then x87 multiplies before truncation.
-  // E.g.60*1.4f is83.999998, so the inclusive threshold is83, not84.
-  return (int)((double)probability*Difficulty[diff]*Kinds[kind]);
+  // FG359: the native [dungeon difficulty drop bonusrate] / [monster type drop bonusrate] rows
+  // are per item type -- pool1 (stackable) is 1/1/1/1/1.1 and 1/2/3/6.6, pool3 (recipe) is
+  // 1/1.2/1.4/1.6/2 and 0.2/2/7/16.8. The previous code used the type-2 difficulty row and
+  // 1/2/3/4 for every pool, which inflated normal-mob recipes 20x and starved boss recipes.
+  return (int)((double)probability*Offline70EquipCatalogFG359.Normal.DiffBonus[pool][diff]*Offline70EquipCatalogFG359.Normal.MonsterBonus[pool][kind]);
  }
  internal static int Rarity(int pool,uint draw){if(draw>1000000||pool!=1&&pool!=3)throw new InvalidDataException("Floor stack rarity draw");int[] cuts=pool==1?StackRarity:RecipeRarity;for(int i=0;i<cuts.Length;i++)if(cuts[i]>=draw)return i;return 0;}
  internal static uint Total(int pool,int rarity,int level){uint[][] rows;if(!Tables.TryGetValue(Key(pool,rarity,level),out rows))throw new InvalidDataException("Unproven floor stack level");return rows.Length==0?0:rows[rows.Length-1][0];}

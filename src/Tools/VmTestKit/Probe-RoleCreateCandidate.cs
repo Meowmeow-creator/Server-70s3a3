@@ -1,11 +1,11 @@
-using System;using System.IO;using System.Text;using System.Xml;using System.Xml.Serialization;using System.Net;using System.Net.Sockets;using System.Diagnostics;using System.Threading;using System.Collections.Generic;
+﻿using System;using System.IO;using System.Text;using System.Xml;using System.Xml.Serialization;using System.Net;using System.Net.Sockets;using System.Diagnostics;using System.Threading;using System.Collections.Generic;
 // Bounded single-player loopback service. Separate durable test store, not the ACT4 main database.
 class ProbeRoleCreateCandidate {
  static readonly XmlSerializer Serializer=new XmlSerializer(typeof(Offline70RoleStore));
  static void Validate(Offline70RoleStore store){
-  if(store==null||store.Format!=1||store.AccountId!=1||store.Roles==null||store.Roles.Count>12)throw new InvalidDataException("Role store version or bounds");
+  if(store==null||store.Format!=1||store.AccountId!=1||store.Roles==null||store.Roles.Count>Offline70RoleProtocol.SlotLimitFG202)throw new InvalidDataException("Role store version or bounds");
   HashSet<ushort> ids=new HashSet<ushort>();HashSet<string> names=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-  foreach(Offline70Role role in store.Roles){if(role==null||role.Id==0||!ids.Add(role.Id)||String.IsNullOrEmpty(role.Name)||!names.Add(role.Name)||role.Job!=0||role.Level!=1)throw new InvalidDataException("Role store profile");byte[] name=Offline70RoleProtocol.NameEncoding.GetBytes(role.Name);if(name.Length<1||name.Length>29)throw new InvalidDataException("Role store name bounds");}
+  foreach(Offline70Role role in store.Roles){if(role==null||role.Id==0||!ids.Add(role.Id)||String.IsNullOrEmpty(role.Name)||!names.Add(role.Name)||!Offline70RoleCreateJobsFG202.CreatableFG202(role.Job)||role.Level!=1)throw new InvalidDataException("Role store profile");byte[] name=Offline70RoleProtocol.NameEncoding.GetBytes(role.Name);if(name.Length<1||name.Length>29)throw new InvalidDataException("Role store name bounds");}
  }
  internal static Offline70RoleStore Load(string path){
   if(!File.Exists(path))return new Offline70RoleStore();if(new FileInfo(path).Length>65536)throw new InvalidDataException("Role store file limit");
@@ -15,15 +15,35 @@ class ProbeRoleCreateCandidate {
   string directory=Path.GetDirectoryName(Path.GetFullPath(path));Directory.CreateDirectory(directory);
   // Serialize creators across diagnostic runs; the main server never uses this file.
   using(FileStream held=new FileStream(path+".lock",FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None)){
-   Offline70RoleStore store=Load(path);if(store.Roles.Count>=12)throw new InvalidDataException("No free role slots");ushort largest=0;
+   Offline70RoleStore store=Load(path);if(store.Roles.Count>=Offline70RoleProtocol.SlotLimitFG202)throw new InvalidDataException("No free role slots");ushort largest=0;
    foreach(Offline70Role prior in store.Roles){if(String.Equals(prior.Name,role.Name,StringComparison.OrdinalIgnoreCase))throw new InvalidDataException("Role name already exists");if(prior.Id>largest)largest=prior.Id;}
    if(largest==UInt16.MaxValue)throw new InvalidDataException("Role id limit");role.Id=(ushort)(largest+1);store.Roles.Add(role);Validate(store);
-   string temporary=path+".pending-"+Guid.NewGuid().ToString("N"),backup=path+".backup-"+Guid.NewGuid().ToString("N");
+   string temporary=path+".pending-"+Guid.NewGuid().ToString("N"),backup=path+Offline70StoreBackupFG354.Suffix;
    try {
     using(FileStream f=new FileStream(temporary,FileMode.CreateNew,FileAccess.Write,FileShare.None)){Serializer.Serialize(f,store);f.Flush();}
     Offline70RoleStore candidate=Load(temporary);if(candidate.Roles.Count!=store.Roles.Count||candidate.Roles[candidate.Roles.Count-1].Name!=role.Name)throw new InvalidDataException("Role store read-back mismatch");
     if(File.Exists(path))File.Replace(temporary,path,backup);else File.Move(temporary,path);
     Offline70RoleStore committed=Load(path);Offline70Role saved=committed.Roles[committed.Roles.Count-1];if(saved.Id!=role.Id||saved.Name!=role.Name||saved.Job!=role.Job)throw new InvalidDataException("Committed role read-back mismatch");return committed;
+   }finally{if(File.Exists(temporary))File.Delete(temporary);}
+  }
+ }
+ // Removes the role stored at the given roster index, atomically, and returns the committed store.
+ // Deletion must fail before roles-CX.xml changes if anything is off, so the caller deletes the
+ // per-character archives only after this commit reports the expected shrink and identity.
+ internal static Offline70RoleStore Delete(string path,int slot,ushort expectedId,string expectedName){
+  using(FileStream held=new FileStream(path+".lock",FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None)){
+   Offline70RoleStore store=Load(path);
+   if(slot<0||slot>=store.Roles.Count)throw new InvalidDataException("Delete slot bounds");
+   Offline70Role victim=store.Roles[slot];
+   if(victim.Id!=expectedId||!String.Equals(victim.Name,expectedName,StringComparison.OrdinalIgnoreCase))throw new InvalidDataException("Delete slot holds "+victim.Name+" ("+victim.Id+"), not "+expectedName+" ("+expectedId+")");
+   store.Roles.RemoveAt(slot);Validate(store);
+   string temporary=path+".pending-"+Guid.NewGuid().ToString("N"),backup=path+Offline70StoreBackupFG354.Suffix;
+   try {
+    using(FileStream f=new FileStream(temporary,FileMode.CreateNew,FileAccess.Write,FileShare.None)){Serializer.Serialize(f,store);f.Flush();}
+    Offline70RoleStore candidate=Load(temporary);if(candidate.Roles.Count!=store.Roles.Count)throw new InvalidDataException("Role store delete read-back mismatch");
+    if(File.Exists(path))File.Replace(temporary,path,backup);else File.Move(temporary,path);
+    Offline70RoleStore committed=Load(path);if(committed.Roles.Count!=store.Roles.Count)throw new InvalidDataException("Committed delete read-back mismatch");
+    return committed;
    }finally{if(File.Exists(temporary))File.Delete(temporary);}
   }
  }

@@ -2,9 +2,17 @@ using System;using System.IO;using System.Security.Cryptography;
 // First native70 Lorien room only. Separate empty and PVF goblin profiles;
 // damage settlement, room progression and loot remain outside this stage.
 partial class Offline70RoleProtocol {
- internal static byte[] DungeonEntryBody(ushort opcode){
+ internal static byte[] DungeonEntryBody(ushort opcode){return DungeonEntryBody(opcode,1);}
+ // Native CParty::game_start writes the dungeon enter list as [liveCount][u16 unique_id][state]
+ // per member (reference/rednf .../CParty/game_start.inc: enterPacket.put_short(
+ // get_unique_id() & 0xffff)), and GameWorld::goto_dungeon's 0x17 notify repeats the same id.
+ // The client resolves "which actor is me" from that id, so the old literal 1 only ever matched
+ // roleId 1: every character created through the client entered a dungeon with no body and could
+ // not walk through the cleared room's door (yoyo, id 1, was the only one that worked). Keep the
+ // captured CN70 state byte (2) and only make the identity field dynamic.
+ internal static byte[] DungeonEntryBody(ushort opcode,ushort uniqueId){
   if(opcode==16||opcode==40)return new byte[]{1};
-  if(opcode==3)return new byte[]{1,1,0,2};
+  if(opcode==3)return new byte[]{1,(byte)uniqueId,(byte)(uniqueId>>8),2};
   if(opcode==28)return WithDungeonIntegrity(Offline70TownProtocol.Hex("010000000002000000000000")); // native u16, then post-notify checksum
   if(opcode==29)return Offline70TownProtocol.Hex("0000000000000000010300000000"); // room(0,0), map3; empty object lists
   if(opcode==30)return new byte[4];
@@ -42,7 +50,7 @@ partial class Offline70RoleProtocol {
   return uid;
  }
  internal static byte[] DungeonEntryReply(ushort opcode,Offline70Role role,byte[] keys){return DungeonEntryReply(opcode,role,keys,false);}
- internal static byte[] DungeonEntryReply(ushort opcode,Offline70Role role,byte[] keys,bool monsters){Offline70TownProtocol.Validate(role,keys);byte[] body=opcode==29&&monsters?LorienMonsterRoomBody():DungeonEntryBody(opcode),encrypted;
+ internal static byte[] DungeonEntryReply(ushort opcode,Offline70Role role,byte[] keys,bool monsters){Offline70TownProtocol.Validate(role,keys);byte[] body=opcode==29&&monsters?LorienMonsterRoomBody():DungeonEntryBody(opcode,role.Id),encrypted;
   if(opcode==40)encrypted=DungeonLoadCrypt(Pad(body),keys,true);
   else if(opcode==16||opcode==30)encrypted=new Blowfish(keys).Encode(Pad(body));
   else if(opcode==3){byte[] padded=new byte[16];body.CopyTo(padded,0);encrypted=Offline70KeySettings.Crypt(padded,keys,true);}

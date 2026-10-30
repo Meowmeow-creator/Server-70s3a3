@@ -27,13 +27,13 @@ class Offline70OrdinaryReinforcementFG176 {
     static readonly Dictionary<byte,OrdinaryReinforcementStepFG176> Steps=new Dictionary<byte,OrdinaryReinforcementStepFG176>();
     static readonly RandomNumberGenerator Generator=RandomNumberGenerator.Create();
     internal static void Load(string path) {
-        if(new FileInfo(path).Length>1048576)throw new InvalidDataException("Ordinary reinforcement catalog bounds");
+        if(new FileInfo(path).Length>16777216)throw new InvalidDataException("Ordinary reinforcement catalog bounds");
         OrdinaryReinforcementCatalogFG176 c;
         using(FileStream f=File.OpenRead(path))using(XmlTextReader r=new XmlTextReader(f)) {
             r.ProhibitDtd=true;r.XmlResolver=null;
             c=(OrdinaryReinforcementCatalogFG176)new XmlSerializer(typeof(OrdinaryReinforcementCatalogFG176)).Deserialize(r);
         }
-        if(c.PvfSha256!="61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d"||c.UpgradeDocumentSha256!="7102e11ce78934ef246ec24d9ab6af731547a8d1a28113990fdbe62b56a04f71"||c.Targets.Count==0||c.Steps.Count!=31)throw new InvalidDataException("Ordinary reinforcement profile");
+        if(c.PvfSha256!="61ccc511c0b3804741387344dc6862c3d6731aad3d4334142a35e095141aae0d"||c.UpgradeDocumentSha256!="7102e11ce78934ef246ec24d9ab6af731547a8d1a28113990fdbe62b56a04f71"||c.Targets.Count==0||c.Targets.Count>50000||c.Steps.Count!=31)throw new InvalidDataException("Ordinary reinforcement profile");
         Dictionary<uint,OrdinaryReinforcementTargetFG176> targets=new Dictionary<uint,OrdinaryReinforcementTargetFG176>();
         Dictionary<byte,OrdinaryReinforcementStepFG176> steps=new Dictionary<byte,OrdinaryReinforcementStepFG176>();
         foreach(OrdinaryReinforcementTargetFG176 t in c.Targets) {
@@ -98,9 +98,10 @@ class Offline70OrdinaryReinforcementFG176 {
         Offline70EconomyState after=Offline70Economy.ApplyWithReceiptFG176(path,receipt,"npc-reinforce",payload,delegate(Offline70EconomyState s,Offline70EconomyReceipt saved) {
             Offline70EconomyEntry target=Offline70Economy.Find(s,0,r.Target),material=Offline70Economy.Find(s,0,r.Ticket);
             OrdinaryReinforcementTargetFG176 t;OrdinaryReinforcementStepFG176 step;
-            if(target==null||target.ItemId!=r.Item)throw new CouponEligibilityErrorFG141(4,"Ordinary reinforcement target ownership");
-            if(!Targets.TryGetValue(target.ItemId,out t)||target.Ability!=0||target.ExpiresUnix!=0||target.Sealed)throw new CouponEligibilityErrorFG141(0x13,"Ordinary reinforcement target unsupported");
-            if(!Steps.TryGetValue(target.Upgrade,out step))throw new CouponEligibilityErrorFG141(0x13,"Reinforcement beyond serialized grade range");
+            if(target==null||target.ItemId!=r.Item)throw new CouponEligibilityErrorFG141(4,"Ordinary reinforcement target ownership slot="+r.Target);
+            if(!Targets.TryGetValue(target.ItemId,out t))throw new CouponEligibilityErrorFG141(0x13,"Ordinary reinforcement target not in catalog item="+target.ItemId);
+            if(target.Ability!=0||target.ExpiresUnix!=0||target.Sealed)throw new CouponEligibilityErrorFG141(0x13,"Ordinary reinforcement target state item="+target.ItemId+" ability="+target.Ability+" expires="+target.ExpiresUnix+" sealed="+target.Sealed);
+            if(!Steps.TryGetValue(target.Upgrade,out step))throw new CouponEligibilityErrorFG141(0x13,"Reinforcement beyond serialized grade range item="+target.ItemId+" upgrade="+target.Upgrade);
             bool destroys=step.Penalty==3||t.Rarity<2&&target.Upgrade>=8;
             if(target.Durability!=t.Durability)throw new CouponEligibilityErrorFG141(7,"Ordinary reinforcement requires full durability");
             if(material==null||material.ItemId!=step.Material||material.Quantity<step.Quantity)throw new CouponEligibilityErrorFG141(0x16,"Ordinary reinforcement material shortage");

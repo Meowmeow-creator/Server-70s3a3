@@ -1,6 +1,6 @@
 ﻿using System;using System.IO;
 class Offline70Gate {
- internal byte Town=1,Area;internal ushort X,Y;internal byte Direction;internal byte[] Plain;internal bool WorldMapHop;
+ internal byte Town=1,Area;internal ushort X,Y;internal byte Direction;internal ushort UniqueId=1;internal byte[] Plain;internal bool WorldMapHop;
  // Evidence classification: door = the request matches a portal rectangle in this town's table;
  // worldmap = zero-source town hop; teleport = a hop with no matching door, which rednf admits
  // (its param==2 channel and the non-matching-door hack counter). See the Parse comment.
@@ -57,7 +57,7 @@ class Offline70Gate {
  internal byte[] Body(ushort op){
   if(op==38)return new byte[]{1};
   using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
-   if(op==23){w.Write((ushort)1);w.Write(Town);w.Write(Area);}else if(op==24){w.Write(Town);w.Write(Area);w.Write((ushort)1);w.Write((ushort)1);}else throw new InvalidDataException("Gate reply opcode");
+   if(op==23){w.Write(UniqueId);w.Write(Town);w.Write(Area);}else if(op==24){w.Write(Town);w.Write(Area);w.Write((ushort)1);w.Write(UniqueId);}else throw new InvalidDataException("Gate reply opcode");
    w.Write(X);w.Write(Y);w.Write(Direction);w.Write((byte)3);return m.ToArray();
   }
  }

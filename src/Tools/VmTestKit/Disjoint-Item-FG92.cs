@@ -3,6 +3,10 @@ using System;using System.IO;using System.Collections.Generic;using System.Secur
 class Offline70DisjointFG92 {
  static readonly RNGCryptoServiceProvider RandomSource=new RNGCryptoServiceProvider();
  internal class Request {internal ushort Slot;internal byte List;internal short Tool;}
+ // The reference dispatcher answers a refusal with {0, errorCode} and the client maps that code
+ // to its own text (0x13 is what the client renders as 无法分解的类型), so the code has to survive
+ // the transaction.
+ internal class Rejected:Exception{internal readonly byte Code;internal Rejected(byte code,string message):base(message){Code=code;}}
  internal static Request Parse(byte[] encrypted,byte[] keys){
   if(encrypted==null||encrypted.Length!=8)throw new InvalidDataException("Disjoint28 request length");
   byte[] b=Offline70RoleProtocol.BatchCryptFG(encrypted,keys,0,false);
@@ -11,19 +15,25 @@ class Offline70DisjointFG92 {
   if(r.List!=0||r.Slot<3||r.Slot>=41||r.Tool!=-1)throw new InvalidDataException("Only original NPC ordinary-equipment disjoint supported");return r;
  }
  internal static int Draw(int bound){if(bound<=0||bound>10000)throw new InvalidDataException("Disjoint random bound");uint limit=UInt32.MaxValue-UInt32.MaxValue%(uint)bound;byte[] bytes=new byte[4];lock(RandomSource){uint value;do{RandomSource.GetBytes(bytes);value=BitConverter.ToUInt32(bytes,0);}while(value>=limit);return (int)(value%(uint)bound);}}
- internal static uint BaseCount(Offline70DisjointCatalogFG92.Profile p){
+ internal static uint BaseCount(uint value,byte rarity){
   // TW84733F6: GetSellPrice*1.1, ordinary sale rate, integer /150,
   // then original single-precision rarity multiplier and /1000.
-  ulong adjusted=(ulong)p.Value*11/10;ulong price=adjusted*200/1000;
-  float count=(float)(price*1000/150)*Offline70DisjointCatalogFG92.BaseFactors[p.Rarity]/1000f;
+  ulong adjusted=(ulong)value*11/10;ulong price=adjusted*200/1000;
+  float count=(float)(price*1000/150)*Offline70DisjointCatalogFG92.BaseFactors[rarity]/1000f;
   if(Single.IsNaN(count)||Single.IsInfinity(count)||count>1000000)throw new InvalidDataException("Disjoint count bounds");return Math.Max(1u,(uint)count);
  }
  internal static Offline70EconomyState Open(string path,string receipt,Request r,int choice,int chance,out bool duplicate){
   if(r==null||choice<0||choice>=10000||chance<0||chance>=10000)throw new InvalidDataException("Disjoint transaction arguments");
   return Offline70Economy.Apply(path,receipt,"disjoint",r.List+":"+r.Slot+":"+r.Tool,delegate(Offline70EconomyState s){
-   Offline70EconomyEntry source=Offline70Economy.Find(s,r.List,r.Slot);Offline70DisjointCatalogFG92.Profile p;
-   if(r.List!=0||r.Tool!=-1||source==null||source.Quantity!=1||Offline70Economy.Definition(source.ItemId).Kind!=4||!Offline70DisjointCatalogFG92.Profiles.TryGetValue(source.ItemId,out p))throw new InvalidDataException("Disjoint target is not ordinary owned equipment");
-   uint basic=BaseCount(p);uint[] pool=Offline70DisjointCatalogFG92.Extras[p.Rarity];
+   Offline70EconomyEntry source=Offline70Economy.Find(s,r.List,r.Slot);
+   // _check_disjointable_item_state: empty slot / not an equipable bag row -> 0x11.
+   if(r.List!=0||r.Tool!=-1||source==null||source.Quantity!=1||Offline70Economy.Definition(source.ItemId).Kind!=4)throw new Rejected(0x11,"Disjoint target is not ordinary owned equipment");
+   Offline70DisjointParamsFG92.Params p=Offline70DisjointParamsFG92.Get(source.ItemId);
+   if(p==null)throw new Rejected(0x11,"Disjoint target has no item script");
+   // _checkDisjointableItem: IsImpossibleDisjoint -> 0x13, GetAttachType==2 ([trade delete]) -> 0x11.
+   if((p.Flags&Offline70DisjointParamsFG92.ImpossibleDisjoint)!=0)throw new Rejected(0x13,"Disjoint target has [impossible contents] disjoint");
+   if((p.Flags&Offline70DisjointParamsFG92.TradeDelete)!=0)throw new Rejected(0x11,"Disjoint target is [trade delete]");
+   uint basic=BaseCount(p.Value,p.Rarity);uint[] pool=Offline70DisjointCatalogFG92.Extras[p.Rarity];
    s.Inventory.Remove(source);Offline70Economy.AddAssetItem(s,3037,basic);
    if(pool.Length>0){
     float divisor=chance<Offline70DisjointCatalogFG92.JackpotPercents[p.Rarity]*100?Offline70DisjointCatalogFG92.JackpotDivisors[p.Rarity]:Offline70DisjointCatalogFG92.NormalDivisors[p.Rarity];
@@ -32,9 +42,9 @@ class Offline70DisjointFG92 {
    }
   },out duplicate);
  }
- internal static byte[] Body(Request r,bool success,Offline70EconomyState before,Offline70EconomyState after){
+ internal static byte[] Body(Request r,bool success,Offline70EconomyState before,Offline70EconomyState after,byte code){
   using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
-   w.Write((byte)(success?1:0));if(!success){w.Write((byte)0x13);return m.ToArray();}
+   w.Write((byte)(success?1:0));if(!success){w.Write(code);return m.ToArray();}
    List<Offline70EconomyEntry> gains=new List<Offline70EconomyEntry>();
    foreach(Offline70EconomyEntry e in after.Inventory)if(e.List==0){Offline70EconomyEntry old=Offline70Economy.Find(before,0,e.Slot);uint previous=old!=null&&old.ItemId==e.ItemId?old.Quantity:0;if(e.Quantity>previous)gains.Add(new Offline70EconomyEntry{Slot=e.Slot,ItemId=e.ItemId,Quantity=e.Quantity-previous});}
    if(gains.Count==0||gains.Count>32)throw new InvalidDataException("Disjoint reward projection");

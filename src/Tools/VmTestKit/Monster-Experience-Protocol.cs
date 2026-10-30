@@ -1,6 +1,6 @@
-using System;using System.IO;using System.Xml;using System.Xml.Serialization;
+﻿using System;using System.IO;using System.Xml;using System.Xml.Serialization;
 // Bounded Lv1-to-Lv2 yoyo progression. Role level is derived from one atomic EXP store.
-public class Offline70ExperienceState {public int Format=1;public ushort RoleId=1;public uint TotalExperience;}
+public class Offline70ExperienceState {public int Format=1;public ushort RoleId=Offline70RoleScopeFG202.Current;public uint TotalExperience;}
 class Offline70MonsterExperience {
  internal const uint NextLevelExperience=1000; // Current70 character/exptable.tbl first value.
  internal const uint LevelThreeExperience=2653; // Current70 cumulative second value; Lv3 held until adapted.
@@ -10,7 +10,7 @@ class Offline70MonsterExperience {
  // normal difficulty0.93 and Lorien experience weight1.2; floor(33.48).
  internal const uint GoblinExperience=33;
  static readonly XmlSerializer Serializer=new XmlSerializer(typeof(Offline70ExperienceState));
- static void Validate(Offline70ExperienceState s){if(s==null||s.Format!=1||s.RoleId!=1)throw new InvalidDataException("Experience store profile");Level(s.TotalExperience);}
+ static void Validate(Offline70ExperienceState s){if(s==null||s.Format!=1||s.RoleId==0)throw new InvalidDataException("Experience store profile");Level(s.TotalExperience);}
  internal static void Apply(Offline70RoleStore store,Offline70ExperienceState s){Validate(s);foreach(Offline70Role role in store.Roles)if(role.Id==s.RoleId)role.Level=Level(s.TotalExperience);}
  internal static Offline70ExperienceState Load(string path){
   if(!File.Exists(path))return new Offline70ExperienceState();if(new FileInfo(path).Length>4096)throw new InvalidDataException("Experience store bounds");
@@ -21,7 +21,7 @@ class Offline70MonsterExperience {
   string full=Path.GetFullPath(path);Directory.CreateDirectory(Path.GetDirectoryName(full));
   using(FileStream held=new FileStream(full+".lock",FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None)){
    Offline70ExperienceState s=Load(full);s.TotalExperience=checked(s.TotalExperience+GoblinExperience);Validate(s);
-   string temp=full+".pending-"+Guid.NewGuid().ToString("N"),backup=full+".backup-"+Guid.NewGuid().ToString("N");
+   string temp=full+".pending-"+Guid.NewGuid().ToString("N"),backup=full+Offline70StoreBackupFG354.Suffix;
    try{using(FileStream f=new FileStream(temp,FileMode.CreateNew,FileAccess.Write,FileShare.None)){Serializer.Serialize(f,s);f.Flush();}
     if(Load(temp).TotalExperience!=s.TotalExperience)throw new InvalidDataException("Experience read-back mismatch");
     if(File.Exists(full))File.Replace(temp,full,backup);else File.Move(temp,full);

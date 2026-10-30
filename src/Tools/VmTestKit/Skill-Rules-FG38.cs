@@ -1,5 +1,10 @@
 ﻿// Generated from original CN70 PVF: first swordman promotion SP skills.
-class Offline70SkillRuleFG {internal byte Id,Maximum,Required,Step;internal ushort Cost;internal bool Active;internal byte[] Prerequisites,GrowCaps;}
+// SkillClass/Fitness/Trait are the three reform_ui_group_no tab inputs Offline70SkillSlots reads
+// (Skill-Placement-FG123.cs). This hand-written table predates them and is only the field-for-field
+// baseline local-run/pvf/gen_skill_rules.py checks job 0 against, so they stay unset here.
+// AwakenCaps defaults to all zero, so the hand rows below keep their pre-awakening behaviour; the
+// generated per-job table fills it from [second growtype maximum level] column 2*grow.
+class Offline70SkillRuleFG {internal byte Id,Maximum,Required,Step,SkillClass,Fitness;internal ushort Cost,TraitCost;internal bool Active,Trait;internal byte[] Prerequisites,GrowCaps;internal byte[] AwakenCaps=new byte[5];}
 partial class Offline70SkillSlots {
  internal static readonly Offline70SkillRuleFG[] Rules=new Offline70SkillRuleFG[]{
  new Offline70SkillRuleFG{Id=1,Cost=20,Maximum=5,Required=5,Step=5,Active=true,Prerequisites=new byte[]{},GrowCaps=new byte[]{5,5,5,5,5}}, // skill/swordman/guard.skl
@@ -130,19 +135,26 @@ partial class Offline70SkillSlots {
  // (local-run/pvf/awakening_pvf_truth.py -> local-run/driver/awakening-pvf-truth.tsv).
  // All four: [purchase cost] 30, [required level] 48, [required level range] 3 (= Step, the same
  // tag 12 shortswordmastery reads 3 from), [type] [passive], no prerequisite tag, and
- // [growtype maximum level] 0 0 0 0 0 0 -> GrowCaps {0,0,0,0,0}, so JobMaximum(grow)=0 keeps them
- // out of the op31 SP path (Learn rejects JobMaximum==0) exactly as the script says. Maximum
- // follows this file's convention (max of the five grow caps, cf. 191 above), i.e. 0: the script's
- // absolute [maximum level] column (50/50/50/20 - 92 stuckuponcounter really is 20, the earlier
- // awakening report said 50 for all four) only matters for the post-awakening ceiling carried by
- // [second growtype maximum level] (20/20/20/10 at the owner growtype), which is the QP skill path
- // this build does not implement. BaseLevelFG139 supplies the granted level as baseline, so
- // Validate admits level 1 (Math.Max(baseline,Maximum)) and the ledger charges (1-1)*30 = 0 SP.
- new Offline70SkillRuleFG{Id=91,Cost=30,Maximum=0,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0}}, // skill/swordman/defensedownoncritical.skl (swordman grow 1)
- new Offline70SkillRuleFG{Id=89,Cost=30,Maximum=0,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0}}, // skill/swordman/darkaura.skl (swordman grow 2)
- new Offline70SkillRuleFG{Id=90,Cost=30,Maximum=0,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0}}, // skill/swordman/bleedingmastery.skl (swordman grow 3)
- new Offline70SkillRuleFG{Id=92,Cost=30,Maximum=0,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0}}, // skill/swordman/stuckuponcounter.skl (swordman grow 4)
+ // [growtype maximum level] 0 0 0 0 0 0 -> GrowCaps {0,0,0,0,0}. Their ceiling is not in that tag:
+ // it rides in [second growtype maximum level] at column 2*grow (20/20/20/10 here), the same tag
+ // every 一觉主动 (48->50) and 60/70 级 技能 uses. 132 of the 1637 CN70 .skl files carry their ceiling
+ // ONLY there (local-run/pvf/second-growtype-census.tsv, 2026-10-26), and no file carries caps in
+ // both tags, so JobMaximum(r, grow, awakened) reads AwakenCaps instead of GrowCaps once the
+ // character's second-grow nibble is set and keeps 0 before it - which is the native gate: an
+ // un-awakened character cannot buy these even at the right level. An earlier note here called the
+ // second tag "the QP skill path this build does not implement"; that was wrong and it is why op31
+ // answered "Skill level, role level or SP requirement rejected" for every awakened 60/70 级 skill.
+ // Maximum is the overall ceiling Validate admits (Math.Max(baseline,Maximum)); BaseLevelFG139 still
+ // supplies the granted level as baseline, so the level-1 grant charges (1-1)*30 = 0 SP.
+ new Offline70SkillRuleFG{Id=91,Cost=30,Maximum=20,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0},AwakenCaps=new byte[]{0,20,0,0,0}}, // skill/swordman/defensedownoncritical.skl (swordman grow 1)
+ new Offline70SkillRuleFG{Id=89,Cost=30,Maximum=20,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0},AwakenCaps=new byte[]{0,0,20,0,0}}, // skill/swordman/darkaura.skl (swordman grow 2)
+ new Offline70SkillRuleFG{Id=90,Cost=30,Maximum=20,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0},AwakenCaps=new byte[]{0,0,0,20,0}}, // skill/swordman/bleedingmastery.skl (swordman grow 3)
+ new Offline70SkillRuleFG{Id=92,Cost=30,Maximum=10,Required=48,Step=3,Active=false,Prerequisites=new byte[]{},GrowCaps=new byte[]{0,0,0,0,0},AwakenCaps=new byte[]{0,0,0,0,10}}, // skill/swordman/stuckuponcounter.skl (swordman grow 4)
  };
- internal static Offline70SkillRuleFG Rule(byte id){foreach(Offline70SkillRuleFG r in Rules)if(r.Id==id)return r;return null;}
- internal static byte JobMaximum(Offline70SkillRuleFG r,byte grow){if(r==null||grow>4)return 0;return r.GrowCaps[grow];}
+ // Skill ids are numbered per job (reference find_skill(job, index)), so lookups go through the
+ // generated per-job table. Rules above stays as the hand-written swordman baseline that
+ // local-run/pvf/gen_skill_rules.py guards field for field.
+ internal static Offline70SkillRuleFG Rule(byte id){return Offline70SkillRulesFG203.AtFG203(Offline70RoleScopeFG202.CurrentJob,id);}
+ // grow is the character's FIRST grow (0..4); awakened is set once the 一次觉醒 nibble is granted.
+ internal static byte JobMaximum(Offline70SkillRuleFG r,byte grow,bool awakened){if(r==null||grow>4)return 0;byte cap=r.GrowCaps[grow];if(awakened&&r.AwakenCaps[grow]>cap)cap=r.AwakenCaps[grow];return cap;}
 }

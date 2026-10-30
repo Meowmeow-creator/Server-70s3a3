@@ -3,7 +3,7 @@ using System;using System.IO;using System.Text;using System.Collections.Generic;
 class Offline70CashPurchaseFG45 {
  internal class Offer {internal uint Commodity,Category,Item,Cost,Voucher,Days;internal ushort Ability;internal byte Special;internal bool Once;internal uint[][] Rewards;}
  internal class Request {internal uint Commodity;internal byte Option,Period,Payment;}
- internal static void Register(){Offline70Economy.RegisterMetadata(new Offline70EconomyItemDefinition{ItemId=2682608,Kind=1,StackLimit=1,CooldownMilliseconds=1000});Offline70CashCatalogFG80.Register();}
+ internal static void Register(){Offline70Economy.RegisterMetadata(new Offline70EconomyItemDefinition{ItemId=2682608,Kind=1,StackLimit=1,CooldownMilliseconds=1000});Offline70CashCatalogFG80.Register();Offline70CashPackageFG272.Register();}
  internal static Request Parse(byte[] cipher,byte[] keys){
   if(cipher==null||cipher.Length!=16)throw new InvalidDataException("Cash67 single selection length");
   byte[] b=Offline70RoleProtocol.BatchCryptFG(cipher,keys,11,false);
@@ -13,7 +13,10 @@ class Offline70CashPurchaseFG45 {
  }
  internal static Offer Resolve(Request r){
   Offer selected=Offline70FeedbackCashFG108.Resolve(r);if(selected!=null)return selected;
-  Offer offer;if(r==null||r.Payment!=0||r.Option!=255||r.Period!=0&&r.Period!=255||!Offline70CashCatalogFG80.Offers.TryGetValue(r.Commodity,out offer))throw new InvalidDataException("Unimplemented cash commodity, payment or option");
+  // FG396: period 1..3 is accepted for plain-catalog commodities. These rows have no duration
+  // variants of their own, and the death-screen revival purchase is observed to arrive with a
+  // non-zero period byte; refusing it surfaced as the client's 使用期限设置错误 dialog.
+  Offer offer;if(r==null||r.Payment!=0||r.Option!=255||r.Period>3&&r.Period!=255||!Offline70CashCatalogFG80.Offers.TryGetValue(r.Commodity,out offer))throw new InvalidDataException("Unimplemented cash commodity, payment or option");
   return offer;
  }
  internal static Offline70EconomyState Purchase(string path,string receipt,Offer offer,out bool duplicate){

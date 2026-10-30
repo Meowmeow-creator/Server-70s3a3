@@ -2,7 +2,6 @@ using System;using System.IO;using System.Collections.Generic;
 // CN PVF RANDOMBOX contains two distinct int-data groups. Every row and
 // fallback in each group resolves to the same item/count, so this box is fixed.
 class Offline70WishBoxFG84 {
- internal const int CooldownKey=9804; // Reserved offline item-specific cooldown key.
  internal static void Register(){
   Offline70Economy.RegisterMetadata(new Offline70EconomyItemDefinition{ItemId=2600014,Kind=1,StackLimit=1000,MinimumLevel=60,CooldownMilliseconds=10000});
   Offline70Economy.RegisterMetadata(new Offline70EconomyItemDefinition{ItemId=2682272,Kind=1,StackLimit=1000,MinimumLevel=1});
@@ -18,12 +17,9 @@ class Offline70WishBoxFG84 {
   if(utcTicks<0||utcTicks>DateTime.MaxValue.Ticks)throw new InvalidDataException("Box time");
   return Offline70Economy.Apply(path,receipt,"wish-box",slot+":2681920",delegate(Offline70EconomyState s){
    Offline70EconomyEntry box=Offline70Economy.Find(s,0,slot);if(box==null||box.ItemId!=2681920||s.Level<1)throw new InvalidDataException("Missing supported wish box");
-   // Cooldown belongs to the source item, not unrelated potion groups.
-   Offline70EconomyCooldown cooldown=null;foreach(Offline70EconomyCooldown c in s.Cooldowns)if(c.Group==CooldownKey)cooldown=c;
-   if(cooldown!=null&&(utcTicks<cooldown.UtcTicks||utcTicks-cooldown.UtcTicks<TimeSpan.TicksPerSecond))throw new InvalidDataException("Wish box cooldown");
+   // Original client opens boxes back-to-back well under one second apart (live capture 2026-10-25); no per-open throttle.
    if(box.Quantity==1)s.Inventory.Remove(box);else box.Quantity--;
    Offline70Economy.AddAssetItem(s,2600014,2);Offline70Economy.AddAssetItem(s,2682272,1);
-   if(cooldown==null){cooldown=new Offline70EconomyCooldown{Group=CooldownKey};s.Cooldowns.Add(cooldown);}cooldown.UtcTicks=utcTicks;
   },out duplicate);
  }
  internal static byte[] Body(bool success,ushort slot,Offline70EconomyState before,Offline70EconomyState after){

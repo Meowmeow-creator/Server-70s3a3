@@ -25,6 +25,9 @@ internal static class ApcMonstersFG {
  // d43 map9203  [ai character] id=607 level=47 role=normal
  // d44 map9103  [ai character] id=609 level=50 role=normal
  // d141 map16018  [ai character] id=20607 level=52 role=normal
+ // d508 map15119  [ai character] id=1514 level=84 role=boss `[NPC] 1008` (cc_gsd.aic, 剑魂 7802)
+ // d507 map15122  [ai character] id=1514 level=84 role=boss `[NPC] 1008` (cc_gsd.aic, 阿修罗 7814；
+ //     同一只 G.S.D 考官 APC，等级同样取 aicharacter.lst 1514 -> cc_gsd.aic [minimum info] 第 5 字段 84)
  internal static readonly Dictionary<ushort,List<ushort[]>> Table =
   new Dictionary<ushort,List<ushort[]>>{
   {21,new List<ushort[]>{new ushort[]{3016,21400,30,5}}},
@@ -36,6 +39,21 @@ internal static class ApcMonstersFG {
   {43,new List<ushort[]>{new ushort[]{9203,607,47,5}}},
   {44,new List<ushort[]>{new ushort[]{9103,609,50,5}}},
   {141,new List<ushort[]>{new ushort[]{16018,20607,52,5}}},
+  {507,new List<ushort[]>{new ushort[]{15122,1514,84,8}}},
+  {508,new List<ushort[]>{new ushort[]{15119,1514,84,8}}},
+  // Tower APC rows (per-floor [ai character], levels from aicharacter.lst).
+  {11000,new List<ushort[]>{new ushort[]{30002,600,15,5},new ushort[]{30003,5004,15,5},new ushort[]{30004,20002,15,5},new ushort[]{30005,10402,25,5},new ushort[]{30009,20402,40,5},new ushort[]{30010,605,25,5},new ushort[]{30012,606,17,5},new ushort[]{30014,15204,40,5},new ushort[]{30015,10201,35,5},new ushort[]{30018,601,40,5},new ushort[]{30020,20600,35,5},new ushort[]{30022,602,40,5},new ushort[]{30025,5600,25,5},new ushort[]{30028,15201,20,5},new ushort[]{30028,15202,30,5},new ushort[]{30028,15203,48,5},new ushort[]{30030,10504,50,5},new ushort[]{30030,20500,50,5},new ushort[]{30034,15206,30,5},new ushort[]{30034,15207,30,5},new ushort[]{30034,15801,30,5},new ushort[]{30034,15901,30,5},new ushort[]{30036,5303,40,5},new ushort[]{30036,5304,40,5},new ushort[]{30037,15205,40,5},new ushort[]{30038,5003,45,5},new ushort[]{30039,15502,50,5},new ushort[]{30040,10202,50,5},new ushort[]{30041,20501,50,5},new ushort[]{30042,20603,25,5},new ushort[]{30043,5309,50,5},new ushort[]{30044,20401,50,5},new ushort[]{30045,10203,50,5}}},
+  {11001,new List<ushort[]>{new ushort[]{31005,15402,25,5},new ushort[]{31010,20604,15,5},new ushort[]{31015,5602,40,5},new ushort[]{31020,10600,40,5},new ushort[]{31024,5601,40,5},new ushort[]{31025,608,40,5}}},
+  // d32 quest 4408 (新手冒险家): the 无谋的剑士 companion. PVF citation: map/marpissalair/apc(1,2).map
+  // (= map.lst 4424, the quest-maze companion room) [ai character] id=411 `[character]` `[normal]`;
+  // aicharacter.lst 411 -> swordman/rookie_sword/rookie_sword.aic [minimum info] 5th number = 25.
+  // Dungeon-QuestCompanion reroutes the quest boss cell to 4421 while 4408 is accepted at
+  // difficulty>=1, so the companion stands in the quest boss room b4402(5,3).map. [character]
+  // companion has no .mob drop profile: side channel only, outside TotalCount/ValidateKill.
+  {32,new List<ushort[]>{new ushort[]{4421,411,25,5}}},
+  // quests 2610/2619 name it at difficulty>=3; native she is a pub APC.
+  // NOTE: dungeon 140's hell APC 5310 is NOT listed here - it is quest-gated
+  // (2610/2619 active at difficulty>=3), see Dungeon-QuestCompanion-FG130 HellApcRunFG211.
   };
  internal static bool DeclaresApc(ushort dungeonId,ushort mapIdx){
   List<ushort[]> rows;

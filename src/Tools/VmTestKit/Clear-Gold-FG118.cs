@@ -7,7 +7,7 @@ class Offline70ClearGoldFG118 {
  internal class Reward {internal ushort Dungeon,Basis;internal byte Difficulty,Rank;internal int Normal,Champion,SuperChampion,Boss,Weighted,Variance;internal uint Reference,GoldBasis,Intermediate,Member,Gold;internal float Combined;}
  static float Store(double v){return BitConverter.ToSingle(BitConverter.GetBytes((float)v),0);}
  internal static Reward Calculate(ushort dungeon,byte difficulty,int normal,int champion,int superChampion,int boss,byte rank,int variance){
-  if(difficulty>3||normal<0||champion<0||superChampion<0||boss<0||normal+champion+superChampion+boss>4096||variance< -15||variance>15)throw new InvalidDataException("Verified clear gold inputs");
+  if(difficulty>4||normal<0||champion<0||superChampion<0||boss<0||normal+champion+superChampion+boss>4096||variance< -15||variance>15)throw new InvalidDataException("Verified clear gold inputs");
   Reward r=new Reward{Dungeon=dungeon,Basis=Offline70ClearExperienceFG116.Basis(dungeon),Difficulty=difficulty,Normal=normal,Champion=champion,SuperChampion=superChampion,Boss=boss,Rank=rank,Variance=variance};
   r.Reference=GoldByLevel[r.Basis];r.GoldBasis=r.Reference*175/1000;
   int index=Offline70ClearExperienceFG116.RankIndex(rank);float rankRate=index<0?0f:Offline70ClearExperienceFG116.RankRates[index];

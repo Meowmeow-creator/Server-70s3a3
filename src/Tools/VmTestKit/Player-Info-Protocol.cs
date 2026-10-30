@@ -1,11 +1,16 @@
 ﻿using System;using System.IO;
 // Native 7FDF10 minimal appearance profile; empty collections and zero optional fields only.
 partial class Offline70RoleProtocol {
+ // The record is name-relative: id (u16), the u32 name length and the name bytes come first, and
+ // job / grow / level follow the name. The captured swordman packet (name "yoyo", 4 bytes) measured
+ // job@10/grow@11/level@12 only because 6+4=10; hardcoding those offsets clobbered any longer name
+ // (the create screen allows up to 29) and the client silently exited on world entry.
  internal static byte[] AppearanceRecord(Offline70Role role){
-  if(role.Id!=1||role.Job!=0||!Offline70MonsterExperience.SupportedLevel(role.Level)||role.Name!="yoyo")throw new InvalidDataException("Only saved Lv1/Lv2 yoyo appearance supported");
-  byte[] record=new byte[89];BitConverter.GetBytes(role.Id).CopyTo(record,0);
-  byte[] name=NameEncoding.GetBytes(role.Name);BitConverter.GetBytes((uint)name.Length).CopyTo(record,2);name.CopyTo(record,6);
-  record[10]=role.Job;record[12]=role.Level;
+  if(role.Id==0||!Offline70RoleCreateJobsFG202.CreatableFG202(role.Job)||!Offline70MonsterExperience.SupportedLevel(role.Level))throw new InvalidDataException("Unverified appearance role profile");
+  byte[] name=NameEncoding.GetBytes(role.Name);if(name.Length<1||name.Length>29)throw new InvalidDataException("Appearance name bounds");
+  byte[] record=new byte[85+name.Length];BitConverter.GetBytes(role.Id).CopyTo(record,0);
+  BitConverter.GetBytes((uint)name.Length).CopyTo(record,2);name.CopyTo(record,6);
+  record[6+name.Length]=role.Job;record[8+name.Length]=role.Level;
   // Scalar widths, empty strings and zero counts are recorded in appearance-native-name-DC.json.
   return record;
  }
@@ -41,7 +46,10 @@ partial class Offline70RoleProtocol {
  // Native 7FCC80 reads active bank, then two byte-counted banks of (byte id, byte level).
  internal static byte[] AdditionRecord(Offline70Role role,bool startingSkills){
   byte[] empty=AdditionRecord(role);if(!startingSkills)return empty;
-  byte[] skills=new byte[]{181,2,182,2,184,1,173,1,179,7,5,1,46,1,48,1,169,1,170,1,174,1};
+  // The two byte-counted banks are the character's own give-skills: m_giveSkillList[0] for this job
+  // (Role-Create-Jobs-FG202), not swordman's row.
+  byte[][] rows=Offline70RoleCreateJobsFG202.CreateSkillsFG202[role.Job];byte[] skills=new byte[rows.Length*2];
+  for(int i=0;i<rows.Length;i++){skills[2*i]=rows[i][0];skills[2*i+1]=rows[i][1];}
   byte[] record=new byte[empty.Length+skills.Length];Array.Copy(empty,0,record,0,108);
   record[107]=0;record[108]=(byte)(skills.Length/2);skills.CopyTo(record,109);
   record[109+skills.Length]=0; // second bank empty

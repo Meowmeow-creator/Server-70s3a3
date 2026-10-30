@@ -21,3 +21,8 @@
 *.pem
 .env
 .env.*
+# 本地安全备份（FG354 教训：备份文件不入库）
+*.bak
+*.backup-*
+*_backup.docx
+/local-run-*.txt

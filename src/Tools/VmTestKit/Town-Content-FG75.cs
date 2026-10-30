@@ -199,5 +199,5 @@ class Offline70TownContentFG75 {
   case 194:return new int[]{992,295,37,62};
  default:return null;}}
  internal static bool Linked(int town,int area,int targetTown,int targetArea){foreach(int[] p in Portals(town,area))if(p[4]==targetTown&&p[5]==targetArea)return true;return false;}
- internal static bool DungeonGate(int town,int area){return town==1&&area==2||town==2&&area==6||town==2&&area==9||town==2&&(area==4||area==7)||town==3&&(area==3||area==4||area==5||area==6)||town==3&&(area==9||area==10)||town==4&&(area==2||area==3)||town==5&&(area==2||area==3)||town==6&&area==2||town==6&&area==3||town==9&&area==1;}
+ internal static bool DungeonGate(int town,int area){return town==1&&area==2||town==2&&area==6||town==2&&area==9||town==2&&(area==4||area==7)||town==3&&(area==3||area==4||area==5||area==6)||town==3&&(area==9||area==10)||town==4&&(area==2||area==3)||town==5&&(area==2||area==3)||town==6&&area==2||town==6&&area==3||town==9&&area==1||town==12&&area==2||town==3&&area==7;}
 }

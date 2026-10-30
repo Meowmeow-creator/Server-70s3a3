@@ -2,13 +2,19 @@ using System;using System.IO;
 // Verified native70 fields and fixed-key fixtures for role1, Lv1 Lorien normal selection.
 // Native packet readers are retained. This does not initialize a dungeon or combat.
 class Offline70DungeonSelection {
- // User-authorized difficulty override for every implemented dungeon profile.
- internal const byte TestMaximumDifficulty=3;
+ // Absolute packet cap for the entry flow and probes. The selection profile no longer advertises
+ // this value: it writes NormalMaximumDifficulty (3) and Offline70HeroUnlockFG358 raises a row to
+ // 4 only after that dungeon's [herosmode required quest] is in the character's completed set.
+ internal const byte TestMaximumDifficulty=4;
  internal static readonly ushort[] Opcodes=new ushort[]{3,26,5,27};
- internal static byte[] Body(ushort opcode){
-  if(opcode==3)return new byte[]{1,1,0,1}; // u8 count, u16 actor, u8 state=selection
+ internal static byte[] Body(ushort opcode){return Body(opcode,1);}
+ // The selection screen's op3 is the same enter list as town/dungeon entry, with state 1:
+ // [u8 count][u16 actor][u8 state=selection]. The role-1 fixture 01 01 00 01 encrypts by
+ // Offline70KeySettings.Crypt to 107e8e05..., so the actor field can be made dynamic the same way.
+ internal static byte[] Body(ushort opcode,ushort actor){
+  if(opcode==3)return new byte[]{1,(byte)actor,(byte)(actor>>8),1}; // u8 count, u16 actor, u8 state=selection
   if(opcode==26)return new byte[]{0}; // local party host seat
-  if(opcode==5)return new byte[]{2,0,1,0,TestMaximumDifficulty,2,0,TestMaximumDifficulty};
+  if(opcode==5)return new byte[]{2,0,1,0,Offline70HeroUnlockFG358.NormalMaximumDifficulty,2,0,Offline70HeroUnlockFG358.NormalMaximumDifficulty};
   if(opcode==27)return new byte[13]; // u32 hell state; 3 flag/count bytes; empty item group count; u32 guide; u8 share
   throw new InvalidDataException("Unverified dungeon selection opcode");
  }
@@ -22,10 +28,13 @@ class Offline70DungeonSelection {
   return Reply(opcode,role,keys,town,3);
  }
  internal static byte[] Reply(ushort opcode,Offline70Role role,byte[] keys,int town,int area){
+  return Reply(opcode,role,keys,town,area,null);
+ }
+ internal static byte[] Reply(ushort opcode,Offline70Role role,byte[] keys,int town,int area,Offline70ProgressionStateFG state){
   Offline70TownProtocol.Validate(role,keys);string cipher;
-  if(opcode==3)cipher="107e8e0553966c9b9ffbc7f26f9b2855";
+  if(opcode==3){byte[] padded=new byte[16];Body(3,role.Id).CopyTo(padded,0);return Offline70RoleProtocol.Packet(0,3,Offline70KeySettings.Crypt(padded,keys,true));}
   else if(opcode==26)cipher="e55bd513598bfde3";
-  else if(opcode==5)return Offline70RoleProtocol.Packet(0,5,Offline70RoleProtocol.BatchCryptFG(Offline70RoleProtocol.Pad(ProfileForArea(town,area)),keys,5,true));
+  else if(opcode==5)return Offline70RoleProtocol.Packet(0,5,Offline70RoleProtocol.BatchCryptFG(Offline70RoleProtocol.Pad(ProfileForArea(town,area,state)),keys,5,true));
   else if(opcode==27)cipher="67dda5765662d5df55ca73c1454fae2f";
   else throw new InvalidDataException("Unverified dungeon selection opcode");
   return Offline70RoleProtocol.Packet(0,opcode,Offline70TownProtocol.Hex(cipher));
@@ -35,17 +44,33 @@ class Offline70DungeonSelection {
  internal static byte[] ProfileForArea(int town,int area){
   if(town==1)return LorienBody();
   if(town==2)return area==9?NorthmyreBody():area==4?PubBody():area==7?HillsideBody():ForestBody();
-  if(town==3)return (area==4||area==6)?GblBody():area==9?FallenBody():area==10?StrangerBody():SkyBody();
+  if(town==3)return (area==4||area==6)?GblBody():area==9?FallenBody():area==10?StrangerBody():area==7?TowersBodyFG211():SkyBody();
   if(town==4)return area==3?AncientBody():Act4Body();
   if(town==5)return StormPassBody();
   if(town==6)return (area==2||area==3)?AntberrBody():Body(5);
   if(town==9)return area==1?LufthafenBody():Body(5);
+  if(town==12)return area==2?ShonanBody():Body(5);
   return Body(5);}
- internal static byte[] ProfileBody(ushort[] ids){using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){w.Write((ushort)ids.Length);foreach(ushort id in ids){w.Write(id);w.Write(TestMaximumDifficulty);}return m.ToArray();}}
+ // FG358: keep every profile at the normal 0..3 ladder, then raise only the dungeons whose
+ // [herosmode required quest] is in the character's completed set. Row shape is [u16 id][u8 diff].
+ internal static byte[] ProfileForArea(int town,int area,Offline70ProgressionStateFG state){
+  byte[] body=ProfileForArea(town,area);
+  if(state==null)return body;
+  int count=BitConverter.ToUInt16(body,0);
+  if(body.Length!=2+count*3)throw new InvalidDataException("Dungeon profile row width");
+  for(int i=0;i<count;i++){
+   int offset=2+i*3;ushort id=BitConverter.ToUInt16(body,offset);
+   if(Offline70HeroUnlockFG358.Unlocked(id,state))body[offset+2]=Offline70HeroUnlockFG358.HeroDifficulty;
+  }
+  return body;
+ }
+ internal static byte[] ProfileBody(ushort[] ids){using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){w.Write((ushort)ids.Length);foreach(ushort id in ids){w.Write(id);w.Write(Offline70HeroUnlockFG358.NormalMaximumDifficulty);}return m.ToArray();}}
  // 格兰之森门 (town2 area6, worldmap/granfloris.wdm) 还带 503/506/514 三行 `[in progress]` 转职修炼场，
  // 同行第 3 列就是开门任务 (503->7824/7834/7873/7884/7894，506->7865，514->7864)；PVF 内容齐全
  // (3 房 / 29-30 个 [monster] 行 / 无 [necessary party] / minLv 20)，证据 local-run/pvf/export/training-rooms.txt。
- internal static byte[] ForestBody(){return ProfileBody(new ushort[]{3,4,5,6,7,8,9,1000,503,506,514});}
+ // 509/510 (quest/deadmoon_summoner1|2.dgn) 是召唤师转职 7844/7845 的专用行；
+ // 512/513 (quest/deadmoon_elemental|witch.dgn) 是元素师/元素爆破师 7842/4065 与魔道学者 7850 的专用行。
+ internal static byte[] ForestBody(){return ProfileBody(new ushort[]{3,4,5,6,7,8,9,1000,503,506,509,510,512,513,514});}
  // 诺斯玛尔 (northmyre, PVF worldmap/northmyre.wdm `[dungeon]` = 50 51 52 53 1506) is served by
  // the HendonMyre(town2) area9 gate: town/hendonmyre.twn area9 = `HendonMyre/Hendon2North.map`
  // with `[dungeon gate]` 7, and that area's `[town movable area]` has the -1/-1 dungeon entrance
@@ -85,9 +110,13 @@ class Offline70DungeonSelection {
  // Evidence and re-derivation: local-run/pvf/r2_gen_gent_lufthafen.py (export/r2-port2).
  internal static byte[] AntberrBody(){return ProfileBody(new ushort[]{80,81,82,83,84,85,88,89});}
  // 月光酒馆 (town2 area4 `HendonMyre/Hendon_Pub.map`, `[dungeon gate]` 8 = worldmap/moonlightpub.wdm)
- // offers only 140 月光酒馆 (dungeon/village/moonlightpub/aganzo.dgn, rooms map/aganzo); the other
- // rows of that worldmap are all `[in progress]` event dungeons (500/505/507/508/511).
- internal static byte[] PubBody(){return ProfileBody(new ushort[]{140,500});}   // 500 = quest/training 转职修炼场 (moonlightpub.wdm `[in progress]`，任务 7829/7830/7837/7868/7869/7876)
+ // offers 140 月光酒馆 (dungeon/village/moonlightpub/aganzo.dgn, rooms map/aganzo) plus the
+ // `[in progress]` quest dungeons of that worldmap: 500 (quest/training.dgn) 漫游/机械 7829/7830/
+ // 7837/7868/7869/7876, 505/508 (quest/training_striker|training_weaponmaster.dgn) 散打 7820 与
+ // 剑魂 7802, 507 (quest/training_asura.dgn) 阿修罗 7814, and 511 (quest/training2.dgn) — the
+ // 月光修炼场 awakening exam all 33 Epicjob chains (achievement_50_epicjob_*) enter, boss room
+ // 15270 = monster 61262 阿尔伯特 ([NPC] 1009), FG382 2026-10-29.
+ internal static byte[] PubBody(){return ProfileBody(new ushort[]{140,500,505,507,508,511});}
  // 格兰之森山麓 (town2 area7 `HendonMyre/D_Hendon2.map`, `[dungeon gate]` 14 = granflorishillside.wdm)
  // = 100 南部溪谷 (dungeon/southerndale/grimseeker.dgn, rooms map/grim).
  internal static byte[] HillsideBody(){return ProfileBody(new ushort[]{100});}
@@ -103,7 +132,16 @@ class Offline70DungeonSelection {
  // 86 列车上的海贼 / 87 夺回西部线 / 92 雾都赫伊斯 / 93 阿登高地 / 1504 幽灵列车. The worldmap rows
  // ask for quest 4039 (92/93) and 6003 (1504), and 1504's .dgn has [required item] 4421 x1 plus
  // [coin limit] 3, which Offline70EntryCostFG185 enforces the same way as 1502/1506.
- internal static byte[] LufthafenBody(){return ProfileBody(new ushort[]{86,87,92,93,1504});}
+  // 亡者峡谷 (death canyon, town3 area7 `HendonMyre/West2Death.map`, `[dungeon gate]` 100 =
+ // worldmap.lst #100 Towers.wdm): the client gate lists 11000/11001/11006/11007/11008/3505;
+ // this build serves the four implemented rows (11008 despair tower and 3505 stay closed).
+ internal static byte[] TowersBodyFG211(){return ProfileBody(new ushort[]{11000,11001,11006,11007});}
+internal static byte[] LufthafenBody(){return ProfileBody(new ushort[]{86,87,92,93,1504,501,502});}
+ // 虚祖首都素喃 (town12 area2, `[dungeon gate]` 16 = Suju.wdm): 黄龙大会 120 /
+ // 蓝龙大会 121. Both are 1x1 `[tournament dungeon]` arenas (map 17100/17101) whose
+ // `[tournament monster]` roster supplies the opponent; FG365 serves one boss row per
+ // arena and entry consumes the `[required item]` 4726/4727.
+ internal static byte[] ShonanBody(){return ProfileBody(new ushort[]{120,121});}
  internal static bool SupportedInTown(int town,ushort id){return SupportedInArea(town,3,id);}
- internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2||(area==2&&(id==1500||id==1501)))||town==2&&(id>=3&&id<=9||id==1000||(area==9&&(id>=50&&id<=53||id==1506))||area==4&&(id==140||id==500)||area==7&&id==100||area==6&&(id==503||id==506||id==514))||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17||id==504)||(area==4||area==6)&&(id>=21&&id<=27||id==90||id==91)||area==9&&(id>=110&&id<=112)||area==10&&(id==60||id==61))||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502))||town==5&&(area==2||area==3)&&(id>=40&&id<=45||id==141||id==3503)||town==6&&(area==2||area==3)&&(id>=80&&id<=85||id==88||id==89)||town==9&&area==1&&(id==86||id==87||id==92||id==93||id==1504);}
+ internal static bool SupportedInArea(int town,int area,ushort id){return town==1&&(id==1||id==2||(area==2&&(id==1500||id==1501)))||town==2&&(id>=3&&id<=9||id==1000||(area==9&&(id>=50&&id<=53||id==1506))||area==4&&(id==140||id==500||id==505||id==507||id==508||id==511)||area==7&&id==100||area==6&&(id==503||id==506||id==509||id==510||id==512||id==513||id==514))||town==3&&((area==3||area==5)&&(id>=11&&id<=15||id==17||id==504)||(area==4||area==6)&&(id>=21&&id<=27||id==90||id==91)||area==9&&(id>=110&&id<=112)||area==10&&(id==60||id==61))||town==4&&(area==2&&id>=31&&id<=37||area==3&&(id>=31&&id<=37||id==1502))||town==5&&(area==2||area==3)&&(id>=40&&id<=45||id==141||id==3503)||town==6&&(area==2||area==3)&&(id>=80&&id<=85||id==88||id==89)||town==9&&area==1&&(id==86||id==87||id==92||id==93||id==1504||id==501||id==502)||town==12&&area==2&&(id==120||id==121)||town==3&&area==7&&(id==11000||id==11001||id==11006||id==11007);}
 }

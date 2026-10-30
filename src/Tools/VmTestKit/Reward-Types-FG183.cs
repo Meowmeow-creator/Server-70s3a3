@@ -1,4 +1,4 @@
-using System;using System.IO;using System.Collections.Generic;
+﻿using System;using System.IO;using System.Collections.Generic;
 // FG183: the four quest reward kinds the engine still refuses, isolated as pure builders + tables.
 // Wire evidence is the original server's CUser::quest_reward (reference/rednf/remake/source/DNFServer/
 // GameServer/Game/CUserOnlyOrig/quest_reward.inc, lines 239-462). It writes the reward-type byte at
@@ -18,8 +18,9 @@ class Offline70RewardTypesFG183 {
  // blocks' [skill] rows equal AutoFG139[1..4] one for one (27,33,37,172,8,25,65,20,94,197 /
  // 35,29,187,8,25,65,20,93,197 / 56,34,181x2,182x2,8,25,65,20,76,197 / 47,55,61,8,25,65,20,197),
  // which is the proof that chr [growtype N] carries grow N-1. Row 0 (swordman) is the only row
- // this engine can serve: Offline70SkillSlots pins the swordman catalog and s.Job/role.Job never
- // leave 0 (recon/job-advancement-report.md §2), so AwakeningSkill(0,grow) is what a grant uses
+ // this engine could serve: Offline70SkillSlots pinned the swordman catalog and s.Job/role.Job never
+ // left 0, so AwakeningSkill(0,grow) was what a grant used. The nine-row AwakeningFG202 now answers
+ // and these six rows sit at job-enum rows 0,1,2,3,4,6 (recon/job-advancement-report.md §2), so AwakeningSkill(0,grow) is what a grant uses
  // and rows 1..5 are the standby tables of the other five character scripts (also re-measured:
  // fighter 72/70/65/66, gunner 66/65/68/69, mage 73/75/84/110, priest 86/87/89/122, thief 56/58
  // - all at level 1, all with an empty [awakening 2] skill row).
@@ -44,7 +45,52 @@ class Offline70RewardTypesFG183 {
  // the first awakening level 0..1 in bits4..6. Zero itself means 'not promoted' and is only
  // legal where a caller explicitly treats zero as unset.
  internal static bool IsGrowByte(byte value){byte first=FirstGrow(value);return first>=1&&first<=5&&SecondGrow(value)<=1;}
- internal static byte AwakeningSkill(byte job,byte grow){if(job>=AwakeningTable.Length||grow<1||grow>4)return 0;return AwakeningTable[job][grow];}
+ // FG204: which (job, first grow) branches the CN70 content actually carries, and what they are called
+ // in Chinese. The economy/progression validators need the first half (a grow byte is only legal for the
+ // job that owns the branch) and the GM console needs both, so the table lives here rather than in the
+ // console file - a pinned-down validator and a permissive GM prompt must never disagree.
+ // Source is data/quest-catalog.xml: the "转职 - X (n/m)" rows with JobChange=true carry the branch in
+ // [grow type] (剑魂806/鬼泣803/狂战士809/阿修罗834、气功师7817/散打7820/街霸7824/柔道家7827、
+ // 漫游枪手7831/枪炮师7834/机械师7837/弹药专家7840、元素师7842/召唤师7845/战斗法师7848/魔道学者7851、
+ // 圣骑士7855/蓝拳圣使7859/驱魔师7862/复仇者7866、女枪手 7870/7873/7876/7879、刺客7882/死灵术士7886、
+ // 男格斗 7889/7892/7895/7898、元素爆破师4065/冰结师4068); the settlement rows of the "觉醒 - X (n/4)"
+ // chains (RewardSecondGrow=1) carry the awakening name at their own [grow type] (剑圣977/弑魂984/
+ // 狱血魔神991/大暗黑天998、百花缭乱917/武神922/毒王912/暴风眼906、枪神933/狂暴者928/机械战神939/大将军945、
+ // 大魔导师951/月之女皇960/贝亚娜斗神970/魔术师5353、天启者5310/神之手5317/龙斗士5324/末日审判者159、
+ // 沾血蔷薇5332/重炮掌控者5336/机械之心5343/战争女神5347、银月5681/灵魂收割者5687、狂虎帝7615/武极7621/
+ // 千手罗汉7631/风林火山7637、魔皇4085/冰冻之心4089).
+ // Row order is the native job enum (local-run/recon/role-create-jobs-report.md §2, same order as
+ // Role-Create-Jobs-FG202.cs InitialStatsFG202). Empty cell = this client build has no such branch: 暗夜使者
+ // and 男魔法师 stop at grow 2 even though their .chr carries growtype 4/5 rows, and no JobChange quest
+ // in the whole catalogue ever grants grow 5, so index 5 is absent by design.
+ internal static readonly string[][] AdvancementNamesFG204=new string[][]{
+  new string[]{"","剑魂","鬼泣","狂战士","阿修罗"},         // 0 swordman 鬼剑士
+  new string[]{"","气功师","散打","街霸","柔道家"},          // 1 fighter 格斗家
+  new string[]{"","漫游枪手","枪炮师","机械师","弹药专家"},    // 2 gunner 神枪手
+  new string[]{"","元素师","召唤师","战斗法师","魔道学者"},    // 3 mage 魔法师
+  new string[]{"","圣骑士","蓝拳圣使","驱魔师","复仇者"},      // 4 priest 圣职者
+  new string[]{"","漫游枪手","枪炮师","机械师","弹药专家"},    // 5 at gunner 女枪手
+  new string[]{"","刺客","死灵术士","",""},               // 6 thief 暗夜使者
+  new string[]{"","气功师","散打","街霸","柔道家"},          // 7 at fighter 男格斗家
+  new string[]{"","元素爆破师","冰结师","",""}};            // 8 at mage 男魔法师
+ internal static readonly string[][] AwakeningNamesFG204=new string[][]{
+  new string[]{"","剑圣","弑魂","狱血魔神","大暗黑天"},       // 0 swordman
+  new string[]{"","百花缭乱","武神","毒王","暴风眼"},         // 1 fighter
+  new string[]{"","枪神","狂暴者","机械战神","大将军"},       // 2 gunner
+  new string[]{"","大魔导师","月之女皇","贝亚娜斗神","魔术师"},  // 3 mage
+  new string[]{"","天启者","神之手","龙斗士","末日审判者"},     // 4 priest
+  new string[]{"","沾血蔷薇","重炮掌控者","机械之心","战争女神"}, // 5 at gunner
+  new string[]{"","银月","灵魂收割者","",""},               // 6 thief
+  new string[]{"","狂虎帝","武极","千手罗汉","风林火山"},      // 7 at fighter
+  new string[]{"","魔皇","冰冻之心","",""}};               // 8 at mage
+ internal static string AdvancementNameFG204(byte job,byte first){return job<AdvancementNamesFG204.Length&&first<AdvancementNamesFG204[job].Length?AdvancementNamesFG204[job][first]:"";}
+ internal static string AwakeningNameFG204(byte job,byte first){return job<AwakeningNamesFG204.Length&&first<AwakeningNamesFG204[job].Length?AwakeningNamesFG204[job][first]:"";}
+ // Grow 0 is the un-promoted base class, which every creatable job has.
+ internal static bool HasAdvancementFG204(byte job,byte first){return first==0||AdvancementNameFG204(job,first).Length!=0;}
+ // Awakening skills are indexed by the native job enum, so the nine-row generated table answers;
+ // AwakeningTable above stays as the hand-measured six-family baseline that
+ // local-run/pvf/gen_role_create_jobs.py guards row for row before it will write.
+ internal static byte AwakeningSkill(byte job,byte grow){if(job>=Offline70RoleCreateJobsFG202.CreatableJobsFG202||grow<1||grow>4)return 0;return Offline70RoleCreateJobsFG202.AwakeningFG202[job][grow];}
  // Level the character scripts attach to every awakening skill row. PVF measured 2026-10-17: all
  // 24 non-empty [awakening 1][awakening skill] rows of the six CN70 character scripts are (id,1);
  // no script grants an awakening skill at another level, and no awakening skill comes from the
@@ -101,4 +147,56 @@ class Offline70RewardTypesFG183 {
  // 3 = king our list advertises) is written as one byte here.
  internal static byte[] HeroUnlockBody(ushort dungeon){if(dungeon==0)throw new InvalidDataException("Hero dungeon bounds");return new byte[]{(byte)1,(byte)0,(byte)dungeon,(byte)(dungeon>>8),(byte)4};}
  internal static byte[] HeroUnlockPacket(ushort dungeon,byte[] keys){return Offline70RoleProtocol.BatchPacketFG(0,5,HeroUnlockBody(dungeon),keys,false);}
+ // notify EXPERT_JOB_INFO. The original sends it from the character-expert-job load
+ // (APSystemOnlyOrig/RegistDispatcher.inc:199 DB_LoadExpertJob -> Inter_LoadExpertJob::dispatch_sig
+ // calls loadData then SendExpertJobInfo), so this is the only packet that tells the client which
+ // 副职业 the character has: the op4 select ACK has no expert byte (Inter_LoadEtc_impl/SendResult.inc)
+ // and op19 only carries the skill list.
+ // OPCODE: the reference server writes put_header(0,0xcd)=205, but DNF70_v50.exe registers opcode
+ // 205 as an empty handler (a bare `ret` at 0x65b9c0, one of 45 opcodes in its ignore set) and parses
+ // this packet at 217 instead (handler 0x47e830). The same +12 drift is documented for other notify
+ // pairs (194->206, 170->182), so low opcodes agree at offset 0 while these high ones do not - never
+ // port a notify number from the reference without an anchor on this client.
+ // Body, matching what 0x47e830 actually reads: byte giveupCount (->[char+0x2cc]), byte expertType
+ // (switch on type-1, table 0x47e9e8: types 1/2/4 -> byte count (->[char+0x2d8] vector) + count*dword
+ // recipe ids; type 3 分解师 -> dword (->[char+0x2d0]) + dword (->[char+2d4])), then it refreshes the
+ // 副职业 UI. Grade and endurance are the 分解机 the original stores per character (CExpertJob.h:247,
+ // 249) and spends through [endurance reduce]; this engine has no disjoint machine (op28 decomposes
+ // directly), so both are reported at the disjointer.exj initial state: grade 0 shipped as +1,
+ // endurance 300. Recipe lists are not modelled, so 附魔师/炼金术师/人偶师 report an empty list.
+ public const ushort ExpertJobInfoOpcode=217;
+ const int DisjointerEnduranceInitial=300;// character/expertjob/disjointer.exj [endurance initial value]
+ internal static byte[] ExpertJobInfoBody(byte expertType){return ExpertJobInfoBody(expertType,DisjointerEnduranceInitial,0);}
+ // Type 3 carries giveup, type, machine grade, endurance, then the expertness exp. The client's
+ // 217 handler reads grade/endurance; the extended-expert cave reads the next dword and stores it
+ // at [char+0x2a4], which is the exp the panel shows as "Lv.n (exp / next)".
+ internal static byte[] ExpertJobInfoBody(byte expertType,int endurance,int expertExp){
+  using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
+   w.Write((byte)0);w.Write(expertType);
+   /* FG380: the grade dword is the disjointer machine tier and the client gates which item levels
+      the machine accepts. Grade 1 is the worn starter machine - that is why equipment above ~level
+      30 was refused for disassembly (2026-10-28 report). disjointer.exj's [disjoint result] table
+      covers grades 0..8, so report a top-tier machine: the single-player server never wears out. */
+   if(expertType==3){w.Write((int)5);w.Write(endurance);w.Write(expertExp);}
+   else if(expertType>=1&&expertType<=4&&expertType!=3)w.Write((byte)0);
+   return m.ToArray();}
+ }
+ internal static byte[] ExpertJobInfoReply(byte expertType,byte[] keys){return ExpertJobInfoReply(expertType,DisjointerEnduranceInitial,0,keys);}
+ internal static byte[] ExpertJobInfoReply(byte expertType,int endurance,int expertExp,byte[] keys){return Offline70RoleProtocol.BatchPacketFG(0,ExpertJobInfoOpcode,ExpertJobInfoBody(expertType,endurance,expertExp),keys,false);}
+ // notify CREATE_DISJOINT_STORE: reference server NOTI 206, this client parses it at 218 (handler
+ // 0x468570: word uniqueId, length-prefixed narrow name, byte vill, byte area, word x, word y,
+ // dword level). The client resolves the owner by uniqueId and creates the machine object; the
+ // display name is the first wide character of the decoded name, so the caller echoes the same
+ // narrow name bytes the client sent.
+ public const ushort DisjointMachineInfoOpcode=218;
+ internal static byte[] DisjointMachineInfoBody(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int level){
+  if(name==null)name=new byte[0];
+  using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
+   w.Write(uniqueId);w.Write(name.Length);w.Write(name);w.Write(vill);w.Write(area);w.Write(x);w.Write(y);w.Write(level);
+   return m.ToArray();}
+ }
+ internal static byte[] DisjointMachineInfoReply(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int level,byte[] keys){
+  /* FG380: placement passes the legacy literal 1; advertise the same top tier the 217 record does,
+     otherwise the client refuses high-level items at this machine. */
+  return Offline70RoleProtocol.BatchPacketFG(0,DisjointMachineInfoOpcode,DisjointMachineInfoBody(uniqueId,name,vill,area,x,y,level<=1?5:level),keys,false);}
 }
