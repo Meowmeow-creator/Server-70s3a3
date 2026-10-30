@@ -128,7 +128,12 @@ partial class Offline70RoleProtocol {
  // cipher shape is enforced here; the ground table lookup below is the real gate (native 0x15).
  internal static byte[] BatchPickupRequestFG(byte[] encrypted,byte[] keys){if(encrypted==null||encrypted.Length!=16)throw new InvalidDataException("Batch pickup size");return BatchCryptFG(encrypted,keys,4,false);}
 }
-class Offline70GroundFG {internal ushort Slot;internal uint ItemId,Quantity;internal string Receipt;}
+// FG401: a player-dropped row carries the instance it came from (durability, reinforcement
+// seed, upgrade, reseal count, seal state, stack ability/expiry) so the pickup can restore the
+// item unchanged instead of minting a fresh one. FromBag marks exactly those rows - a
+// death-table drop leaves the defaults and keeps the plain grant path (which is what stamps
+// durability on fresh equipment), so the two can never be confused.
+class Offline70GroundFG {internal ushort Slot;internal uint ItemId,Quantity;internal string Receipt;internal bool FromBag;internal ushort Durability;internal int EquipmentSeed=-1;internal byte Upgrade;internal byte ResealCount;internal bool Sealed;internal ushort Ability;internal uint ExpiresUnix;}
 class Offline70LootWireFG {
  // Native _MakeNotiPacketDieMonster (ORIG 0x0830b8cc) tail is put_byte(0), then
  // convertAPCRoleType2MonsterRoleType(roleType) != 0 ? m_apcKillCount : -1, then flag34.

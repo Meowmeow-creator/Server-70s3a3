@@ -77,6 +77,11 @@ partial class Offline70DungeonFlowFG {
   if(MazeFG361==null)return null;
   ushort map=MazeMapFG361(X,Y);
   ushort[][] rows;
+  // FG409: at hero difficulty the room the client builds is the cell map's
+  // `[heroes mode map index]` variant (native CBattle_Field::getMap), not the block's pinned
+  // map, so the roster comes from the generated hero table. Quest-only room maps (d52 6514/6515)
+  // carry no hero index and keep their block roster.
+  ushort heroMapFG409;if(map!=0&&Difficulty==Offline70HeroUnlockFG358.HeroDifficulty&&Offline70HeroMapsFG409.Pairs.TryGetValue(map,out heroMapFG409)){ushort[][] heroRowsFG409=Offline70HeroMapsFG409.Roster(heroMapFG409);if(heroRowsFG409!=null)return heroRowsFG409;}
   // A cell without a map specification / grid value is not a room (CanMove already refuses to
   // walk into it). Composing a body there yields an empty roster instead of a "roster for map 0"
   // throw; a non-zero map missing from the table is still a generator bug and stays fatal.

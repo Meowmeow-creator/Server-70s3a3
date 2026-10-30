@@ -14,9 +14,21 @@ class Offline70ObjectDropsFG167 {
  // 内部 / 破坏油桶 / 真假宝箱 destroyed but never counted). The native server resolves the
  // object's [monster]/[item]/[trap] actions at map setup, so the map row is the authority here.
  internal static int Capacity(ushort map,int id){
-  if(catalog==null||map==0||id<=0)return 0;foreach(Offline70ObjectMapFG167 m in catalog.Maps)if(m.Map==map){int count=0;foreach(Offline70ObjectActionFG167 a in m.Actions)if(a.ObjectId==id)count++;return count;}return 0;
+  if(catalog==null||map==0||id<=0)return 0;foreach(Offline70ObjectMapFG167 m in catalog.Maps)if(m.Map==map){int count=0;foreach(Offline70ObjectActionFG167 a in m.Actions)if(a.ObjectId==id)count++;return count;}
+  // FG409: hero-tier rooms are the `[heroes mode map index]` .map (native getMap), whose
+  // `[special passive object]` rows never reached this base catalog.
+  ushort[][] hero=Offline70HeroMapsFG409.ObjectActions(map);if(hero!=null){int count=0;foreach(ushort[] a in hero)if(a[2]==id)count++;return count;}return 0;
  }
- internal static List<Offline70ObjectDropFG167> Plan(ushort dungeon,ushort map,Func<int,int> random){if(catalog==null||random==null)throw new InvalidDataException("Object drop context");List<Offline70ObjectDropFG167> result=new List<Offline70ObjectDropFG167>();Offline70ObjectMapFG167 current=null;foreach(Offline70ObjectMapFG167 m in catalog.Maps)if(m.Map==map){current=m;break;}if(current==null)return result;foreach(Offline70ObjectActionFG167 a in current.Actions){Offline70ObjectPoolFG167 pool=null;foreach(Offline70ObjectPoolFG167 p in catalog.Pools)if(p.Dungeon==dungeon&&p.Group==a.Group){pool=p;break;}if(pool==null)continue;for(int attempt=0;attempt<a.SpecificAttempts;attempt++){uint item=Select(pool.Items,random(10000));if(item==0)continue;if(result.Count>=255)throw new InvalidDataException("Object room reward capacity");result.Add(new Offline70ObjectDropFG167{ObjectIndex=a.ObjectIndex,Item=item});}}return result;}
+ internal static List<Offline70ObjectDropFG167> Plan(ushort dungeon,ushort map,Func<int,int> random){if(catalog==null||random==null)throw new InvalidDataException("Object drop context");List<Offline70ObjectDropFG167> result=new List<Offline70ObjectDropFG167>();Offline70ObjectMapFG167 current=null;foreach(Offline70ObjectMapFG167 m in catalog.Maps)if(m.Map==map){current=m;break;}
+  if(current==null){
+   // FG409: hero map - same native insert_item(action) path, object ordinal included. The
+   // reward pools are still the dungeon's own `[special passive object item]` rows (same
+   // [dungeon] tag), so only the per-room action rows have to come from the hero table.
+   ushort[][] hero=Offline70HeroMapsFG409.ObjectActions(map);
+   if(hero!=null)foreach(ushort[] a in hero){Offline70ObjectPoolFG167 pool=null;foreach(Offline70ObjectPoolFG167 p in catalog.Pools)if(p.Dungeon==dungeon&&p.Group==a[1]){pool=p;break;}if(pool==null)continue;for(int attempt=0;attempt<a[3];attempt++){uint item=Select(pool.Items,random(10000));if(item==0)continue;if(result.Count>=255)throw new InvalidDataException("Object room reward capacity");result.Add(new Offline70ObjectDropFG167{ObjectIndex=(byte)a[0],Item=item});}}
+   return result;
+  }
+  foreach(Offline70ObjectActionFG167 a in current.Actions){Offline70ObjectPoolFG167 pool=null;foreach(Offline70ObjectPoolFG167 p in catalog.Pools)if(p.Dungeon==dungeon&&p.Group==a.Group){pool=p;break;}if(pool==null)continue;for(int attempt=0;attempt<a.SpecificAttempts;attempt++){uint item=Select(pool.Items,random(10000));if(item==0)continue;if(result.Count>=255)throw new InvalidDataException("Object room reward capacity");result.Add(new Offline70ObjectDropFG167{ObjectIndex=a.ObjectIndex,Item=item});}}return result;}
 }
 partial class Offline70BatchServiceFG {
  // Original CN29 consumes a16-byte object-item row after the monster vector.

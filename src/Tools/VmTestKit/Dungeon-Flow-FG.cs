@@ -65,12 +65,20 @@ partial class Offline70DungeonFlowFG {
   if(!Active)throw new InvalidDataException("No active dungeon entry");
   List<ushort[]> ridables=SelectedRidablesFG361();
   byte[] body=new byte[12+2*ridables.Count];
-  BitConverter.GetBytes(DungeonId).CopyTo(body,0);body[2]=Difficulty;body[3]=(byte)MazeIndexFG361;body[4]=BossX;body[5]=BossY;
+  BitConverter.GetBytes(DungeonId).CopyTo(body,0);body[2]=Difficulty;body[3]=(byte)(MazeIndexOverrideFG130>=0?MazeIndexOverrideFG130:MazeIndexFG361);body[4]=BossX;body[5]=BossY;
   body[9]=(byte)ridables.Count;
   for(int i=0;i<ridables.Count;i++){body[10+2*i]=(byte)ridables[i][0];body[11+2*i]=(byte)ridables[i][1];}
   return body;
  }
- internal ushort CurrentMap {get{if(Offline70DungeonFlowFG.TowerRunFG211(DungeonId)&&TowerMapOverrideFG374!=0)return TowerMapOverrideFG374;if(SealDoorOpenFG181&&IsSealDoor(X,Y))return SealDoorMapIdx;return DungeonId==1?Maps[Y]:DungeonId==2?Offline70DeepLorienFG72.Map(X,Y):MapFG130(X,Y);}}
+ // FG409: the native server swaps the room to its `[heroes mode map index]` variant itself.
+ // CBattle_Field::getMap (rednf BattleMonsterDepsC2/getMap.inc, ORIG 0x08300ed4) rewrites
+ // GetCurrentMapInfo()->m_mapIndex to CMap::m_b4 when get_dungeon_diff()==4, before ConsistMap()
+ // builds the roster and before MakePacket(0x1d) tells the client which .map to load. Only the
+ // seven [herosmode enable] dungeons can reach difficulty 4 (Hero-Unlock-FG358), and the table
+ // only knows their room maps, so every other tier/dungeon stays on BaseMapFG409 unchanged.
+ ushort HeroMapFG409(ushort map){return Difficulty==Offline70HeroUnlockFG358.HeroDifficulty?Offline70HeroMapsFG409.Resolve(map):map;}
+ internal ushort BaseMapFG409 {get{if(Offline70DungeonFlowFG.TowerRunFG211(DungeonId)&&TowerMapOverrideFG374!=0)return TowerMapOverrideFG374;if(SealDoorOpenFG181&&IsSealDoor(X,Y))return SealDoorMapIdx;return DungeonId==1?Maps[Y]:DungeonId==2?Offline70DeepLorienFG72.Map(X,Y):MapFG130(X,Y);}}
+ internal ushort CurrentMap {get{return HeroMapFG409(BaseMapFG409);}}
  // FG374: the CN70 client builds its room-record grid from the dungeon's own [maze info] blocks.
  // A tower .dgn has none, so the ordinary-room path only knows the 2-cell start/boss fallback and
  // its strict cell lookup dies in the secure-CRT funnel on (0,2) (live 2026-10-28 21:37:44 /

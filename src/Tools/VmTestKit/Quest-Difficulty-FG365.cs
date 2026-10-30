@@ -19,4 +19,12 @@ internal static class Offline70QuestRulesFG365 {
  // [monster reward item]/[enemy reward item] rows use an exact difficulty column where -1
  // means "all difficulties". In relaxed mode every difficulty matches that column.
  internal static bool RowMatches(int rowDifficulty,int actual){if(rowDifficulty< -1)return false;return rowDifficulty==-1||!StrictDifficulty||rowDifficulty==actual;}
+ // FG400: [condition under clear] sub type 5 is the "form an N-person party" row ([dungeon,
+ // minDifficulty, partySize]; native UserQuest/check_quest_subtype_condition.inc case 5 requires
+ // m_authenData.m_field10 >= at2). This service is single-player and its op49 clear evidence always
+ // carries one member, so a 2+ row could never be met: title quest 15 索西雅的灾星 (the moonlight-pub
+ // chain's last ring) and 30 already-supported 远古/[魔王] rows asking for two were permanently
+ // blocked. By default the solo clear satisfies the party column; DNF70_QUEST_PARTY_STRICT=1
+ // restores the literal comparison for evidence runs.
+ internal static readonly bool StrictParty=Environment.GetEnvironmentVariable("DNF70_QUEST_PARTY_STRICT")=="1";
 }

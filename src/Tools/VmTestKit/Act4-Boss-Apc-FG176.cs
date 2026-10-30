@@ -74,7 +74,10 @@ partial class Offline70DungeonFlowFG {
   // servers fills them with AI characters drawn by appearance point (see Tower-ApFill-FG363.cs).
   // They are roleType-5 side-channel actors, exactly like a map's declared [ai character] rows.
   foreach(ushort[] row in TowerApRowsFG363())result.Add(row);
-   if(HellApcRunFG211&&CurrentMap==MapFG130(BossX,BossY)&&!ApcDeclaredByQuestMazeFG361(HellApcIdFG211))result.Add(new ushort[]{CurrentMap,HellApcIdFG211,HellApcLevelFG211,(ushort)8});
+   // FG409: compare the pre-swap cell map - the hero tier rewrites CurrentMap to the room's
+   // `[heroes mode map index]` variant long before this branch (native getMap), and the hell
+   // boss belongs to the boss *cell* either way.
+   if(HellApcRunFG211&&BaseMapFG409==MapFG130(BossX,BossY)&&!ApcDeclaredByQuestMazeFG361(HellApcIdFG211))result.Add(new ushort[]{CurrentMap,HellApcIdFG211,HellApcLevelFG211,(ushort)8});
   // FG361 quest-maze rooms declare their own enemy [ai character] rows (generated
   // Offline70QuestMazeFG361.Apcs) plus the d88 [ridable] walkers; same side channel, same
   // no-drop rule, and ApcIdAtUid still credits [hunt enemy] rows that name the APC.

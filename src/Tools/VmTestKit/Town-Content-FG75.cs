@@ -9,10 +9,13 @@ class Offline70TownContentFG75 {
  // local-run/pvf/r2_gen_gent_lufthafen.py (town-evidence section).
  internal static bool TownSupported(int town){return town>=1&&town<=6||town==9||town==12;}
  internal static int SeriaArea(int town){if(!TownSupported(town))throw new InvalidDataException("Unsupported town region");
-  // Area the role wakes up in (the shared Seria room map; the NPC trio 2/32/22 marks it in
-  // every town). Town 5 (StormPass, 万年雪山): area 1 = StormPass/Gate_Storm.map; area 0 is
-  // the town square whose board does not contain the login point (474,234).
-  return town==1?1:town==2?5:town==3?2:town==5?1:town==6?4:town==9?2:town==12?3:0;}
+  // Area the role wakes up in: the town's own `[gate] 474 234` area, i.e. the Seria room map
+  // (the NPC trio 2/22/32 marks it in every town). Town 5 (StormPass, 万年雪山): area 1 =
+  // StormPass/Gate_Storm.map; area 0 is the town square whose board does not contain the login
+  // point (474,234). Town 4 (alfhlyra, 阿法利亚) was missing from this chain until 2026-10-30 and
+  // fell through to 0, so the role woke at the camp (Npc 23/24/25/26/44) standing at 474,234 in
+  // town coordinates instead of inside its Gate_Alfh room (area 1, Npc 2/22/32, door to area 0).
+  return town==1?1:town==2?5:town==3?2:town==4?1:town==5?1:town==6?4:town==9?2:town==12?3:0;}
  internal static bool Exists(int town,int area){switch(town*16+area){
   case 16:return true;
   case 17:return true;

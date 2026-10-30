@@ -31,6 +31,10 @@ rsp=`local-run/driver/fg381-all.rsp`）；FG215 回归 ALL PASS；FG352 driver �
   （老旧的分解机），客户端按这个值设"可分解装备等级"上限 → 30 级以上本地就拒。
 - 修复：`Reward-Types-FG183.cs` 两处 grade 提到 5（完美的分解机；disjointer.exj
   [disjoint result] 覆盖 grade 0..8）。
+- **2026-10-30 已被 FG406 取代**（`docs/FIX-2026-10-30-machine-tier-FG406.md`）：写死 5 会让
+  Lv.1 的分解师摆出 Lv.5 的机器。217 的 dword 改回原版语义（`m_enchantCount + 1`，即副职业
+  等级），218 的 dword 更正为手续费。若"高等级装备不能分解"复现，那它来自客户端本地闸，
+  不是这个字段（客户端全镜像里 `[char+0x2d0]` 的读取点没有一个落在物品判定链上）。
 
 ## 4. 不能调品级
 - 调品级=op84（Dispatcher_ModItemAttr，品级调整箱分支）：rednf 直接

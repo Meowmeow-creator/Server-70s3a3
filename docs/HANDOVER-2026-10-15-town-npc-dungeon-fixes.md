@@ -115,7 +115,12 @@ cd D:\70S3A3\local-run\driver
 Town4Check.exe
 ```
 
-期望：一次性存档副本上 SaveTown(4) 往返 + `SeriaArea(4)==0` PASS
+期望：一次性存档副本上 SaveTown(4) 往返 + `SeriaArea(4)==1` PASS
+
+> 更正（2026-10-30，FG399）：本节当年写的 `SeriaArea(4)==0` 是错的。alfhlyra.twn 的
+> `[gate] 474 234` 在第 1 区（Alfhlyra/Gate_Alfh.map，NPC 2/22/32 赛丽亚房），第 0 区是营地
+> （NPC 23/24/25/26/44）。钉成 0 导致阿法利亚登录落在营地而不是赛丽亚房间；现司机断言已改为 `==1`，
+> 详见 `docs/FIX-2026-10-30-town4-seria-room-FG399.md`。
 
 ### 3.5 仓库检查与构建
 

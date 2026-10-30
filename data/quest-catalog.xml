@@ -797,8 +797,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>reward:[title]</Reason>
+      <Supported>true</Supported>
+      <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>250</GoldMultiple>
@@ -825,6 +825,7 @@
         </Offline70QuestIdsFG>
       </Prerequisites>
       <CanAbandon>true</CanAbandon>
+      <TitleRewardFG157>true</TitleRewardFG157>
     </Offline70QuestDefinitionFG>
     <Offline70QuestDefinitionFG>
       <Id>16</Id>
@@ -93804,8 +93805,8 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[mail time];extra:[mail title];extra:[mail contents]</Reason>
+      <Supported>true</Supported>
+      <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>300</GoldMultiple>
@@ -140863,8 +140864,9 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[delete npc index];extra:[target character]</Reason>
+      <JobMask>247</JobMask>
+      <Supported>true</Supported>
+      <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>150</GoldMultiple>
@@ -141031,8 +141033,9 @@
       <MaxLevel>99</MaxLevel>
       <Job>[all]</Job>
       <GrowType>-1</GrowType>
-      <Supported>false</Supported>
-      <Reason>extra:[delete npc index];extra:[target character]</Reason>
+      <JobMask>264</JobMask>
+      <Supported>true</Supported>
+      <Reason />
       <Repeatable>false</Repeatable>
       <Relation>0</Relation>
       <GoldMultiple>150</GoldMultiple>
@@ -171884,56 +171887,63 @@
       </Prerequisites>
       <CanAbandon>true</CanAbandon>
     </Offline70QuestDefinitionFG>
-    <Offline70QuestDefinitionFG>
-      <Id>4044</Id>
-      <Name>范·弗拉丁的自白书</Name>
-      <Path>n_quest/lufthafen/haze/epic_67_haze_16.qst</Path>
-      <Grade>[epic]</Grade>
-      <Type>[seeking]</Type>
-      <SubType>-1</SubType>
-      <Npc>59</Npc>
-      <CompleteNpc>58</CompleteNpc>
-      <MinLevel>67</MinLevel>
-      <MaxLevel>99</MaxLevel>
-      <Job>[all]</Job>
-      <GrowType>-1</GrowType>
-      <Supported>true</Supported>
-      <Reason />
-      <Repeatable>false</Repeatable>
-      <Relation>0</Relation>
-      <GoldMultiple>300</GoldMultiple>
-      <Difficulty>Z</Difficulty>
-      <IgnoreRewardLevel>false</IgnoreRewardLevel>
-      <Condition>
-        <int>4724</int>
-        <int>1</int>
-        <int>4701</int>
-        <int>1</int>
-      </Condition>
-      <Rewards>
-        <int>0</int>
-        <int>1</int>
-      </Rewards>
-      <Selection />
-      <Collisions />
-      <MonsterDrops>
-        <int>61266</int>
+    <Offline70QuestDefinitionFG>
+      <Id>4044</Id>
+      <Name>范·弗拉丁的自白书</Name>
+      <Path>n_quest/lufthafen/haze/epic_67_haze_16.qst</Path>
+      <Grade>[epic]</Grade>
+      <Type>[seeking]</Type>
+      <SubType>-1</SubType>
+      <Npc>59</Npc>
+      <CompleteNpc>58</CompleteNpc>
+      <MinLevel>67</MinLevel>
+      <MaxLevel>99</MaxLevel>
+      <Job>[all]</Job>
+      <GrowType>-1</GrowType>
+      <Supported>true</Supported>
+      <Reason />
+      <Repeatable>false</Repeatable>
+      <Relation>0</Relation>
+      <GoldMultiple>300</GoldMultiple>
+      <Difficulty>Z</Difficulty>
+      <IgnoreRewardLevel>false</IgnoreRewardLevel>
+      <Condition>
+        <int>4724</int>
+        <int>1</int>
+        <int>4701</int>
+        <int>1</int>
+      </Condition>
+      <Rewards>
+        <int>0</int>
+        <int>1</int>
+      </Rewards>
+      <Selection />
+      <Collisions />
+      <MonsterDrops>
+        <int>61266</int>
+        <int>92</int>
+        <int>-1</int>
+        <int>4701</int>
+        <int>1</int>
+        <int>100</int>
+        <int>1</int>
+      </MonsterDrops>
+            <ClearDrops>
         <int>92</int>
         <int>-1</int>
         <int>4701</int>
         <int>1</int>
         <int>100</int>
         <int>1</int>
-      </MonsterDrops>
-      <ClearDrops />
-      <Prerequisites>
-        <Offline70QuestIdsFG>
-          <Ids>
-            <unsignedShort>4043</unsignedShort>
-          </Ids>
-        </Offline70QuestIdsFG>
-      </Prerequisites>
-      <CanAbandon>true</CanAbandon>
+      </ClearDrops>
+      <Prerequisites>
+        <Offline70QuestIdsFG>
+          <Ids>
+            <unsignedShort>4043</unsignedShort>
+          </Ids>
+        </Offline70QuestIdsFG>
+      </Prerequisites>
+      <CanAbandon>true</CanAbandon>
     </Offline70QuestDefinitionFG>
     <Offline70QuestDefinitionFG>
       <Id>4049</Id>

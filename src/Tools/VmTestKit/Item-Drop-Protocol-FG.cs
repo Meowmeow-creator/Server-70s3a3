@@ -1,15 +1,39 @@
 ﻿using System;using System.IO;
 class Offline70DiscardRequestFG {internal ushort X,Y,Slot;internal byte List;internal uint Quantity;}
 class Offline70DiscardProtocolFG {
- internal static Offline70DiscardRequestFG Parse(byte[] cipher,byte[] keys){if(cipher==null||cipher.Length!=16)throw new InvalidDataException("Drop50 cipher bounds");byte[] b=Offline70FlowCipherFG.Crypt(cipher,keys,8,false);/* Live captures 2026-10-30 04:36/04:37 (slot 25 equipment, slot 136 material): after {X u16, Y u16, list u8, slot u16, qty u32} the client sets byte 11 to 1 - the same confirm flag the op18 delete carries (FG367). Demanding zeros here rejected every dungeon discard the client ever sent. */if(b[11]!=0&&b[11]!=1)throw new InvalidDataException("Drop50 confirm flag");for(int i=12;i<16;i++)if(b[i]!=0)throw new InvalidDataException("Drop50 reserved or padding");Offline70DiscardRequestFG r=new Offline70DiscardRequestFG{X=BitConverter.ToUInt16(b,0),Y=BitConverter.ToUInt16(b,2),List=b[4],Slot=BitConverter.ToUInt16(b,5),Quantity=BitConverter.ToUInt32(b,7)};if(r.List!=0||r.Quantity==0||r.Quantity>1000000||r.X>32767||r.Y>32767)throw new InvalidDataException("Drop50 request bounds");return r;}
+ internal static Offline70DiscardRequestFG Parse(byte[] cipher,byte[] keys){if(cipher==null||cipher.Length!=16)throw new InvalidDataException("Drop50 cipher bounds");byte[] b=Offline70FlowCipherFG.Crypt(cipher,keys,8,false);
+  // FG400: byte 11 is the client's confirm flag, live-captured 2026-10-30. Whole-stack drags
+  // send 0 (slot 123 x7 14:19:19, slot 130 item 3303 14:21:11), while every flow that raises
+  // the discard dialog sends 1 (equipment slot 25 04:36, purple material slot 136 04:37,
+  // "drop 1 of a 9 stack" slot 106 14:18:48 - that last one is in the 14:18 REJECTED line).
+  // Demanding 0 here refused those requests before the ownership/kind checks ever ran and the
+  // client kept its locally predicted floor item, i.e. a silent "cannot discard".
+  if(b[11]>1)throw new InvalidDataException("Drop50 confirm flag="+b[11]);
+  for(int i=12;i<16;i++)if(b[i]!=0)throw new InvalidDataException("Drop50 reserved or padding");
+  Offline70DiscardRequestFG r=new Offline70DiscardRequestFG{X=BitConverter.ToUInt16(b,0),Y=BitConverter.ToUInt16(b,2),List=b[4],Slot=BitConverter.ToUInt16(b,5),Quantity=BitConverter.ToUInt32(b,7)};
+  // FG407: the avatar bag is a different item space (list 1, see Offline70Economy.Position), so
+  // byte 4 is no longer pinned to 0 here - the handler checks kind against space. Any space a
+  // forged frame names is bounded to the same 0..7 the economy model uses, and the rejection
+  // message keeps the value so a wrong guess is visible in the log instead of silent.
+  if(r.List>7||r.Quantity==0||r.Quantity>1000000||r.X>32767||r.Y>32767)throw new InvalidDataException("Drop50 request bounds list="+r.List);
+  return r;}
  internal static byte[] Reply(Offline70DiscardRequestFG r,bool success,byte[] keys){byte[] b=success?new byte[8]:new byte[]{0,0x13};if(success){b[0]=1;b[1]=r.List;BitConverter.GetBytes(r.Slot).CopyTo(b,2);BitConverter.GetBytes(r.Quantity).CopyTo(b,4);}return Offline70RoleProtocol.BatchPacketFG(1,50,b,keys,false);}
- // Discard ground notify (op40): uid, X, Y, then ONE item row in the exact death-row
- // shape Offline70LootWireFG.Death writes (slot, itemId, qty, 2+1+2+4+6 zeros, mapIndex),
- // then the m_count==0 flag byte. The CN70 client demonstrably parses that row every kill
- // drop; the native TW order (attr/count/endurance/fieldd/amp/inven-4B) overflowed its
- // op40 reader instead - the client spammed OVERFLOW_INFO (op232 body {opcode 40,0..}) at
- // ~500/s and froze (2026-10-30 04:57, live capture + decrypted op232 payloads).
- internal static byte[] Ground(Offline70DiscardRequestFG r,Offline70GroundFG d,ushort uid,ushort mapIndex){byte[] b=new byte[34];BitConverter.GetBytes(uid).CopyTo(b,0);BitConverter.GetBytes(r.X).CopyTo(b,2);BitConverter.GetBytes(r.Y).CopyTo(b,4);BitConverter.GetBytes(d.Slot).CopyTo(b,6);BitConverter.GetBytes(d.ItemId).CopyTo(b,8);BitConverter.GetBytes(d.Quantity).CopyTo(b,12);BitConverter.GetBytes(mapIndex).CopyTo(b,31);b[33]=1;return b;}
+ // Pre-FG395 discard ground row (36 bytes). Once FG400 let the op50 parse through again this
+ // path is live and the client does consume it: live 2026-10-30 14:19/14:21 the player pressed
+ // X on discarded stacks and the op46 requests carried exactly the ground slots this builder
+ // handed out (2003/2004/2005 -> PICKUP_COMMITTED), so the row renders. Do not "improve" the
+ // shape without a fresh live capture.
+ internal static byte[] Ground(Offline70DiscardRequestFG r,Offline70GroundFG d){byte[] b=new byte[36];BitConverter.GetBytes((ushort)1).CopyTo(b,0);BitConverter.GetBytes(r.X).CopyTo(b,2);BitConverter.GetBytes(r.Y).CopyTo(b,4);BitConverter.GetBytes(d.Slot).CopyTo(b,6);BitConverter.GetBytes(d.ItemId).CopyTo(b,8);BitConverter.GetBytes(d.Quantity).CopyTo(b,13);b[35]=1;return b;}
+ // FG396 ground-row probe layouts for the CN70 op40 parser. The envelope is proven (the
+ // client decrypts and parses it - layout 1 makes it spam OVERFLOW_INFO op232 body
+ // {opcode 40,0..} at ~500/s), only the row shape is unknown. Layout 1 is the known
+ // freeze trigger used to capture the client parser via a runtime stack dump.
+ internal static byte[] ProbeRowFG396(int layout,ushort uid,ushort mapIndex){
+  ushort slot=2000;uint item=3221;byte[] b;
+  if(layout==1){b=new byte[34];BitConverter.GetBytes(uid).CopyTo(b,0);BitConverter.GetBytes((ushort)400).CopyTo(b,2);BitConverter.GetBytes((ushort)300).CopyTo(b,4);BitConverter.GetBytes(slot).CopyTo(b,6);BitConverter.GetBytes(item).CopyTo(b,8);BitConverter.GetBytes((uint)1).CopyTo(b,12);BitConverter.GetBytes(mapIndex).CopyTo(b,31);b[33]=1;return b;}
+  if(layout==2){b=new byte[64];BitConverter.GetBytes(uid).CopyTo(b,0);BitConverter.GetBytes((ushort)400).CopyTo(b,2);BitConverter.GetBytes((ushort)300).CopyTo(b,4);BitConverter.GetBytes(slot).CopyTo(b,6);BitConverter.GetBytes(item).CopyTo(b,8);BitConverter.GetBytes((ushort)1).CopyTo(b,12);BitConverter.GetBytes(slot).CopyTo(b,14);BitConverter.GetBytes(item).CopyTo(b,16);BitConverter.GetBytes((uint)1).CopyTo(b,20);BitConverter.GetBytes(mapIndex).CopyTo(b,40);b[41]=1;return b;}
+  if(layout==3){b=new byte[64];BitConverter.GetBytes(uid).CopyTo(b,0);BitConverter.GetBytes((ushort)400).CopyTo(b,2);BitConverter.GetBytes((ushort)300).CopyTo(b,4);BitConverter.GetBytes((ushort)1).CopyTo(b,6);BitConverter.GetBytes(slot).CopyTo(b,8);BitConverter.GetBytes(item).CopyTo(b,10);b[13]=0;BitConverter.GetBytes((uint)1).CopyTo(b,14);BitConverter.GetBytes(mapIndex).CopyTo(b,40);b[63]=1;return b;}
+  throw new InvalidDataException("Ground probe layout");}
 
 }
 
@@ -23,7 +47,9 @@ class Offline70DeleteProtocolFG {
   // client also deletes out of the pet window, which it tags with item space 7 -- body
   // {07 01 | reason 1, slot 140, item 2747175, qty 1 | checksum 56 CC 1E 00, confirm 0}.
   // Demanding list 0 here rejected every pet-window delete before DeleteTown could look at it.
-  if(count==0||count>32||(b[0]!=0&&b[0]!=7)||length>b.Length||b.Length!=(length+15)/16*16)throw new InvalidDataException("Delete18 list/count bounds list="+b[0]+" count="+count+" bytes="+b.Length);
+  // FG407 adds item space 1 (the avatar bag, Offline70Economy.Position kind 3 list 1 slots 0..103);
+  // everything else stays refused so a forged frame cannot reach the worn/cargo spaces.
+  if(count==0||count>32||(b[0]!=0&&b[0]!=1&&b[0]!=7)||length>b.Length||b.Length!=(length+15)/16*16)throw new InvalidDataException("Delete18 list/count bounds list="+b[0]+" count="+count+" bytes="+b.Length);
   // Live capture 2026-10-26 22:49 (triage #3): the wire tail after the rows is a 4-byte
   // checksum plus a confirm byte the client sets to 1 (native MSG_DELETE_ITEM +0x4bf tail);
   // demanding 0 here rejected every town delete. reason 2/3/4 are the client's cube-statistic

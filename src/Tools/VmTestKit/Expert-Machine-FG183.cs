@@ -26,8 +26,10 @@ partial class Offline70BatchServiceFG {
    return true; // movement is client-side; there is no reply for this command
   }
   // The quick-button placement path sends opcode 250 (builder 0xDB4D30) with
-  // {string len, string, int, short x, short y}; the client then sits in its loading
+  // {string len, string, int fee, short x, short y}; the client then sits in its loading
   // state until the matching ACK arrives. Answer it before the op233 name-dialog path.
+  // The int is the stall fee the player typed: builder 0xdb4e46 writes machine+0x20c, which is the
+  // dword the 218 record carried back. Echo it instead of inventing one.
   if(op==250){
    byte[] req;
    try{req=Offline70RoleProtocol.BatchCryptFG(body,keys,op%14,false);}
@@ -35,15 +37,18 @@ partial class Offline70BatchServiceFG {
    if(req.Length<13){Note("EXPERT_MACHINE_REJECTED op250 short body="+req.Length);return true;}
    int nameLen=BitConverter.ToInt32(req,0);
    if(nameLen<0||12+nameLen>req.Length){Note("EXPERT_MACHINE_REJECTED op250 nameLen="+nameLen+" body="+req.Length);return true;}
+   int fee=BitConverter.ToInt32(req,4+nameLen);
    int x=BitConverter.ToUInt16(req,8+nameLen),y=BitConverter.ToUInt16(req,10+nameLen);
-   if(assets==null||assets.ExpertJobTypeFG183!=3){
+   if(assets==null||assets.ExpertJobTypeFG183!=Offline70ExpertLevelFG406.DisjointerType){
     Note("EXPERT_MACHINE_REJECTED role="+(role==null?0:role.Id)+" expert="+(assets==null?0:assets.ExpertJobTypeFG183)+" reason=not disjointer");
     Send("expert-machine-ack250",Offline70RoleProtocol.BatchPacketFG(1,250,new byte[]{0},keys,false));
     return true;
    }
-   SendMachineInfo(new byte[]{0x41},x,y);
+   // [limit disjoint gold] 10000 is the reference's range check on the same field.
+   if(fee<0||fee>10000){Note("EXPERT_MACHINE_REJECTED op250 fee="+fee);fee=1;}
+   SendMachineInfo(new byte[]{0x41},x,y,fee);
    Send("expert-machine-ack250",Offline70RoleProtocol.BatchPacketFG(1,250,new byte[]{1},keys,false));
-   Note("EXPERT_MACHINE_PLACED role="+role.Id+" kind="+(nameLen>0?req[4]:0)+" at="+town+","+area+" "+x+","+y+" endurance="+expertEndurance);
+   Note("EXPERT_MACHINE_PLACED role="+role.Id+" kind="+(nameLen>0?req[4]:0)+" at="+town+","+area+" "+x+","+y+" fee="+fee+" tier="+MachineTierFG406(assets)+" endurance="+expertEndurance);
    return true;
   }
   // Machine decomposition: reference CMD 239 REQUEST_DISJOINT_ITEM, this client 251
@@ -79,7 +84,12 @@ partial class Offline70BatchServiceFG {
     if(use>expertEndurance)use=expertEndurance;
     expertEndurance-=use;
     // Expertness exp comes from [gain exp] 0 1 in disjointer.exj (0..1 per decomposition).
-    // Persist it in the economy state so the 217 record can show it after a relog.
+    // Persist it in the economy state and push it to the client. The stock 217 handler only reads
+    // the tier/endurance dwords (0x47e941), so the exp reaches the UI through the character
+    // basic-info record (op2 subtype 1) - exactly what the reference does on every exp change:
+    // CExpertJob::IncreaseExpertJobExp sends put_header(0,2)+make_basic_info, and make_basic_info
+    // carries put_byte(expertType)+put_int(expertExp) (make_basic_info.inc:249-250). Sending only
+    // the 217 refresh left the panel's exp at its login value.
     int gained=1+Offline70DisjointFG92.Draw(2); // [gain exp] 0 1 base; reference also adds the item's additional exp, not modelled yet
     bool expDuplicate;
     assets=Offline70Economy.Apply(economyPath,session+"-expert-exp-"+sequence,"expert-exp",gained+":"+expertEndurance,delegate(Offline70EconomyState s){if(gained>0)s.ExpertJobExpFG183=Math.Min(2054,s.ExpertJobExpFG183+gained);s.ExpertJobEnduranceFG183=expertEndurance;},out expDuplicate);
@@ -93,39 +103,43 @@ partial class Offline70BatchServiceFG {
    catch(InvalidDataException e){result=Offline70DisjointFG92.Body(null,false,null,null,0x13);collection=null;Note("EXPERT_MACHINE_DISJOINT_REJECTED code=19 "+e.Message);}
    disjointRequestsFG92.Add(sequence,fingerprint);
    Send(result[0]==1?"expert-machine-disjoint":"expert-machine-disjoint-failed",Offline70RoleProtocol.BatchPacketFG(1,251,result,keys,false));
-   if(result[0]==1){Sync();CollectionChanged(collection);SendExpertJobInfoRefreshFG183();}
+   if(result[0]==1){Sync();CollectionChanged(collection);Appearance();SendExpertJobInfoRefreshFG183();}
    return true;
   }
   // Norton repair: reference CMD 240 REPAIR_DISJOINT_MACHINE, this client 252 (empty body).
   // Reference OnRepairDisjointMachine replies on the request opcode with
-  // {byte 1, int money, int endurance}; disjointer.exj [endurance repair cost] grade 1 is 10000/300.
+  // {byte 1, int money, int endurance}. The price is
+  // GetDisjointMachineRepairCost(grade + 1, endurance) = rowCost - rowCost*endurance/rowFull, so a
+  // full machine is free and the row (and the repaired value) follows the machine grade.
   if(op==252){
-   if(assets==null||assets.ExpertJobTypeFG183!=3){
+   if(assets==null||assets.ExpertJobTypeFG183!=Offline70ExpertLevelFG406.DisjointerType){
     Note("EXPERT_MACHINE_REPAIR_REJECTED reason=not disjointer");
     Send("expert-machine-repair-failed",Offline70RoleProtocol.BatchPacketFG(1,252,new byte[]{0,0x13},keys,false));
     return true;
    }
-   int cost=10000;
+   int repairGrade=MachineGradeFG406(assets);
+   int repairFull=Offline70ExpertLevelFG406.RepairFull(repairGrade);
+   int cost=Offline70ExpertLevelFG406.RepairPrice(repairGrade,expertEndurance);
    if(assets.Gold<(uint)cost){
     Note("EXPERT_MACHINE_REPAIR_REJECTED gold="+assets.Gold+" cost="+cost);
     Send("expert-machine-repair-failed",Offline70RoleProtocol.BatchPacketFG(1,252,new byte[]{0,0x13},keys,false));
     return true;
    }
    bool repairDuplicate;
-   assets=Offline70Economy.Apply(economyPath,session+"-expert-repair-"+sequence,"expert-repair",cost+":"+expertEndurance,delegate(Offline70EconomyState s){if(s.Gold<(uint)cost)throw new InvalidDataException("Repair wallet");s.Gold-=(uint)cost;s.ExpertJobEnduranceFG183=300;},out repairDuplicate);
-   expertEndurance=300;
+   assets=Offline70Economy.Apply(economyPath,session+"-expert-repair-"+sequence,"expert-repair",cost+":"+expertEndurance+":"+repairFull,delegate(Offline70EconomyState s){if(s.Gold<(uint)cost)throw new InvalidDataException("Repair wallet");s.Gold-=(uint)cost;s.ExpertJobEnduranceFG183=repairFull;},out repairDuplicate);
+   expertEndurance=repairFull;
    byte[] repairBody=new byte[9];
    repairBody[0]=1;BitConverter.GetBytes((int)assets.Gold).CopyTo(repairBody,1);BitConverter.GetBytes(expertEndurance).CopyTo(repairBody,5);
    Send("expert-machine-repaired",Offline70RoleProtocol.BatchPacketFG(1,252,repairBody,keys,false));
    SendExpertJobInfoRefreshFG183();
-   Note("EXPERT_MACHINE_REPAIRED role="+role.Id+" cost="+cost+" money="+assets.Gold+" endurance="+expertEndurance);
+   Note("EXPERT_MACHINE_REPAIRED role="+role.Id+" grade="+repairGrade+" cost="+cost+" money="+assets.Gold+" endurance="+expertEndurance);
    return true;
   }
   if(op!=233)return false;
   byte[] req233;
   try{req233=Offline70RoleProtocol.BatchCryptFG(body,keys,op%14,false);}
   catch(InvalidDataException e){Note("EXPERT_MACHINE_REJECTED decrypt "+e.Message);return true;}
-  if(assets==null||assets.ExpertJobTypeFG183!=3){
+  if(assets==null||assets.ExpertJobTypeFG183!=Offline70ExpertLevelFG406.DisjointerType){
    Note("EXPERT_MACHINE_REJECTED role="+(role==null?0:role.Id)+" expert="+(assets==null?0:assets.ExpertJobTypeFG183)+" reason=not disjointer");
    Send("expert-machine-ack",Offline70RoleProtocol.BatchPacketFG(1,233,new byte[]{0},keys,false));
    return true;
@@ -136,21 +150,30 @@ partial class Offline70BatchServiceFG {
   byte flag=req233[0];
   byte[] name=new byte[len];
   Buffer.BlockCopy(req233,5,name,0,len);
-  SendMachineInfo(name,expertLastX,expertLastY);
+  // This dialog path carries no fee; the client's placement dialog defaults to 1 gold.
+  SendMachineInfo(name,expertLastX,expertLastY,1);
   Send("expert-machine-ack",Offline70RoleProtocol.BatchPacketFG(1,233,new byte[]{1},keys,false));
-  Note("EXPERT_MACHINE_CREATED role="+role.Id+" flag="+flag+" nameBytes="+len+" at="+town+","+area+" "+expertLastX+","+expertLastY);
+  Note("EXPERT_MACHINE_CREATED role="+role.Id+" flag="+flag+" nameBytes="+len+" at="+town+","+area+" "+expertLastX+","+expertLastY+" tier="+MachineTierFG406(assets));
   return true;
  }
- void SendMachineInfo(byte[] name,int x,int y){
-  Send("expert-machine-info",Offline70RewardTypesFG183.DisjointMachineInfoReply((ushort)(role.Id&0xffff),name,(byte)town,(byte)area,(ushort)x,(ushort)y,1,keys));
+ void SendMachineInfo(byte[] name,int x,int y,int fee){
+  Send("expert-machine-info",Offline70RewardTypesFG183.DisjointMachineInfoReply((ushort)(role.Id&0xffff),name,(byte)town,(byte)area,(ushort)x,(ushort)y,fee,keys));
  }
- // World entry: the 217 record carries giveup/type/grade/endurance and the expertness exp. A fresh
+ // The machine tier the client shows (217 dword = machine grade + 1) is the character's expert job
+ // level: CDisjointer::OnUpgradeDisjointMachine refuses to push the grade past `expertLevel - 1`, and
+ // this server has no gold upgrade command, so the machine always sits at that cap.
+ static int MachineTierFG406(Offline70EconomyState s){return Offline70ExpertLevelFG406.MachineLevel(Offline70ExpertLevelFG406.Level(s.ExpertJobTypeFG183,s.ExpertJobExpFG183,s.Level));}
+ static int MachineGradeFG406(Offline70EconomyState s){return Offline70ExpertLevelFG406.Grade(Offline70ExpertLevelFG406.Level(s.ExpertJobTypeFG183,s.ExpertJobExpFG183,s.Level));}
+ // World entry: the 217 record carries giveup/type/tier/endurance and the expertness exp. A fresh
  // session starts the machine at the disjointer.exj initial endurance; the exp is the saved value.
+ // FG406: the tier is the expert job level (see MachineTierFG406), so a level-1 分解师 reports Lv.1
+ // instead of the fixed Lv.5 FG381 advertised.
  internal byte[] ExpertJobLoginInfoFG183(Offline70EconomyState s,byte[] keys){
-  expertEndurance=Math.Max(0,Math.Min(300,s.ExpertJobEnduranceFG183));
-  return Offline70RewardTypesFG183.ExpertJobInfoReply(s.ExpertJobTypeFG183,expertEndurance,s.ExpertJobExpFG183,keys);
+  int tier=MachineTierFG406(s),full=Offline70ExpertLevelFG406.RepairFull(Offline70ExpertLevelFG406.Grade(tier));
+  expertEndurance=Math.Max(0,Math.Min(full,s.ExpertJobEnduranceFG183));
+  return Offline70RewardTypesFG183.ExpertJobInfoReply(s.ExpertJobTypeFG183,expertEndurance,s.ExpertJobExpFG183,tier,keys);
  }
  void SendExpertJobInfoRefreshFG183(){
-  Send("expert-job-info",Offline70RewardTypesFG183.ExpertJobInfoReply(assets.ExpertJobTypeFG183,expertEndurance,assets.ExpertJobExpFG183,keys));
+  Send("expert-job-info",Offline70RewardTypesFG183.ExpertJobInfoReply(assets.ExpertJobTypeFG183,expertEndurance,assets.ExpertJobExpFG183,MachineTierFG406(assets),keys));
  }
 }

@@ -48,7 +48,7 @@ partial class Offline70DungeonFlowFG {
   if(HellRoomActiveFG356){cached=HellRoomMonstersFG356();eliteRoomsFG118.Add(RoomIndex,cached);return cached;}
   ushort[][] original;
   if(DungeonId==1){original=new ushort[Counts[Y]][];for(int i=0;i<original.Length;i++)original[i]=new ushort[]{(ushort)(IsBossRoom&&i==4?2:1),1,(ushort)(IsBossRoom&&i==4?3:0)};}
-  else if(TowerRunFG211(DungeonId)&&TowerFloorFG374>0&&TowerMapOverrideFG374!=0)original=Offline70ForestFG75.Monsters(DungeonId,0,(byte)(TowerFloorFG374-1));else original=GsdMonstersFG130()??(DungeonId==2?Offline70DeepLorienFG72.Monsters(X,Y):Offline70ForestFG75.Monsters(DungeonId,X,Y));
+  else if(TowerRunFG211(DungeonId)&&TowerFloorFG374>0&&TowerMapOverrideFG374!=0)original=Offline70ForestFG75.Monsters(DungeonId,0,(byte)(TowerFloorFG374-1));else original=GsdMonstersFG130()??(DungeonId==2?Offline70DeepLorienFG72.Monsters(X,Y):RoomBaseRowsFG409());
   // The 37 boss room keeps a stand-in normal boss (50098 kind 3) in the PVF-derived table so
   // the APC fallback stays available; when the real 刹影 APC is active it must not also spawn.
   if(BossApcRoomFG176){List<ushort[]> keep=new List<ushort[]>();foreach(ushort[] row in original)if(!(row[0]==50098&&row[2]==3))keep.Add(row);original=keep.ToArray();}
@@ -69,6 +69,11 @@ partial class Offline70DungeonFlowFG {
   else SpecialSpawnCountsFG396[RoomIndex]=0;
   eliteRoomsFG118.Add(RoomIndex,cached);return cached;
  }
+ // FG409: in the hero tier the room is the `[heroes mode map index]` .map (native getMap swaps
+ // mapInfo->m_mapIndex before ConsistMap), so its roster is that map's own `[monster]` rows.
+ // The hero variants differ from the base rooms everywhere (血蝴蝶 6512 8 rows -> 6518 11 rows,
+ // boss 62012 moves from order 3 to 4), so the roster must follow the loaded map, not the cell.
+ ushort[][] RoomBaseRowsFG409(){ushort[][] hero=Offline70HeroMapsFG409.Roster(CurrentMap);return hero??Offline70ForestFG75.Monsters(DungeonId,X,Y);}
  // FG396: per-room count of object-spawned (box) roster rows, from the cache build above.
  internal int SpecialSpawnCountFG396(int room){int value;if(SpecialSpawnCountsFG396.TryGetValue(room,out value))return value;return 0;}
  readonly Dictionary<int,int> SpecialSpawnCountsFG396=new Dictionary<int,int>();

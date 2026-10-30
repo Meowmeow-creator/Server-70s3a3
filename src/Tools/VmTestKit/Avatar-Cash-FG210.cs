@@ -28,6 +28,7 @@ class Offline70AvatarCashFG210 {
   366024,366025,366026,366027,366028,366029,366030,366031, // priest
   466016,466017,466018,466019,466020,466021,466022,466023, // thief
   563000,563001,563002,563003,563004,563005,563006,563007, // at mage
+  416016,416017,416018,416019,416020,416021,416022,416023, // at gunner: live op67 on 2026-10-30 carried commodity 416017 payment=1 and resolved to nothing
   516008,516009,516010,516011,516012,516013,516014,516015}; // at fighter: the male fighter's sky-set exchange family (2026-10-30 report - the purchase resolved to nothing while every other class worked; PVF puts his pieces under character/fighter/at_avatar)
  internal const uint ExchangeVoucher=63092;
  // Offer.Voucher carries ExchangeVoucher as the exchange-class marker; the piece's actual price

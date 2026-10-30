@@ -1160,6 +1160,23 @@ p.Add(16351,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}}); p.Ad
  p.Add(13036,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13037,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(13038,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{2,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(3811,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(3814,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(3819,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4211,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4225,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4227,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4228,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4411,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4417,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(4425,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(9301,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(9302,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10011,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10018,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10024,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
+ p.Add(10027,new byte[][]{new byte[]{1,1}});
+ p.Add(10030,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  p.Add(15004,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});
  // FG396: (4,0)Start.map roster rows (7 monsters) for the d87 start cell.
  p.Add(15009,new byte[][]{new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1},new byte[]{1,1}});

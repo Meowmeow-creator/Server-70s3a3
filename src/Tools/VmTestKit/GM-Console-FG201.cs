@@ -118,6 +118,8 @@ partial class Offline70BatchServiceFG {
    case "dungeon-killall":return GmKillAllFG201(receipt,e);
    case "loot-pickall":return GmPickAllFG201(receipt);
    case "loot-autopick":return GmAutoPickToggleFG201(e);
+   case "loot-groundprobe":return GmGroundProbeFG396(e);
+   case "loot-groundraw":return GmGroundRawFG396(e);
    case "lock-skill":return GmLockSkillFG201(e,true);
    case "unlock-skill":return GmLockSkillFG201(e,false);
    case "premium":return GmPremiumFG201(receipt,e);
@@ -470,7 +472,35 @@ partial class Offline70BatchServiceFG {
    catch(InvalidDataException ex){Note("AUTO_PICKUP_DEFERRED ground="+entry.Value+" reason="+ex.Message);}
   }
  }
- string GmPickAllFG201(string receipt){
+ // FG396: sends one op40 ground row with the chosen probe layout. Requires a loaded
+ // dungeon room - the client parses op40 only in the field. Layout 1 deliberately
+ // reproduces the OVERFLOW_INFO storm so the parser can be captured with a runtime
+ // stack dump while the client is frozen.
+ // FG396 raw variant: sends an arbitrary op40 body (hex attribute) into the loaded room.
+ // Used to walk the CN70 ground-row layout with zero-padded bodies that cannot overflow
+ // the client parser; the log records the exact bytes and any OVERFLOW_INFO storm.
+ string GmGroundRawFG396(XmlElement e){
+  if(!GmLiveFG201)throw new InvalidDataException("Ground raw needs a live client in the field.");
+  if(!dungeon.Active||!dungeon.Loaded)throw new InvalidDataException("Current room is not loaded yet.");
+  string hex=e.GetAttribute("hex");
+  if(hex.Length<2||hex.Length>1024||hex.Length%2!=0)throw new InvalidDataException("Ground raw hex length");
+  byte[] row=new byte[hex.Length/2];
+  for(int i=0;i<row.Length;i++){int hi=HexDigitFG396(hex[2*i]),lo=HexDigitFG396(hex[2*i+1]);if(hi<0||lo<0)throw new InvalidDataException("Ground raw hex digit");row[i]=(byte)(hi*16+lo);}
+  Send("ground-raw",Offline70RoleProtocol.BatchPacketFG(0,40,row,keys,true));
+  Note("GM_GROUND_RAW bytes="+row.Length+" map="+dungeon.CurrentMap+" hex="+hex);
+  return "op40 raw body sent ("+row.Length+" bytes)."; 
+ }
+ static int HexDigitFG396(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
+  string GmGroundProbeFG396(XmlElement e){
+  if(!GmLiveFG201)throw new InvalidDataException("Ground probe needs a live client in the field.");
+  if(!dungeon.Active||!dungeon.Loaded)throw new InvalidDataException("Current room is not loaded yet.");
+  uint layout=GmOptionalNumberFG201(e,"layout",1,1,8);
+  byte[] row=Offline70DiscardProtocolFG.ProbeRowFG396((int)layout,role.Id,dungeon.CurrentMap);
+  Send("ground-probe"+layout,Offline70RoleProtocol.BatchPacketFG(0,40,row,keys,true));
+  Note("GM_GROUND_PROBE layout="+layout+" map="+dungeon.CurrentMap+" bytes="+row.Length+" uid="+role.Id);
+  return "op40 ground probe layout "+layout+" sent ("+row.Length+" bytes). If the client freezes, keep the process open."; 
+ }
+  string GmPickAllFG201(string receipt){
   if(!GmLiveFG201)throw new InvalidDataException("自动拾取需要客户端已经进入副本。");
   if(!dungeon.Active||!dungeon.Loaded)throw new InvalidDataException("当前房间还没有进入或尚未加载完成。");
   if(ground.Count==0)return "当前房间地上没有可拾取物。";

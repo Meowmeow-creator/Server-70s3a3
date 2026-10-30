@@ -2,6 +2,12 @@
 // Bound to current CN70 PVF quest4307, maze1 and map1618/1619/APC201.
 partial class Offline70DungeonFlowFG {
  internal bool TowerRescueFG156;internal bool GsdRunFG130,GsdSpawnedFG130,GsdDeadFG130;internal ushort GsdQuestFG135,GsdApcFG135,GsdStartMapFG135;internal string GsdQuestInstanceFG130;
+ // FG396d: the three GSD dungeons (11 龙人之塔 / 12 人偶玄关 / 15 城主宫殿) ship their companion
+ // layout as the SECOND [maze info] block, each gated by `[quest connection] 0 <4307|4308|4312> <2|3>`.
+ // The hand-coded GSD override reproduced that block's rooms and masks but kept sending maze type 0,
+ // so the client built the base grid - where the GSD start cell is a hole - and the first room had
+ // no door (2026-10-30 report: 人偶玄关与GSD同行的第一图没有门). -1 = no override.
+ internal int MazeIndexOverrideFG130=-1;
  internal bool QuestRoomRunFG205;internal ushort QuestRoomMapFG205,QuestRoomQuestFG205;internal byte QuestRoomXFG205,QuestRoomYFG205;
  // FG214 quest-maze companions: dgn files swap whole maze blocks via [quest connection] while a
  // quest is active. magmacave.dgn ([quest connection] 0 4417 2) moves cell (2,6) onto map 5014
@@ -76,7 +82,7 @@ partial class Offline70DungeonFlowFG {
  // (user report #11) and let the hunt finish without the run.
  CompanionRowsRunFG211=DungeonId==83&&state.Find(26)!=null;
   if(DungeonId==83&&state.Find(5729)!=null&&!MazeDrawsRoomFG384(16337)){QuestRoomRunFG205=true;QuestRoomQuestFG205=5729;QuestRoomMapFG205=16337;QuestRoomXFG205=2;QuestRoomYFG205=1;}
-  if(DungeonId==50&&state.Find(1475)!=null&&!MazeDrawsRoomFG384(6220)){QuestRoomRunFG205=true;QuestRoomQuestFG205=1475;QuestRoomMapFG205=6220;QuestRoomXFG205=2;QuestRoomYFG205=1;}GsdRunFG130=GsdSpawnedFG130=GsdDeadFG130=false;GsdQuestInstanceFG130=null;GsdQuestFG135=GsdApcFG135=GsdStartMapFG135=0;if(Difficulty<(DungeonId==15?2:3))return;ushort quest=(ushort)(DungeonId==11?4307:DungeonId==12?4308:DungeonId==15?4312:0);Offline70QuestActiveFG q=state.Find(quest);if(quest==0||q==null)return;GsdQuestFG135=quest;GsdApcFG135=(ushort)(quest==4307?201:202);GsdStartMapFG135=(ushort)(quest==4307?1618:quest==4308?1819:2421);GsdRunFG130=true;GsdQuestInstanceFG130=q.Instance;X=(byte)(quest==4312?1:0);Y=(byte)(quest==4307?1:quest==4308?0:5);}
+  if(DungeonId==50&&state.Find(1475)!=null&&!MazeDrawsRoomFG384(6220)){QuestRoomRunFG205=true;QuestRoomQuestFG205=1475;QuestRoomMapFG205=6220;QuestRoomXFG205=2;QuestRoomYFG205=1;}GsdRunFG130=GsdSpawnedFG130=GsdDeadFG130=false;GsdQuestInstanceFG130=null;GsdQuestFG135=GsdApcFG135=GsdStartMapFG135=0;MazeIndexOverrideFG130=-1;if(Difficulty<(DungeonId==15?2:3))return;ushort quest=(ushort)(DungeonId==11?4307:DungeonId==12?4308:DungeonId==15?4312:0);Offline70QuestActiveFG q=state.Find(quest);if(quest==0||q==null)return;GsdQuestFG135=quest;GsdApcFG135=(ushort)(quest==4307?201:202);GsdStartMapFG135=(ushort)(quest==4307?1618:quest==4308?1819:2421);GsdRunFG130=true;MazeIndexOverrideFG130=1;GsdQuestInstanceFG130=q.Instance;X=(byte)(quest==4312?1:0);Y=(byte)(quest==4307?1:quest==4308?0:5);}
  internal static readonly ushort[][] HellBossQuestsFG211=new ushort[][]{new ushort[]{2603,44,61704},new ushort[]{2613,80,61709},new ushort[]{2613,81,61112},new ushort[]{2613,82,61710},new ushort[]{2619,111,61108},new ushort[]{2619,112,61109},new ushort[]{2622,86,61192},new ushort[]{2622,87,61223}};
 internal bool HellBossRunFG211;internal ushort HellBossMonsterFG211,HellBossLevelFG211;
 internal bool HellApcRunFG211;internal ushort HellApcIdFG211,HellApcLevelFG211;
@@ -132,8 +138,11 @@ ushort MapFG130(byte x,byte y){ushort gbl=GblMapFG171(x,y);if(gbl!=0)return gbl;
   // (id, level=[basis level] 41 + row delta, kind from the trailing tag; 422 is the `[boss]`).
   if(SwordmanRunFG215&&DungeonId==32&&CurrentMap==4421)return new ushort[][]{new ushort[]{421,41,0},new ushort[]{411,42,0},new ushort[]{411,42,0},new ushort[]{420,41,0},new ushort[]{600,41,0},new ushort[]{422,44,3},new ushort[]{600,41,0},new ushort[]{420,41,0},new ushort[]{411,42,0},new ushort[]{411,42,0},new ushort[]{421,41,0}};
   if(TowerRescueFG156&&CurrentMap==1614)return new ushort[][]{new ushort[]{51,19,0},new ushort[]{50,19,0},new ushort[]{50,19,0},new ushort[]{50,19,0},new ushort[]{70,19,0},new ushort[]{51,19,0},new ushort[]{72,19,0},new ushort[]{72,19,0}};
-  if(HellBossRunFG211&&CurrentMap==MapFG130(BossX,BossY)){ushort[][] room=Offline70ForestFG75.Monsters(DungeonId,X,Y);ushort[][] all=new ushort[room.Length+1][];Array.Copy(room,all,room.Length);all[room.Length]=new ushort[]{HellBossMonsterFG211,HellBossLevelFG211,3};return all;}
-if(CompanionRowsRunFG211){ushort[][] extra=CompanionRowsFG211();if(extra!=null){ushort[][] room=Offline70ForestFG75.Monsters(DungeonId,X,Y);ushort[][] all=new ushort[room.Length+extra.Length][];Array.Copy(room,all,room.Length);Array.Copy(extra,0,all,room.Length,extra.Length);return all;}}
+  // FG409: the hero tier swaps the room to its `[heroes mode map index]` variant, so the
+  // "is this the boss cell" tests below compare the pre-swap cell map and the roster is the
+  // map actually being loaded (RoomBaseRowsFG409). Non-hero runs are untouched.
+  if(HellBossRunFG211&&BaseMapFG409==MapFG130(BossX,BossY)){ushort[][] room=RoomBaseRowsFG409();ushort[][] all=new ushort[room.Length+1][];Array.Copy(room,all,room.Length);all[room.Length]=new ushort[]{HellBossMonsterFG211,HellBossLevelFG211,3};return all;}
+if(CompanionRowsRunFG211){ushort[][] extra=CompanionRowsFG211();if(extra!=null){ushort[][] room=RoomBaseRowsFG409();ushort[][] all=new ushort[room.Length+extra.Length][];Array.Copy(room,all,room.Length);Array.Copy(extra,0,all,room.Length,extra.Length);return all;}}
 if(QuestRoomRunFG205&&CurrentMap==QuestRoomMapFG205){if(QuestRoomQuestFG205==1475)return new ushort[][]{new ushort[]{1073,51,0},new ushort[]{1070,51,0},new ushort[]{1073,51,0},new ushort[]{1071,51,0},new ushort[]{1073,51,0}};return new ushort[][]{};}if(!GsdRunFG130)return null;switch(CurrentMap){
   case 2421:return new ushort[][]{new ushort[]{37,28,0},new ushort[]{38,28,0},new ushort[]{37,28,0},new ushort[]{37,28,0},new ushort[]{38,28,0}};
  case 1807:return new ushort[][]{new ushort[]{37,21,0},new ushort[]{37,21,0},new ushort[]{37,21,0},new ushort[]{37,21,0},new ushort[]{37,21,0},new ushort[]{37,21,0}};
@@ -147,8 +156,10 @@ if(QuestRoomRunFG205&&CurrentMap==QuestRoomMapFG205){if(QuestRoomQuestFG205==147
  // Quest 26 (杂技爱好者) companion distribution across d83's eleven rooms after the start cell
 // (reading order): ranks 0..4 carry all three clown ids, 5..7 drop 61438, 8..9 drop 61437 too,
 // the boss cell carries none - totals are exactly the quest goals 5/8/10.
-ushort[][] CompanionRowsFG211(){
-if(DungeonId!=83)return null;switch(CurrentMap){
+internal ushort[][] CompanionRowsFG211(){
+// FG409: the distribution is keyed by the dungeon's own room maps (16320..16330); in the hero
+// tier CurrentMap is the swapped variant, so key this table on the pre-swap cell map.
+if(DungeonId!=83)return null;switch(BaseMapFG409){
 case 16320:case 16322:case 16323:case 16324:case 16325:return new ushort[][]{new ushort[]{61438,63,0},new ushort[]{61437,63,0},new ushort[]{61442,63,0}};
 case 16326:case 16327:case 16328:return new ushort[][]{new ushort[]{61437,63,0},new ushort[]{61442,63,0}};
 case 16329:case 16330:return new ushort[][]{new ushort[]{61442,63,0}};

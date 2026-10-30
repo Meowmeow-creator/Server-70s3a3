@@ -100,7 +100,9 @@ TownDoorsCheck.exe "D:\70S3A3\local-run\pvf\export"
 # 期望：accepted=58  unexpected rejects=0  PASS=True
 ```
 
-其它验收：`Town4Check`（一次性存档副本上 SaveTown(4) 往返 + `SeriaArea(4)==0`）、
+其它验收：`Town4Check`（一次性存档副本上 SaveTown(4) 往返 + `SeriaArea(4)==1`，即 alfhlyra
+`[gate] 474 234` 的 Gate_Alfh 赛丽亚房；2026-10-30 前误钉成 `==0` 营地，见
+`docs/FIX-2026-10-30-town4-seria-room-FG399.md`）、
 `LoginDriver 127.0.0.1 7002`（登录→角色→选角进世界）。
 
 ## 5. 注意事项

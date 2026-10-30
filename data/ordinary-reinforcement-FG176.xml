@@ -48343,6 +48343,51 @@
       <GoldCost>69000</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
+      <Id>28233</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>7200</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28234</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>21600</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28235</Id>
+      <Grade>32</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>47520</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28236</Id>
+      <Grade>34</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>3</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>86400</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28237</Id>
+      <Grade>35</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>9000</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
       <Id>28238</Id>
       <Grade>35</Grade>
       <MinimumLevel>35</MinimumLevel>
@@ -48350,6 +48395,42 @@
       <EquipType>10</EquipType>
       <Durability>38</Durability>
       <GoldCost>27000</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28239</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>58320</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28240</Id>
+      <Grade>39</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>3</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>104400</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28241</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>10800</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>28242</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>38</Durability>
+      <GoldCost>32400</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
       <Id>28243</Id>
@@ -54571,6 +54652,51 @@
       <GoldCost>69000</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
+      <Id>30231</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>7200</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30232</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>21600</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30233</Id>
+      <Grade>32</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>47520</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30234</Id>
+      <Grade>34</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>3</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>86400</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30235</Id>
+      <Grade>35</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>9000</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
       <Id>30236</Id>
       <Grade>35</Grade>
       <MinimumLevel>35</MinimumLevel>
@@ -54587,6 +54713,33 @@
       <EquipType>10</EquipType>
       <Durability>39</Durability>
       <GoldCost>58320</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30238</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>58320</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30239</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>10800</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>30240</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>39</Durability>
+      <GoldCost>32400</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
       <Id>30241</Id>
@@ -66487,6 +66640,60 @@
       <GoldCost>17280</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
+      <Id>34204</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>7200</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34205</Id>
+      <Grade>30</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>21600</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34206</Id>
+      <Grade>35</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>9000</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34207</Id>
+      <Grade>35</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>27000</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34208</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>0</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>10800</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34209</Id>
+      <Grade>40</Grade>
+      <MinimumLevel>40</MinimumLevel>
+      <Rarity>1</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>32400</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
       <Id>34210</Id>
       <Grade>45</Grade>
       <MinimumLevel>45</MinimumLevel>
@@ -66539,6 +66746,33 @@
       <EquipType>10</EquipType>
       <Durability>35</Durability>
       <GoldCost>38160</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34216</Id>
+      <Grade>32</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>47520</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34217</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>58320</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34218</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>58320</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
       <Id>34219</Id>
@@ -66629,6 +66863,24 @@
       <EquipType>10</EquipType>
       <Durability>35</Durability>
       <GoldCost>38160</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34229</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>58320</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34230</Id>
+      <Grade>37</Grade>
+      <MinimumLevel>35</MinimumLevel>
+      <Rarity>2</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>58320</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
       <Id>34231</Id>
@@ -66854,6 +67106,15 @@
       <EquipType>10</EquipType>
       <Durability>35</Durability>
       <GoldCost>54600</GoldCost>
+    </OrdinaryReinforcementTargetFG176>
+    <OrdinaryReinforcementTargetFG176>
+      <Id>34256</Id>
+      <Grade>34</Grade>
+      <MinimumLevel>30</MinimumLevel>
+      <Rarity>3</Rarity>
+      <EquipType>10</EquipType>
+      <Durability>35</Durability>
+      <GoldCost>86400</GoldCost>
     </OrdinaryReinforcementTargetFG176>
     <OrdinaryReinforcementTargetFG176>
       <Id>34257</Id>

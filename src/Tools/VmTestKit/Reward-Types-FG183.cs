@@ -161,42 +161,45 @@ class Offline70RewardTypesFG183 {
  // (switch on type-1, table 0x47e9e8: types 1/2/4 -> byte count (->[char+0x2d8] vector) + count*dword
  // recipe ids; type 3 分解师 -> dword (->[char+0x2d0]) + dword (->[char+2d4])), then it refreshes the
  // 副职业 UI. Grade and endurance are the 分解机 the original stores per character (CExpertJob.h:247,
- // 249) and spends through [endurance reduce]; this engine has no disjoint machine (op28 decomposes
- // directly), so both are reported at the disjointer.exj initial state: grade 0 shipped as +1,
- // endurance 300. Recipe lists are not modelled, so 附魔师/炼金术师/人偶师 report an empty list.
+ // 249) and spends through [endurance reduce]. The grade dword is what the client shows as "Lv.n"
+ // on the placed machine and in the 副职业 panel, and the original sends `m_enchantCount + 1`
+ // (SendExpertJobInfo.inc case 3). FG406 derives it from the expert job level instead of the fixed
+ // top tier FG380/FG381 reported - see Expert-Level-FG406.cs for the tables and the cap rule.
+ // Recipe lists are not modelled, so 附魔师/炼金术师/人偶师 report an empty list.
  public const ushort ExpertJobInfoOpcode=217;
  const int DisjointerEnduranceInitial=300;// character/expertjob/disjointer.exj [endurance initial value]
- internal static byte[] ExpertJobInfoBody(byte expertType){return ExpertJobInfoBody(expertType,DisjointerEnduranceInitial,0);}
- // Type 3 carries giveup, type, machine grade, endurance, then the expertness exp. The client's
- // 217 handler reads grade/endurance; the extended-expert cave reads the next dword and stores it
+ internal static byte[] ExpertJobInfoBody(byte expertType){return ExpertJobInfoBody(expertType,DisjointerEnduranceInitial,0,1);}
+ // Type 3 carries giveup, type, machine tier, endurance, then the expertness exp. The client's
+ // 217 handler reads tier/endurance; the extended-expert cave reads the next dword and stores it
  // at [char+0x2a4], which is the exp the panel shows as "Lv.n (exp / next)".
- internal static byte[] ExpertJobInfoBody(byte expertType,int endurance,int expertExp){
+ internal static byte[] ExpertJobInfoBody(byte expertType,int endurance,int expertExp,int machineLevel){
+  if(expertType==Offline70ExpertLevelFG406.DisjointerType&&(machineLevel<1||machineLevel>Offline70ExpertLevelFG406.MaximumGrade+1))throw new InvalidDataException("Expert job machine tier bounds");
   using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
    w.Write((byte)0);w.Write(expertType);
-   /* FG380: the grade dword is the disjointer machine tier and the client gates which item levels
-      the machine accepts. Grade 1 is the worn starter machine - that is why equipment above ~level
-      30 was refused for disassembly (2026-10-28 report). disjointer.exj's [disjoint result] table
-      covers grades 0..8, so report a top-tier machine: the single-player server never wears out. */
-   if(expertType==3){w.Write((int)5);w.Write(endurance);w.Write(expertExp);}
-   else if(expertType>=1&&expertType<=4&&expertType!=3)w.Write((byte)0);
+   if(expertType==Offline70ExpertLevelFG406.DisjointerType){w.Write(machineLevel);w.Write(endurance);w.Write(expertExp);}
+   else if(expertType>=1&&expertType<=4&&expertType!=Offline70ExpertLevelFG406.DisjointerType)w.Write((byte)0);
    return m.ToArray();}
  }
- internal static byte[] ExpertJobInfoReply(byte expertType,byte[] keys){return ExpertJobInfoReply(expertType,DisjointerEnduranceInitial,0,keys);}
- internal static byte[] ExpertJobInfoReply(byte expertType,int endurance,int expertExp,byte[] keys){return Offline70RoleProtocol.BatchPacketFG(0,ExpertJobInfoOpcode,ExpertJobInfoBody(expertType,endurance,expertExp),keys,false);}
+ internal static byte[] ExpertJobInfoReply(byte expertType,byte[] keys){return ExpertJobInfoReply(expertType,DisjointerEnduranceInitial,0,1,keys);}
+ internal static byte[] ExpertJobInfoReply(byte expertType,int endurance,int expertExp,int machineLevel,byte[] keys){return Offline70RoleProtocol.BatchPacketFG(0,ExpertJobInfoOpcode,ExpertJobInfoBody(expertType,endurance,expertExp,machineLevel),keys,false);}
  // notify CREATE_DISJOINT_STORE: reference server NOTI 206, this client parses it at 218 (handler
  // 0x468570: word uniqueId, length-prefixed narrow name, byte vill, byte area, word x, word y,
- // dword level). The client resolves the owner by uniqueId and creates the machine object; the
- // display name is the first wide character of the decoded name, so the caller echoes the same
- // narrow name bytes the client sent.
+ // dword). The client resolves the owner by uniqueId and creates the machine object; the display
+ // name is the first wide character of the decoded name, so the caller echoes the same narrow name
+ // bytes the client sent. The trailing dword is the stall fee (手续费), NOT the machine tier:
+ // reference CDisjointMachine keeps it at +0x1c (get_cost()) from OnCreateDisjointStore's `level`
+ // argument, which that function range-checks against [limit disjoint gold]; the client stores it at
+ // machine+0x20c (setter 0xdb4cd0), formats the "手续费" tooltip line from it (0x6c81af) and echoes
+ // it back in the op250 placement body (0xdb4e46). FG380 used to rewrite 1 -> 5 here, which made
+ // the tooltip disagree with the fee the player typed.
  public const ushort DisjointMachineInfoOpcode=218;
- internal static byte[] DisjointMachineInfoBody(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int level){
+ internal static byte[] DisjointMachineInfoBody(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int fee){
   if(name==null)name=new byte[0];
+  if(fee<0||fee>10000)throw new InvalidDataException("Disjoint store fee bounds");
   using(MemoryStream m=new MemoryStream())using(BinaryWriter w=new BinaryWriter(m)){
-   w.Write(uniqueId);w.Write(name.Length);w.Write(name);w.Write(vill);w.Write(area);w.Write(x);w.Write(y);w.Write(level);
+   w.Write(uniqueId);w.Write(name.Length);w.Write(name);w.Write(vill);w.Write(area);w.Write(x);w.Write(y);w.Write(fee);
    return m.ToArray();}
  }
- internal static byte[] DisjointMachineInfoReply(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int level,byte[] keys){
-  /* FG380: placement passes the legacy literal 1; advertise the same top tier the 217 record does,
-     otherwise the client refuses high-level items at this machine. */
-  return Offline70RoleProtocol.BatchPacketFG(0,DisjointMachineInfoOpcode,DisjointMachineInfoBody(uniqueId,name,vill,area,x,y,level<=1?5:level),keys,false);}
+ internal static byte[] DisjointMachineInfoReply(ushort uniqueId,byte[] name,byte vill,byte area,ushort x,ushort y,int fee,byte[] keys){
+  return Offline70RoleProtocol.BatchPacketFG(0,DisjointMachineInfoOpcode,DisjointMachineInfoBody(uniqueId,name,vill,area,x,y,fee),keys,false);}
 }

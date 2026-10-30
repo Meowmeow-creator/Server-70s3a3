@@ -70,11 +70,21 @@ class Offline70CommerceFG71 {
   if(d.Kind==8&&e.List!=7)throw new InvalidDataException("NPC pet equipment window");
   if(unit>Offline70Economy.WalletLimit)throw new InvalidDataException("NPC sale price overflow");return (uint)unit;
  }
+ // FG398: the quote needs only the item script. Store::repair_equip prices every row
+ // with getEquipmentRepairPrice(script [value], curEnd, maxEnd, script [grade], ...) times
+ // [repair cost rate by upgrade level] (1.0 throughout this etc/upgrade.etc, so the quote
+ // is level independent). Demanding a commerce row with RepairValue!=0 was our own
+ // whitelist: 23706 of the 26122 Kind-4 ids answered 0x11. RepairValue was exactly
+ // data/disjoint-params-FG92.dat [value] for all 2416 shipped rows (verified), so the
+ // fallback reads that table and those prices stay bit-identical.
  internal static uint RepairCost(Offline70EconomyEntry e){
-  if(e==null)throw new InvalidDataException("Repair ownership");Offline70CommerceItemFG71 p=Get(e.ItemId);Offline70EconomyItemDefinition d=Offline70Economy.Definition(e.ItemId);
-  if(d.Kind!=4||p.RepairValue==0||d.MaxDurability==0||e.Quantity!=1||e.Durability>d.MaxDurability)throw new InvalidDataException("Ordinary repair profile unavailable");
+  if(e==null)throw new InvalidDataException("Repair ownership");Offline70EconomyItemDefinition d=Offline70Economy.Definition(e.ItemId);
+  if(d.Kind!=4||d.MaxDurability==0||e.Quantity!=1||e.Durability>d.MaxDurability)throw new InvalidDataException("Ordinary repair profile unavailable");
+  uint value;uint grade;Offline70CommerceItemFG71 p;
+  if(profiles.TryGetValue(e.ItemId,out p)&&p.RepairValue!=0){value=p.RepairValue;grade=(uint)p.Grade;}
+  else{Offline70DisjointParamsFG92.Params q=Offline70DisjointParamsFG92.Get(e.ItemId);if(q==null)throw new InvalidDataException("Ordinary repair profile unavailable item="+e.ItemId);value=q.Value;grade=q.Grade;}
   // TW898C8FC and CN70 quote truncate, retaining the early integer /10.
-  ulong basis=(ulong)p.RepairValue*(uint)(p.Grade+5)/10;ulong cost=basis*(uint)(d.MaxDurability-e.Durability)/((uint)d.MaxDurability*10);
+  ulong basis=(ulong)value*(grade+5)/10;ulong cost=basis*(uint)(d.MaxDurability-e.Durability)/((uint)d.MaxDurability*10);
   if(cost>Offline70Economy.WalletLimit)throw new InvalidDataException("Repair cost overflow");return (uint)cost;
  }
 }

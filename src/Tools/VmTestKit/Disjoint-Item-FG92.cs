@@ -12,7 +12,11 @@ class Offline70DisjointFG92 {
   byte[] b=Offline70RoleProtocol.BatchCryptFG(encrypted,keys,0,false);
   for(int i=5;i<8;i++)if(b[i]!=0)throw new InvalidDataException("Disjoint28 request padding");
   Request r=new Request{Slot=BitConverter.ToUInt16(b,0),List=b[2],Tool=BitConverter.ToInt16(b,3)};
-  if(r.List!=0||r.Slot<3||r.Slot>=41||r.Tool!=-1)throw new InvalidDataException("Only original NPC ordinary-equipment disjoint supported");return r;
+  // Backpack only, by user confirmation 2026-10-30: worn equipment must be unequipped first.
+  // An FG398 attempt to accept the worn panel (space 3) was reverted - the original reference
+  // does map the space through GetInvenTypeFromItemSpace and validate only the row, but the
+  // shipped behaviour "拆之前先脱下来" is the intended one.
+  if(r.List!=0||r.Slot<3||r.Slot>=41||r.Tool!=-1)throw new InvalidDataException("Only backpack equipment can be disassembled");return r;
  }
  internal static int Draw(int bound){if(bound<=0||bound>10000)throw new InvalidDataException("Disjoint random bound");uint limit=UInt32.MaxValue-UInt32.MaxValue%(uint)bound;byte[] bytes=new byte[4];lock(RandomSource){uint value;do{RandomSource.GetBytes(bytes);value=BitConverter.ToUInt32(bytes,0);}while(value>=limit);return (int)(value%(uint)bound);}}
  internal static uint BaseCount(uint value,byte rarity){
@@ -27,7 +31,7 @@ class Offline70DisjointFG92 {
   return Offline70Economy.Apply(path,receipt,"disjoint",r.List+":"+r.Slot+":"+r.Tool,delegate(Offline70EconomyState s){
    Offline70EconomyEntry source=Offline70Economy.Find(s,r.List,r.Slot);
    // _check_disjointable_item_state: empty slot / not an equipable bag row -> 0x11.
-   if(r.List!=0||r.Tool!=-1||source==null||source.Quantity!=1||Offline70Economy.Definition(source.ItemId).Kind!=4)throw new Rejected(0x11,"Disjoint target is not ordinary owned equipment");
+   if(r.List!=0||r.Tool!=-1||source==null||source.Quantity!=1||Offline70Economy.Definition(source.ItemId).Kind!=4)throw new Rejected(0x11,"Disjoint target is not backpack equipment");
    Offline70DisjointParamsFG92.Params p=Offline70DisjointParamsFG92.Get(source.ItemId);
    if(p==null)throw new Rejected(0x11,"Disjoint target has no item script");
    // _checkDisjointableItem: IsImpossibleDisjoint -> 0x13, GetAttachType==2 ([trade delete]) -> 0x11.
